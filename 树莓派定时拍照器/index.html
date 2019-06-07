@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next pisces" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/xkl.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/xkl.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/xlk.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/xkl.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="首先是简单的拍照功能,通过下面的php可以实现远程查看照片 12345&amp;lt;?phpecho shell_exec(&quot;raspistill -t 1 -o /home/pi/www/a.jpg -w 2592 -h 1944&quot;);echo &apos;&amp;lt;img style=&quot;width: 80%&quot; src=a.jpg&amp;gt;&apos;;?&amp;gt; 如果出错需要执行下面的代码:12chmod a+rw /">
+<meta name="keywords" content="树莓派">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派定时拍照器">
+<meta property="og:url" content="https://ypw.io/树莓派定时拍照器/index.html">
+<meta property="og:site_name" content="杨培文">
+<meta property="og:description" content="首先是简单的拍照功能,通过下面的php可以实现远程查看照片 12345&amp;lt;?phpecho shell_exec(&quot;raspistill -t 1 -o /home/pi/www/a.jpg -w 2592 -h 1944&quot;);echo &apos;&amp;lt;img style=&quot;width: 80%&quot; src=a.jpg&amp;gt;&apos;;?&amp;gt; 如果出错需要执行下面的代码:12chmod a+rw /">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ypw.io/images/IMG_20150319_225003.jpg">
+<meta property="og:image" content="https://ypw.io/images/IMG_20150319_225016.jpg">
+<meta property="og:image" content="https://ypw.io/images/IMG_20150319_225123.jpg">
+<meta property="og:image" content="https://ypw.io/images/IMG_20150319_225303.jpg">
+<meta property="og:image" content="https://ypw.io/images/IMG_20150320_232026.jpg">
+<meta property="og:image" content="https://ypw.io/images/627bd2050fe26555.png">
+<meta property="og:image" content="https://ypw.io/images/415cc11db0d897c7.jpg">
+<meta property="og:updated_time" content="2016-12-25T15:56:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="树莓派定时拍照器">
+<meta name="twitter:description" content="首先是简单的拍照功能,通过下面的php可以实现远程查看照片 12345&amp;lt;?phpecho shell_exec(&quot;raspistill -t 1 -o /home/pi/www/a.jpg -w 2592 -h 1944&quot;);echo &apos;&amp;lt;img style=&quot;width: 80%&quot; src=a.jpg&amp;gt;&apos;;?&amp;gt; 如果出错需要执行下面的代码:12chmod a+rw /">
+<meta name="twitter:image" content="https://ypw.io/images/IMG_20150319_225003.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ypw.io/树莓派定时拍照器/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>树莓派定时拍照器 | 杨培文</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杨培文</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Yang Peiwen</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ypw.io/树莓派定时拍照器/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="杨培文">
+      <meta itemprop="description" content="杨培文的 blog">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨培文">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">树莓派定时拍照器
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-03-20 23:57:08" itemprop="dateCreated datePublished" datetime="2015-03-20T23:57:08+08:00">2015-03-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2016-12-25 23:56:38" itemprop="dateModified" datetime="2016-12-25T23:56:38+08:00">2016-12-25</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <iframe src="http://player.youku.com/embed/XOTE2NDMwMjk2" width="498" height="320" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+
+<p>首先是简单的拍照功能,通过下面的php可以实现远程查看照片</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> shell_exec(<span class="string">"raspistill -t 1 -o /home/pi/www/a.jpg -w 2592 -h 1944"</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;img style="width: 80%" src=a.jpg&gt;'</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果出错需要执行下面的代码:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">chmod a+rw /dev/vchiq</span><br></pre></td></tr></table></figure></p>
+<p>来自:<a href="http://www.raspbian.org/RaspbianQuake3" target="_blank" rel="noopener">http://www.raspbian.org/RaspbianQuake3</a></p>
+<p>然后,是C语言写的定时拍照器,一分钟一张照片</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">char</span> cmd[<span class="number">100</span>];</span><br><span class="line">    <span class="built_in">sprintf</span>(cmd, <span class="string">"raspistill -t 1 -o /home/pi/www/img/%d.jpg -w 1920 -h 1080"</span>, $</span><br><span class="line">    system(cmd);</span><br><span class="line">    <span class="built_in">printf</span>(cmd);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">    sleep(<span class="number">60</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后我们可以通过gcc编译并执行:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">gcc paizhao.c</span><br><span class="line">./a.out</span><br></pre></td></tr></table></figure>
+<p>但是呢,我们如果关闭putty,拍照就会停止,所以我们需要一个叫screen的东西</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">screen -S <span class="string">"ypw"</span></span><br><span class="line">./a.out</span><br></pre></td></tr></table></figure>
+<p>执行上面的代码之后,关闭putty也会自动拍照了.</p>
+<p>然后有了那么多照片之后,怎么样去查看呢?</p>
+<p>那么我们就需要一个php遍历文件了</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"zh-CN"</span>&gt;</span><br><span class="line">        &lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=utf-8"</span> /&gt;</span><br><span class="line">        &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span><br><span class="line">        &lt;title&gt;拍的照片们&lt;/title&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$dir=dirname(<span class="keyword">__FILE__</span>);</span><br><span class="line">$files = scandir($dir);</span><br><span class="line"><span class="keyword">foreach</span>($files <span class="keyword">as</span> $file)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(strpos($file,<span class="string">".jpg"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'&lt;img style="width:80%" src='</span>.$file.<span class="string">'&gt;&lt;br&gt;'</span>;</span><br><span class="line">        $time=filemtime($file);</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"文件名：$file    拍摄时间："</span>.date(<span class="string">"Y-m-d H:i:s"</span>,$time).<span class="string">"&lt;br&gt;\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后保存到/home/pi/www/img文件夹下,这样访问<a href="http://192.168.191.3/img/的时候就会返回所有的照片" target="_blank" rel="noopener">http://192.168.191.3/img/的时候就会返回所有的照片</a>.</p>
+<p>拍了一天之后,照片有一千多张,访问刚才那个页面之后内存会崩溃,这样我们就没办法去查看图片了,这时候就需要python来帮忙下载了.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">__author__ = <span class="string">'lucky dog'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">url = <span class="string">"http://192.168.191.3/img/"</span></span><br><span class="line"></span><br><span class="line">html = urlopen(url).read()</span><br><span class="line">soup = BeautifulSoup(html)</span><br><span class="line">imgs = soup.findAll(<span class="string">"img"</span>)</span><br><span class="line"><span class="keyword">for</span> img <span class="keyword">in</span> imgs:</span><br><span class="line">    <span class="keyword">print</span> img[<span class="string">'src'</span>]</span><br><span class="line">    url2 = <span class="string">"http://192.168.191.3/img/"</span>+img[<span class="string">'src'</span>]</span><br><span class="line">    filepath = <span class="string">"img/"</span>+img[<span class="string">'src'</span>]</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(filepath):</span><br><span class="line">        urlretrieve(url2.encode(<span class="string">'utf-8'</span>), filepath)</span><br></pre></td></tr></table></figure>
+<p>这样图片就都下载下来了.</p>
+<p>下面这几张图片就是树莓派和我的植物</p>
+<p><a href="/images/IMG_20150319_225003.jpg"><img src="/images/IMG_20150319_225003.jpg" alt=""></a></p>
+<p><a href="/images/IMG_20150319_225016.jpg"><img src="/images/IMG_20150319_225016.jpg" alt=""></a></p>
+<p><a href="/images/IMG_20150319_225123.jpg"><img src="/images/IMG_20150319_225123.jpg" alt=""></a></p>
+<p><a href="/images/IMG_20150319_225303.jpg"><img src="/images/IMG_20150319_225303.jpg" alt=""></a></p>
+<p>之后我觉得晚上都是黑色的图片多无聊,我就加了个灯</p>
+<p><a href="/images/IMG_20150320_232026.jpg"><img src="/images/IMG_20150320_232026.jpg" alt=""></a></p>
+<p><a href="/images/627bd2050fe26555.png"><img src="/images/627bd2050fe26555.png" alt=""></a></p>
+<p><a href="/images/415cc11db0d897c7.jpg"><img src="/images/415cc11db0d897c7.jpg" alt=""></a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/树莓派/" rel="tag"># 树莓派</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/python-多线程队列爬虫/" rel="next" title="python-多线程队列爬虫">
+                <i class="fa fa-chevron-left"></i> python-多线程队列爬虫
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/python爬虫之urllib2的使用,以及exec()函数/" rel="prev" title="python爬虫之urllib2的使用,以及exec()函数">
+                python爬虫之urllib2的使用,以及exec()函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="杨培文">
+            
+              <p class="site-author-name" itemprop="name">杨培文</p>
+              <p class="site-description motion-element" itemprop="description">杨培文的 blog</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ypwhs" title="GitHub &rarr; https://github.com/ypwhs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/ypwhs" title="Weibo &rarr; https://weibo.com/ypwhs" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://www.zhihu.com/people/yangpw" title="知乎 &rarr; http://www.zhihu.com/people/yangpw" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>知乎</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/ypwhs" title="Linkedin &rarr; https://www.linkedin.com/in/ypwhs" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">杨培文</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

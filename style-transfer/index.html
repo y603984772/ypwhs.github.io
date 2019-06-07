@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next pisces" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/xkl.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/xkl.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/xlk.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/xkl.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="风格迁移是一个很有意思的任务，通过风格迁移可以使一张图片保持本身内容大致不变的情况下呈现出另外一张图片的风格。本文会介绍以下三种风格迁移方式以及对应的代码实现：  固定风格固定内容的普通风格迁移（A Neural Algorithm of Artistic Style） 固定风格任意内容的快速风格迁移（Perceptual Losses for Real-Time Style Transfer a">
+<meta name="keywords" content="风格迁移">
+<meta property="og:type" content="article">
+<meta property="og:title" content="风格迁移三部曲">
+<meta property="og:url" content="https://ypw.io/style-transfer/index.html">
+<meta property="og:site_name" content="杨培文">
+<meta property="og:description" content="风格迁移是一个很有意思的任务，通过风格迁移可以使一张图片保持本身内容大致不变的情况下呈现出另外一张图片的风格。本文会介绍以下三种风格迁移方式以及对应的代码实现：  固定风格固定内容的普通风格迁移（A Neural Algorithm of Artistic Style） 固定风格任意内容的快速风格迁移（Perceptual Losses for Real-Time Style Transfer a">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ypw.io/style-transfer/VGG16.png">
+<meta property="og:image" content="https://ypw.io/style-transfer/S1.jpg">
+<meta property="og:image" content="https://ypw.io/style-transfer/transform_net.png">
+<meta property="og:image" content="https://ypw.io/style-transfer/S2.jpg">
+<meta property="og:image" content="https://ypw.io/style-transfer/S2_speed.png">
+<meta property="og:image" content="https://ypw.io/style-transfer/transform_net2.png">
+<meta property="og:image" content="https://ypw.io/style-transfer/Conv2d_MyConv2D.png">
+<meta property="og:image" content="https://ypw.io/style-transfer/transform_net3.png">
+<meta property="og:image" content="https://ypw.io/style-transfer/metanet.png">
+<meta property="og:image" content="https://ypw.io/style-transfer/weights_diverge.png">
+<meta property="og:image" content="https://ypw.io/style-transfer/S3.jpg">
+<meta property="og:image" content="https://ypw.io/style-transfer/S3_speed.png">
+<meta property="og:updated_time" content="2018-07-15T14:09:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="风格迁移三部曲">
+<meta name="twitter:description" content="风格迁移是一个很有意思的任务，通过风格迁移可以使一张图片保持本身内容大致不变的情况下呈现出另外一张图片的风格。本文会介绍以下三种风格迁移方式以及对应的代码实现：  固定风格固定内容的普通风格迁移（A Neural Algorithm of Artistic Style） 固定风格任意内容的快速风格迁移（Perceptual Losses for Real-Time Style Transfer a">
+<meta name="twitter:image" content="https://ypw.io/style-transfer/VGG16.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ypw.io/style-transfer/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>风格迁移三部曲 | 杨培文</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杨培文</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Yang Peiwen</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ypw.io/style-transfer/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="杨培文">
+      <meta itemprop="description" content="杨培文的 blog">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨培文">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">风格迁移三部曲
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-15 15:41:26 / 修改时间：22:09:11" itemprop="dateCreated datePublished" datetime="2018-07-15T15:41:26+08:00">2018-07-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>风格迁移是一个很有意思的任务，通过风格迁移可以使一张图片保持本身内容大致不变的情况下呈现出另外一张图片的风格。本文会介绍以下三种风格迁移方式以及对应的代码实现：</p>
+<ul>
+<li>固定风格固定内容的普通风格迁移（<a href="https://arxiv.org/abs/1508.06576" target="_blank" rel="noopener">A Neural Algorithm of Artistic Style</a>）</li>
+<li>固定风格任意内容的快速风格迁移（<a href="https://arxiv.org/abs/1603.08155" target="_blank" rel="noopener">Perceptual Losses for Real-Time Style Transfer and Super-Resolution</a>）</li>
+<li>任意风格任意内容的极速风格迁移（<a href="https://arxiv.org/abs/1709.04111" target="_blank" rel="noopener">Meta Networks for Neural Style Transfer</a>）</li>
+</ul>
+<p>本文所使用的环境是 pytorch 0.4.0，如果你使用了其他的版本，稍作修改即可正确运行。</p>
+<a id="more"></a>
+<h1 id="固定风格固定内容的普通风格迁移"><a href="#固定风格固定内容的普通风格迁移" class="headerlink" title="固定风格固定内容的普通风格迁移"></a>固定风格固定内容的普通风格迁移</h1><p>最早的风格迁移就是在固定风格、固定内容的情况下做的风格迁移，这是最慢的方法，也是最经典的方法。</p>
+<p>最原始的风格迁移的思路很简单，把图片当做可以训练的变量，通过优化图片来降低与内容图片的内容差异以及降低与风格图片的风格差异，迭代训练多次以后，生成的图片就会与内容图片的内容一致，同时也会与风格图片的风格一致。</p>
+<h2 id="VGG16"><a href="#VGG16" class="headerlink" title="VGG16"></a>VGG16</h2><p>VGG16 是一个很经典的模型，它通过堆叠 3x3 的卷积层和池化层，在 ImageNet 上获得了不错的成绩。我们使用在 ImageNet 上经过预训练的 VGG16 模型可以对图像提取出有用的特征，这些特征可以帮助我们去衡量两个图像的内容差异和风格差异。</p>
+<p>在进行风格迁移任务时，我们只需要提取其中几个比较重要的层，所以我们对 pytorch 自带的预训练 VGG16 模型稍作了一些修改：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VGG</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, features)</span>:</span></span><br><span class="line">        super(VGG, self).__init__()</span><br><span class="line">        self.features = features</span><br><span class="line">        self.layer_name_mapping = &#123;</span><br><span class="line">            <span class="string">'3'</span>: <span class="string">"relu1_2"</span>,</span><br><span class="line">            <span class="string">'8'</span>: <span class="string">"relu2_2"</span>,</span><br><span class="line">            <span class="string">'15'</span>: <span class="string">"relu3_3"</span>,</span><br><span class="line">            <span class="string">'22'</span>: <span class="string">"relu4_3"</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> self.parameters():</span><br><span class="line">            p.requires_grad = <span class="keyword">False</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        outs = []</span><br><span class="line">        <span class="keyword">for</span> name, module <span class="keyword">in</span> self.features._modules.items():</span><br><span class="line">            x = module(x)</span><br><span class="line">            <span class="keyword">if</span> name <span class="keyword">in</span> self.layer_name_mapping:</span><br><span class="line">                outs.append(x)</span><br><span class="line">        <span class="keyword">return</span> outs</span><br><span class="line"></span><br><span class="line">vgg16 = models.vgg16(pretrained=<span class="keyword">True</span>)</span><br><span class="line">vgg16 = VGG(vgg16.features[:<span class="number">23</span>]).to(device).eval()</span><br></pre></td></tr></table></figure>
+<p>经过修改的 VGG16 可以输出 $\text{relu1_2、relu2_2、relu3_3、relu4_3}$ 这几个特定层的特征图。下面这两句代码就是它的用法：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">features = vgg16(input_img)</span><br><span class="line">content_features = vgg16(content_img)</span><br></pre></td></tr></table></figure>
+<p>举个例子，当我们使用 vgg16 对 <code>input_img</code> 计算特征时，它会返回四个矩阵给 features，假设 <code>input_img</code> 的尺寸是 <code>[1, 3, 512, 512]</code>（四个维度分别代表 batch, channels, height, width），那么它返回的四个矩阵的尺寸就是这样的：</p>
+<ul>
+<li>relu1_2 <code>[1, 64, 512, 512]</code></li>
+<li>relu2_2 <code>[1, 128, 256, 256]</code></li>
+<li>relu3_3 <code>[1, 256, 128, 128]</code></li>
+<li>relu4_3 <code>[1, 512, 64, 64]</code></li>
+</ul>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p>我们进行风格迁移的时候，必须保证生成的图像与内容图像的内容一致性，不然风格迁移就变成艺术创作了。那么如何衡量两张图片的内容差异呢？很简单，通过 VGG16 输出的特征图来衡量图片的内容差异。</p>
+<img src="/style-transfer/VGG16.png">
+<p>提示：在本方法中没有 Image Transform Net，为了表述方便，我们使用了第二篇论文中的图。</p>
+<p>这里使用的损失函数是：</p>
+<p>$$\Large\ell^{\phi,j}_{feat}(\hat{y},y)=\frac{1}{C_jH_jW_j}||\phi_j(\hat{y})-\phi_j(y)||^2_2$$</p>
+<p>其中：</p>
+<ul>
+<li>$\hat{y}$是输入图像（也就是生成的图像）</li>
+<li>$y$是内容图像</li>
+<li>$\phi$ 代表 VGG16</li>
+<li>$j$ 在这里是 $\text{relu3_3}$</li>
+<li>$\phi_j(x)$指的是 x 图像输入到 VGG 以后的第 j 层的特征图</li>
+<li>$C_j\times H_j\times W_j$是第 j 层输出的特征图的尺寸</li>
+</ul>
+<p>根据生成图像和内容图像在 $\text{relu3_3}$ 输出的特征图的均方误差（MeanSquaredError）来优化生成的图像与内容图像之间的内容一致性。</p>
+<p>那么写成代码就是这样的：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">content_loss = F.mse_loss(features[<span class="number">2</span>], content_features[<span class="number">2</span>]) * content_weight</span><br></pre></td></tr></table></figure>
+<p>因为我们这里使用的是经过在 ImageNet 预训练过的 VGG16 提取的特征图，所以它能提取出图像的高级特征，通过优化生成图像和内容图像特征图的 mse，可以迫使生成图像的内容与内容图像在 VGG16 的 relu3_3 上输出相似的结果，因此生成图像和内容图像在内容上是一致的。</p>
+<h2 id="风格"><a href="#风格" class="headerlink" title="风格"></a>风格</h2><h3 id="Gram-矩阵"><a href="#Gram-矩阵" class="headerlink" title="Gram 矩阵"></a>Gram 矩阵</h3><p>那么如何衡量输入图像与风格图像之间的内容差异呢？这里就需要提出一个新的公式，Gram 矩阵：</p>
+<p>$$\Large{G^\phi_j(x)_{c,c’}=\frac{1}{C_jH_jW_j} \sum_{h=1}^{H_j} \sum_{w=1}^{W_j} \phi_j(x)_{h,w,c}\phi_j(x)_{h,w,c’}}$$</p>
+<p>其中：</p>
+<ul>
+<li>$\hat{y}$是输入图像（也就是生成的图像）</li>
+<li>$y$是风格图像</li>
+<li>$C_j\times H_j\times W_j$是第 j 层输出的特征图的尺寸。</li>
+<li>$G^\phi_j(x)$指的是 x 图像的第 j 层特征图对应的 Gram 矩阵，比如 64 个卷积核对应的卷积层输出的特征图的 Gram 矩阵的尺寸是 $(64, 64)$。</li>
+<li>$G^\phi_j(x)_{c,c’}$ 指的是 Gram 矩阵第 $(c, c’)$ 坐标对应的值。</li>
+<li>$\phi_j(x)$指的是 x 图像输入到 VGG 以后的第 j 层的特征图，$\phi_j(x)_{h,w,c}$ 指的是特征图 $(h,w,c)$坐标对应的值。</li>
+</ul>
+<p>Gram 矩阵的计算方法其实很简单，Gram 矩阵的 $(c, c’)$ 坐标对应的值，就是特征图的第 $c$ 张和第 $c’$ 张图对应元素相乘，然后全部加起来并且除以 $C_j\times H_j\times W_j$ 的结果。根据公式我们可以很容易推断出 Gram 矩阵是对称矩阵。</p>
+<p>具体到代码，我们可以写出下面的函数：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gram_matrix</span><span class="params">(y)</span>:</span></span><br><span class="line">    (b, ch, h, w) = y.size()</span><br><span class="line">    features = y.view(b, ch, w * h)</span><br><span class="line">    features_t = features.transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">    gram = features.bmm(features_t) / (ch * h * w)</span><br><span class="line">    <span class="keyword">return</span> gram</span><br></pre></td></tr></table></figure>
+<p>参考链接：</p>
+<p><a href="https://github.com/pytorch/examples/blob/0.4/fast_neural_style/neural_style/utils.py#L21-L26" target="_blank" rel="noopener">https://github.com/pytorch/examples/blob/0.4/fast_neural_style/neural_style/utils.py#L21-L26</a></p>
+<p>假设我们输入了一个 <code>[1, 3, 512, 512]</code> 的图像，下面就是各个矩阵的尺寸：</p>
+<ul>
+<li>relu1_2 <code>[1, 64, 512, 512]</code>，gram <code>[1, 64, 64]</code></li>
+<li>relu2_2 <code>[1, 128, 256, 256]</code>，gram <code>[1, 128, 128]</code></li>
+<li>relu3_3 <code>[1, 256, 128, 128]</code>，gram <code>[1, 256, 256]</code></li>
+<li>relu4_3 <code>[1, 512, 64, 64]</code>，gram <code>[1, 512, 512]</code></li>
+</ul>
+<h3 id="风格损失"><a href="#风格损失" class="headerlink" title="风格损失"></a>风格损失</h3><p>根据生成图像和风格图像在 $\text{relu1_2、relu2_2、relu3_3、relu4_3}$ 输出的特征图的 Gram 矩阵之间的均方误差（MeanSquaredError）来优化生成的图像与风格图像之间的风格差异：</p>
+<p>$$\Large\ell^{\phi,j}_{style}(\hat{y},y)=||G^\phi_j(\hat{y})-G^\phi_j(y)||^2_F$$</p>
+<p>其中：</p>
+<ul>
+<li>$\hat{y}$是输入图像（也就是生成的图像）</li>
+<li>$y$是风格图像</li>
+<li>$G^\phi_j(x)$指的是 x 图像的第 j 层特征图对应的 Gram 矩阵</li>
+</ul>
+<p>那么写成代码就是下面这样：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">style_grams = [gram_matrix(x) <span class="keyword">for</span> x <span class="keyword">in</span> style_features]</span><br><span class="line"></span><br><span class="line">style_loss = <span class="number">0</span></span><br><span class="line">grams = [gram_matrix(x) <span class="keyword">for</span> x <span class="keyword">in</span> features]</span><br><span class="line"><span class="keyword">for</span> a, b <span class="keyword">in</span> zip(grams, style_grams):</span><br><span class="line">    style_loss += F.mse_loss(a, b) * style_weight</span><br></pre></td></tr></table></figure>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>那么风格迁移的目标就很简单了，直接将两个 loss 按权值加起来，然后对图片优化 loss，即可优化出既有内容图像的内容，也有风格图像的风格的图片。代码如下：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">input_img = content_img.clone()</span><br><span class="line">optimizer = optim.LBFGS([input_img.requires_grad_()])</span><br><span class="line">style_weight = <span class="number">1e6</span></span><br><span class="line">content_weight = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">run = [<span class="number">0</span>]</span><br><span class="line"><span class="keyword">while</span> run[<span class="number">0</span>] &lt;= <span class="number">300</span>:</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">()</span>:</span></span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        features = vgg16(input_img)</span><br><span class="line">        </span><br><span class="line">        content_loss = F.mse_loss(features[<span class="number">2</span>], content_features[<span class="number">2</span>]) * content_weight</span><br><span class="line">        style_loss = <span class="number">0</span></span><br><span class="line">        grams = [gram_matrix(x) <span class="keyword">for</span> x <span class="keyword">in</span> features]</span><br><span class="line">        <span class="keyword">for</span> a, b <span class="keyword">in</span> zip(grams, style_grams):</span><br><span class="line">            style_loss += F.mse_loss(a, b) * style_weight</span><br><span class="line">        </span><br><span class="line">        loss = style_loss + content_loss</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> run[<span class="number">0</span>] % <span class="number">50</span> == <span class="number">0</span>:</span><br><span class="line">            print(<span class="string">'Step &#123;&#125;: Style Loss: &#123;:4f&#125; Content Loss: &#123;:4f&#125;'</span>.format(</span><br><span class="line">                run[<span class="number">0</span>], style_loss.item(), content_loss.item()))</span><br><span class="line">        run[<span class="number">0</span>] += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        loss.backward()</span><br><span class="line">        <span class="keyword">return</span> loss</span><br><span class="line">    </span><br><span class="line">    optimizer.step(f)</span><br></pre></td></tr></table></figure>
+<p>此处使用了 LBFGS，所以 loss 需要包装在一个函数里，代码参考了：<br><a href="https://pytorch.org/tutorials/advanced/neural_style_tutorial.html" target="_blank" rel="noopener">https://pytorch.org/tutorials/advanced/neural_style_tutorial.html</a></p>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p>最终效果如图所示：</p>
+<img src="/style-transfer/S1.jpg">
+<p>可以看到生成的图像既有风格图像的风格，也有内容图像的内容，很完美。不过生成一幅256x256 的图像在 1080ti 上需要18.6s，这个时间挺长的，谈不上实时性，因此我们可以来看看第二篇论文中的方法。</p>
+<h1 id="固定风格任意内容的快速风格迁移"><a href="#固定风格任意内容的快速风格迁移" class="headerlink" title="固定风格任意内容的快速风格迁移"></a>固定风格任意内容的快速风格迁移</h1><p>有了上面的铺垫，理解固定风格任意内容的快速风格迁移就简单很多了。思路很简单，就是先搭建一个转换网络，然后通过优化转换网络的权值来实现快速风格迁移。由于这个转换网络可以接受任意图像，所以这是任意内容的风格迁移。</p>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p>模型结构很简单，分为三个部分：</p>
+<ul>
+<li>降维，三层卷积层，逐渐提升通道数为128，并且通过 stride 把特征图的宽高缩小为原来的八分之一</li>
+<li>5个 ResidualBlock 堆叠</li>
+<li>升维，三层卷积层，逐渐降低通道数为3，并且通过 nn.Upsample 把特征图的宽高还原为原来的大小</li>
+</ul>
+<p>先降维再升维是为了减少计算量，中间的 5 个 Residual 结构可以学习如何在原图上添加少量内容，改变原图的风格。下面让我们来看看代码。</p>
+<h3 id="ConvLayer"><a href="#ConvLayer" class="headerlink" title="ConvLayer"></a>ConvLayer</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ConvLayer</span><span class="params">(in_channels, out_channels, kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>, </span></span></span><br><span class="line"><span class="function"><span class="params">    upsample=None, instance_norm=True, relu=True)</span>:</span></span><br><span class="line">    layers = []</span><br><span class="line">    <span class="keyword">if</span> upsample:</span><br><span class="line">        layers.append(nn.Upsample(mode=<span class="string">'nearest'</span>, scale_factor=upsample))</span><br><span class="line">    layers.append(nn.ReflectionPad2d(kernel_size // <span class="number">2</span>))</span><br><span class="line">    layers.append(nn.Conv2d(in_channels, out_channels, kernel_size, stride))</span><br><span class="line">    <span class="keyword">if</span> instance_norm:</span><br><span class="line">        layers.append(nn.InstanceNorm2d(out_channels))</span><br><span class="line">    <span class="keyword">if</span> relu:</span><br><span class="line">        layers.append(nn.ReLU())</span><br><span class="line">    <span class="keyword">return</span> layers</span><br></pre></td></tr></table></figure>
+<p>首先我们实现了一个函数，ConvLayer，它包含：</p>
+<ul>
+<li><a href="https://pytorch.org/docs/stable/nn.html#upsample" target="_blank" rel="noopener">nn.Upsample</a>（可选）</li>
+<li><a href="https://pytorch.org/docs/stable/nn.html#reflectionpad2d" target="_blank" rel="noopener">nn.ReflectionPad2d</a></li>
+<li><a href="https://pytorch.org/docs/stable/nn.html#conv2d" target="_blank" rel="noopener">nn.Conv2d</a></li>
+<li><a href="https://pytorch.org/docs/stable/nn.html#instancenorm2d" target="_blank" rel="noopener">nn.InstanceNorm2d</a>（可选）</li>
+<li><a href="https://pytorch.org/docs/stable/nn.html#relu" target="_blank" rel="noopener">nn.ReLU</a>（可选）</li>
+</ul>
+<p>因为每个卷积层前后都可能会用到这些层，为了简化代码，我们将它写成一个函数，返回这些层用于搭建模型。</p>
+<h3 id="ResidualBlock"><a href="#ResidualBlock" class="headerlink" title="ResidualBlock"></a>ResidualBlock</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ResidualBlock</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, channels)</span>:</span></span><br><span class="line">        super(ResidualBlock, self).__init__()</span><br><span class="line">        self.conv = nn.Sequential(</span><br><span class="line">            *ConvLayer(channels, channels, kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>), </span><br><span class="line">            *ConvLayer(channels, channels, kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>, relu=<span class="keyword">False</span>)</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.conv(x) + x</span><br></pre></td></tr></table></figure>
+<p>这里写的就不是函数，而是一个类，因为它内部包含许多层，而且并不是简单的自上而下的结构（Sequential），而是有了跨层的连接（<code>self.conv(x) + x</code>），所以我们需要继承 nn.Module，实现 forward 函数，才能实现跨层连接。</p>
+<h3 id="TransformNet"><a href="#TransformNet" class="headerlink" title="TransformNet"></a>TransformNet</h3><p>最后这个模型就很简单了，照着论文里给出的表格搭建即可。我们这里为了实验方便，添加了 base 参数，当 <code>base=8</code> 时，卷积核的个数是按 <code>8, 16, 32</code> 递增的，当 <code>base=32</code> 时，卷积核个数是按 <code>32, 64, 128</code> 递增的。有了这个参数，我们可以按需增加模型规模，base 越大，图像质量越好。</p>
+<img src="/style-transfer/transform_net.png">
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TransformNet</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, base=<span class="number">32</span>)</span>:</span></span><br><span class="line">        super(TransformNet, self).__init__()</span><br><span class="line">        self.downsampling = nn.Sequential(</span><br><span class="line">            *ConvLayer(<span class="number">3</span>, base, kernel_size=<span class="number">9</span>), </span><br><span class="line">            *ConvLayer(base, base*<span class="number">2</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">2</span>), </span><br><span class="line">            *ConvLayer(base*<span class="number">2</span>, base*<span class="number">4</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">2</span>), </span><br><span class="line">        )</span><br><span class="line">        self.residuals = nn.Sequential(*[ResidualBlock(base*<span class="number">4</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>)])</span><br><span class="line">        self.upsampling = nn.Sequential(</span><br><span class="line">            *ConvLayer(base*<span class="number">4</span>, base*<span class="number">2</span>, kernel_size=<span class="number">3</span>, upsample=<span class="number">2</span>),</span><br><span class="line">            *ConvLayer(base*<span class="number">2</span>, base, kernel_size=<span class="number">3</span>, upsample=<span class="number">2</span>),</span><br><span class="line">            *ConvLayer(base, <span class="number">3</span>, kernel_size=<span class="number">9</span>, instance_norm=<span class="keyword">False</span>, relu=<span class="keyword">False</span>),</span><br><span class="line">        )</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, X)</span>:</span></span><br><span class="line">        y = self.downsampling(X)</span><br><span class="line">        y = self.residuals(y)</span><br><span class="line">        y = self.upsampling(y)</span><br><span class="line">        <span class="keyword">return</span> y</span><br></pre></td></tr></table></figure>
+<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>训练的时候，我们使用了 COCO train 2014、val2014、test2014， 一共有 164k 图像，实际上原论文只用了训练集（80k）。图像宽高都是256。</p>
+<blockquote>
+<p>We resize each of the 80k training images to 256 × 256 and train our networks with a batch size of 4 for 40,000 iterations, giving roughly two epochs over the training data.</p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">batch_size = <span class="number">4</span></span><br><span class="line">width = <span class="number">256</span></span><br><span class="line"></span><br><span class="line">data_transform = transforms.Compose([</span><br><span class="line">    transforms.Resize(width), </span><br><span class="line">    transforms.CenterCrop(width), </span><br><span class="line">    transforms.ToTensor(), </span><br><span class="line">    tensor_normalizer, </span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">dataset = torchvision.datasets.ImageFolder(<span class="string">'/home/ypw/COCO/'</span>, transform=data_transform)</span><br><span class="line">data_loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p>返回：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Dataset ImageFolder</span><br><span class="line">    Number of datapoints: 164062</span><br><span class="line">    Root Location: /home/ypw/COCO/</span><br><span class="line">    Transforms (if any): Compose(</span><br><span class="line">                             Resize(size=256, interpolation=PIL.Image.BILINEAR)</span><br><span class="line">                             CenterCrop(size=(256, 256))</span><br><span class="line">                             ToTensor()</span><br><span class="line">                             Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])</span><br><span class="line">                         )</span><br><span class="line">    Target Transforms (if any): None</span><br></pre></td></tr></table></figure>
+<p>其中的 <code>tensor_normalizer</code> 是为了使用 pytorch 自带的预训练模型，在官方文档中提到了要进行预处理：<a href="https://pytorch.org/docs/master/torchvision/models.html" target="_blank" rel="noopener">https://pytorch.org/docs/master/torchvision/models.html</a></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cnn_normalization_mean = [<span class="number">0.485</span>, <span class="number">0.456</span>, <span class="number">0.406</span>]</span><br><span class="line">cnn_normalization_std = [<span class="number">0.229</span>, <span class="number">0.224</span>, <span class="number">0.225</span>]</span><br><span class="line">tensor_normalizer = transforms.Normalize(mean=cnn_normalization_mean, std=cnn_normalization_std)</span><br></pre></td></tr></table></figure>
+<h2 id="训练-1"><a href="#训练-1" class="headerlink" title="训练"></a>训练</h2><h3 id="超参数"><a href="#超参数" class="headerlink" title="超参数"></a>超参数</h3><p>虽然<a href="https://github.com/jcjohnson/fast-neural-style/blob/master/doc/training.md" target="_blank" rel="noopener">官方开源</a>给出的 <code>style_weight</code> 是 5，但是我这里测试得并不理想，可能是不同的预训练权值、不同的预处理方式造成的差异，设置为 1e5 是比较理想的。</p>
+<blockquote>
+<p>We use Adam [51] with a learning rate of 1 × 10−3.</p>
+</blockquote>
+<p>优化器使用了论文中提到的 Adam 1e-3。</p>
+<blockquote>
+<p>The output images are regularized with total variation regularization with a strength of between $1\times10^{-6}$ and $1\times10^{-4}$, chosen via cross-validation per style target.</p>
+</blockquote>
+<p><code>tv_weight</code> 感觉没有太大变化，所以按论文中给出的参考设置了 1e-6。</p>
+<blockquote>
+<p>train our networks with a batch size of 4 for 40,000 iterations</p>
+</blockquote>
+<p><code>batch_size</code> 按论文设置为了4。</p>
+<p>由于我这里使用的图片变多了，所以为了保持和官方的训练 step 一致（40k），训练代数（epoch）设置为了1。</p>
+<h3 id="TotalVariation"><a href="#TotalVariation" class="headerlink" title="TotalVariation"></a>TotalVariation</h3><blockquote>
+<p>Total Variation Regularization. To encourage spatial smoothness in the output image $\hat{y}$, we follow prior work on feature inversion [6,20] and super- resolution [48,49] and make use of total variation regularizer $\ell_{TV}(\hat{y})$.</p>
+</blockquote>
+<p>论文中提到了一个 TV Loss，这是为了平滑图像。它的计算方法很简单：</p>
+<p>$$\Large{V_\text{aniso}(y)=\sum_{i,j}|y_{i+1,j}-y_{i,j}|+|y_{i,j+1}-y_{i,j}|}$$</p>
+<p>将图像水平和垂直平移一个像素，与原图相减，然后计算绝对值的和，就是 TotalVariation。</p>
+<p>参考链接：<a href="https://en.wikipedia.org/wiki/Total_variation_denoising" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Total_variation_denoising</a></p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>由于代码太长，这里只贴一些关键代码：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> batch, (content_images, _) <span class="keyword">in</span> pbar:</span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 使用风格模型预测风格迁移图像</span></span><br><span class="line">    content_images = content_images.to(device)</span><br><span class="line">    transformed_images = transform_net(content_images)</span><br><span class="line">    transformed_images = transformed_images.clamp(<span class="number">-3</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 使用 vgg16 计算特征</span></span><br><span class="line">    content_features = vgg16(content_images)</span><br><span class="line">    transformed_features = vgg16(transformed_images)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># content loss</span></span><br><span class="line">    content_loss = content_weight * F.mse_loss(transformed_features[<span class="number">1</span>], content_features[<span class="number">1</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># total variation loss</span></span><br><span class="line">    y = transformed_images</span><br><span class="line">    tv_loss = tv_weight * (torch.sum(torch.abs(y[:, :, :, :<span class="number">-1</span>] - y[:, :, :, <span class="number">1</span>:])) + </span><br><span class="line">    torch.sum(torch.abs(y[:, :, :<span class="number">-1</span>, :] - y[:, :, <span class="number">1</span>:, :])))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># style loss</span></span><br><span class="line">    style_loss = <span class="number">0.</span></span><br><span class="line">    transformed_grams = [gram_matrix(x) <span class="keyword">for</span> x <span class="keyword">in</span> transformed_features]</span><br><span class="line">    <span class="keyword">for</span> transformed_gram, style_gram <span class="keyword">in</span> zip(transformed_grams, style_grams):</span><br><span class="line">        style_loss += style_weight * F.mse_loss(transformed_gram, </span><br><span class="line">                                                style_gram.expand_as(transformed_gram))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 加起来</span></span><br><span class="line">    loss = style_loss + content_loss + tv_loss</span><br><span class="line"></span><br><span class="line">    loss.backward()</span><br><span class="line">    optimizer.step()</span><br></pre></td></tr></table></figure>
+<p>通过对 loss 的优化，进而约束模型输出与内容图像的内容相似、与风格图像风格相似的图像，从而得到一个可以较快速度输出风格迁移图像的模型。</p>
+<h2 id="效果-1"><a href="#效果-1" class="headerlink" title="效果"></a>效果</h2><p>最终效果如图所示：</p>
+<img src="/style-transfer/S2.jpg">
+<p>可以看到对于任意内容图片，转换网络都能转换为固定风格的图像。根据下面这段代码进行的测速，1080ti 可以在4.82秒内完成 1000 张图像的风格迁移，相当于207fps，可以说是具有了实时性：</p>
+<img src="/style-transfer/S2_speed.png">
+<p>但是整个模型的训练时间需要1小时54分钟，如果我们想做任意风格图像的风格迁移，这个时间几乎是不可接受的，因此让我们来看看第三篇论文的思路。</p>
+<h1 id="任意风格任意内容的极速风格迁移"><a href="#任意风格任意内容的极速风格迁移" class="headerlink" title="任意风格任意内容的极速风格迁移"></a>任意风格任意内容的极速风格迁移</h1><p>首先我们先对三种情况进行总结</p>
+<h2 id="情况1"><a href="#情况1" class="headerlink" title="情况1"></a>情况1</h2><p>$$\large{\min_I\left(\lambda_c||\mathbf{CP}(I;w_f)-\mathbf{CP}(I_c;w_f)||^2_2+<br>\lambda_s||\mathbf{SP}(I;w_f)-\mathbf{SP}(I_s;w_f)||^2_2\right)}$$</p>
+<p>其中：</p>
+<ul>
+<li>$\mathbf{CP}$ 是内容损失函数</li>
+<li>$\mathbf{SP}$ 是风格损失函数</li>
+<li>$\lambda_c$ 是内容权重</li>
+<li>$\lambda_s$ 是风格权重</li>
+<li>$w_f$ 是VGG16的固定权值</li>
+<li>$I_s$ 是风格图像</li>
+<li>$I_c$ 是内容图像</li>
+<li>$I$ 是输入图像</li>
+</ul>
+<p>那么通过对输入图像 $I$ 进行训练，我们能够得到固定风格、固定内容的风格迁移图像。</p>
+<h2 id="情况2"><a href="#情况2" class="headerlink" title="情况2"></a>情况2</h2><p>$$\large{\min_w\sum_{I_c}\left(\lambda_c||\mathbf{CP}(I_w;w_f)-\mathbf{CP}(I_c;w_f)||^2_2+<br>\lambda_s||\mathbf{SP}(I_w;w_f)-\mathbf{SP}(I_s;w_f)||^2_2\right)}$$</p>
+<p>其中：</p>
+<ul>
+<li>$I_w$ 是生成图像，$I_w=\mathcal{N}(I_c;w)$，$\mathcal{N}$ 是图像转换网络</li>
+</ul>
+<p>通过对权值的优化，我们可以得到一个快速风格迁移模型，它能够对任何内容图像进行风格转换，输出同一种风格的风格迁移图像。</p>
+<h2 id="情况3"><a href="#情况3" class="headerlink" title="情况3"></a>情况3</h2><p>$$\large{\min_\theta\sum_{I_c,I_s}\left(\lambda_c||\mathbf{CP}(I_{w_\theta};w_f)-\mathbf{CP}(I_c;w_f)||^2_2+<br>\lambda_s||\mathbf{SP}(I_{w_\theta};w_f)-\mathbf{SP}(I_s;w_f)||^2_2\right)}$$</p>
+<ul>
+<li>$\theta$ 是 $Meta\mathcal{N}$ 的权值</li>
+<li>$w_\theta$ 是转换网络的权值，$w_\theta=Meta\mathcal{N}(I_s;\theta)$，所以我们可以说转换网络的权值是 MetaNet 通过风格图像生成的。</li>
+<li>$I_{w_\theta}$ 是转换网络生成的图像，$I_{w_\theta}=\mathcal{N}(I_c;w_\theta)$</li>
+</ul>
+<p>总的来说就是风格图像输入 $Meta\mathcal{N}$ 得到转换网络 $\mathcal{N}$，转换网络可以将任意内容图像进行转换。通过输入大量风格图像和内容图像 $\sum_{I_c,I_s}$，可以训练出能够产出期望权值的 $Meta\mathcal{N}$。该模型可以输入任意风格图像，输出情况2中的迁移模型，进而实现任意风格任意内容的风格迁移。</p>
+<h2 id="转换网络（TransformNet）"><a href="#转换网络（TransformNet）" class="headerlink" title="转换网络（TransformNet）"></a>转换网络（TransformNet）</h2><img src="/style-transfer/transform_net2.png">
+<p>论文中的转换网络很有意思，粉色部分的权重是由 MetaNet 生成的，而灰色部分的权重则与 MetaNet 一起训练。由于这个模型的需求比较个性化，我们的代码需要一些技巧，下面让我们详细展开讨论。</p>
+<h3 id="MyConv2D"><a href="#MyConv2D" class="headerlink" title="MyConv2D"></a>MyConv2D</h3><p>转换网络的结构还是与之前的一样，但是为了调用方便，我们需要实现一个新的类，这个类和卷积层类似，但是权值和偏置都需要是常量。这是因为权值已经是 MetaNet 的输出，如果赋值为 TransformNet 的权值，那么这个计算图就断了，这不符合我们的预期，我们应该让 MetaNet 的输出继续参与计算图，直到计算出 loss，不然 MetaNet 的权值将不会更新。因此我们事先了一个新的类，MyConv2D。</p>
+<p>为了体现两者的差异，我们使用 TensorBoard 进行了可视化：</p>
+<img src="/style-transfer/Conv2d_MyConv2D.png">
+<p>从上图中可以看到，nn.Conv2d 内部有两个参数（ Paramter），这是可以参与训练参数，也就是说在 <code>loss.backward()</code> 的时候会计算对应的梯度。而 MyConv2D 里面的权值和偏置都是常量（Constant），不会计算相应的梯度。</p>
+<p>代码如下：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyConv2D</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, in_channels, out_channels, kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>)</span>:</span></span><br><span class="line">        super(MyConv2D, self).__init__()</span><br><span class="line">        self.weight = torch.zeros((out_channels, in_channels, kernel_size, kernel_size)).to(device)</span><br><span class="line">        self.bias = torch.zeros(out_channels).to(device)</span><br><span class="line">        </span><br><span class="line">        self.in_channels = in_channels</span><br><span class="line">        self.out_channels = out_channels</span><br><span class="line">        self.kernel_size = (kernel_size, kernel_size)</span><br><span class="line">        self.stride = (stride, stride)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> F.conv2d(x, self.weight, self.bias, self.stride)</span><br></pre></td></tr></table></figure>
+<h3 id="ConvLayer-1"><a href="#ConvLayer-1" class="headerlink" title="ConvLayer"></a>ConvLayer</h3><p>为了区分以下两种情况：</p>
+<ul>
+<li>权值是是可训练的参数</li>
+<li>权值由 MetaNet 给出</li>
+</ul>
+<p>我们写出了下面的代码：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ConvLayer</span><span class="params">(in_channels, out_channels, kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>, </span></span></span><br><span class="line"><span class="function"><span class="params">	upsample=None, instance_norm=True, relu=True, trainable=False)</span>:</span></span><br><span class="line">    ......</span><br><span class="line">    <span class="keyword">if</span> trainable:</span><br><span class="line">        layers.append(nn.Conv2d(in_channels, out_channels, kernel_size, stride))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        layers.append(MyConv2D(in_channels, out_channels, kernel_size, stride))</span><br><span class="line">    ......</span><br><span class="line">    <span class="keyword">return</span> layers</span><br></pre></td></tr></table></figure>
+<p>很简单，当权值由 MetaNet 给出时，它是不参与训练的，我们设置 trainable=False，然后使用 MyConv2D 层。</p>
+<h3 id="TransformNet-1"><a href="#TransformNet-1" class="headerlink" title="TransformNet"></a>TransformNet</h3><p>下面就直接贴代码了，模型结构按照上面论文中的图去搭就好。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TransformNet</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, base=<span class="number">8</span>)</span>:</span></span><br><span class="line">        super(TransformNet, self).__init__()</span><br><span class="line">        self.base = base</span><br><span class="line">        self.downsampling = nn.Sequential(</span><br><span class="line">            *ConvLayer(<span class="number">3</span>, base, kernel_size=<span class="number">9</span>, trainable=<span class="keyword">True</span>), </span><br><span class="line">            *ConvLayer(base, base*<span class="number">2</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">2</span>), </span><br><span class="line">            *ConvLayer(base*<span class="number">2</span>, base*<span class="number">4</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">2</span>), </span><br><span class="line">        )</span><br><span class="line">        self.residuals = nn.Sequential(*[ResidualBlock(base*<span class="number">4</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>)])</span><br><span class="line">        self.upsampling = nn.Sequential(</span><br><span class="line">            *ConvLayer(base*<span class="number">4</span>, base*<span class="number">2</span>, kernel_size=<span class="number">3</span>, upsample=<span class="number">2</span>),</span><br><span class="line">            *ConvLayer(base*<span class="number">2</span>, base, kernel_size=<span class="number">3</span>, upsample=<span class="number">2</span>),</span><br><span class="line">            *ConvLayer(base, <span class="number">3</span>, kernel_size=<span class="number">9</span>, instance_norm=<span class="keyword">False</span>, relu=<span class="keyword">False</span>, trainable=<span class="keyword">True</span>),</span><br><span class="line">        )</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, X)</span>:</span></span><br><span class="line">        y = self.downsampling(X)</span><br><span class="line">        y = self.residuals(y)</span><br><span class="line">        y = self.upsampling(y)</span><br><span class="line">        <span class="keyword">return</span> y</span><br><span class="line">    ....</span><br></pre></td></tr></table></figure>
+<p><code>TransformNet(32)</code> 每一层对应的权重数量如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">defaultdict(int,</span><br><span class="line">            &#123;&apos;downsampling.5&apos;: 18496,</span><br><span class="line">             &apos;downsampling.9&apos;: 73856,</span><br><span class="line">             &apos;residuals.0.conv.1&apos;: 147584,</span><br><span class="line">             &apos;residuals.0.conv.5&apos;: 147584,</span><br><span class="line">             &apos;residuals.1.conv.1&apos;: 147584,</span><br><span class="line">             &apos;residuals.1.conv.5&apos;: 147584,</span><br><span class="line">             &apos;residuals.2.conv.1&apos;: 147584,</span><br><span class="line">             &apos;residuals.2.conv.5&apos;: 147584,</span><br><span class="line">             &apos;residuals.3.conv.1&apos;: 147584,</span><br><span class="line">             &apos;residuals.3.conv.5&apos;: 147584,</span><br><span class="line">             &apos;residuals.4.conv.1&apos;: 147584,</span><br><span class="line">             &apos;residuals.4.conv.5&apos;: 147584,</span><br><span class="line">             &apos;upsampling.2&apos;: 73792,</span><br><span class="line">             &apos;upsampling.7&apos;: 18464&#125;)</span><br></pre></td></tr></table></figure>
+<p>通过 TensorBoard，我们可以对模型结构进行可视化：</p>
+<img src="/style-transfer/transform_net3.png">
+<h2 id="MetaNet"><a href="#MetaNet" class="headerlink" title="MetaNet"></a>MetaNet</h2><p>那么我们怎么样才能获得 TransformNet 的权值呢？当然是输入风格图像的特征。</p>
+<p>那么我们知道风格图像经过 VGG16 输出的 $\text{relu1_2、relu2_2、relu3_3、relu4_3}$ 尺寸是很大的，假设图像的尺寸是 <code>(256, 256)</code>，那么卷积层输出的尺寸分别是 <code>(64, 256, 256)、(128, 128, 128)、(256, 64, 64)、(512, 32, 32)</code>，即使取其 Gram 矩阵，<code>(64, 64)、(128, 128)、(256, 256)、(512, 512)</code> 也是非常大的。我们举个例子，假设使用 <code>512*512</code> 个特征来生成 147584 个权值（residual 层），那么这层全连接层的 w 就是 $512<em>512</em>147584=38688260096$ 个，假设 w 的格式是 float32，那么光是一个 w 就有 144GB 这么大，这几乎是不可实现的。那么第三篇论文就提到了一个方法，只计算每一个卷积核输出的内容的均值和标准差。</p>
+<blockquote>
+<p>We compute the mean and stand deviations of two feature maps of the style image and the transferred image as style features.</p>
+</blockquote>
+<p>只计算均值和标准差，不计算 Gram 矩阵，这里的特征就变为了 $(64+128+256+512)<em>2=1920$ 维，明显小了很多。但是我们稍加计算即可知道，$1920</em>(18496+73856+147584*10+73792+18464)=3188060160$，假设是 float32，那么权值至少有 11.8GB，显然无法在一块 1080ti 上实现 MetaNet。那么作者又提出了一个想法，使用分组全连接层。</p>
+<blockquote>
+<p>The dimension of hidden vector is 1792 without specification. The hidden features are connected with the filters of each conv layer of the network in a group manner to decrease the parameter size, which means a 128 dimensional hidden vector for each conv layer.</p>
+</blockquote>
+<p>意思就是隐藏层全连接层使用$14*128=1792$个神经元，这个14对应的就是 TransformNet 里面的每一层卷积层（downsampling2层，residual10层，upsampling2层），然后每一层卷积层的权值只连接其中的一小片128，那么整体结构参考下图：</p>
+<img src="/style-transfer/metanet.png">
+<p>如果看不清可以点击查看原图。</p>
+<p>在经过重重努力之后，模型大小终于限制在 1GB 以内了。当 <code>base=32</code> 时，保存为 pth 文件的模型大小为 870MB。</p>
+<p>下面是代码：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MetaNet</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, param_dict)</span>:</span></span><br><span class="line">        super(MetaNet, self).__init__()</span><br><span class="line">        self.param_num = len(param_dict)</span><br><span class="line">        self.hidden = nn.Linear(<span class="number">1920</span>, <span class="number">128</span>*self.param_num)</span><br><span class="line">        self.fc_dict = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i, (name, params) <span class="keyword">in</span> enumerate(param_dict.items()):</span><br><span class="line">            self.fc_dict[name] = i</span><br><span class="line">            setattr(self, <span class="string">'fc&#123;&#125;'</span>.format(i+<span class="number">1</span>), nn.Linear(<span class="number">128</span>, params))</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, mean_std_features)</span>:</span></span><br><span class="line">        hidden = F.relu(self.hidden(mean_std_features))</span><br><span class="line">        filters = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> name, i <span class="keyword">in</span> self.fc_dict.items():</span><br><span class="line">            fc = getattr(self, <span class="string">'fc&#123;&#125;'</span>.format(i+<span class="number">1</span>))</span><br><span class="line">            filters[name] = fc(hidden[:,i*<span class="number">128</span>:(i+<span class="number">1</span>)*<span class="number">128</span>])</span><br><span class="line">        <span class="keyword">return</span> filters</span><br></pre></td></tr></table></figure>
+<p>直接 print 模型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">MetaNet(</span><br><span class="line">  (hidden): Linear(in_features=1920, out_features=1792, bias=True)</span><br><span class="line">  (fc1): Linear(in_features=128, out_features=18496, bias=True)</span><br><span class="line">  (fc2): Linear(in_features=128, out_features=73856, bias=True)</span><br><span class="line">  (fc3): Linear(in_features=128, out_features=147584, bias=True)</span><br><span class="line">  (fc4): Linear(in_features=128, out_features=147584, bias=True)</span><br><span class="line">  (fc5): Linear(in_features=128, out_features=147584, bias=True)</span><br><span class="line">  (fc6): Linear(in_features=128, out_features=147584, bias=True)</span><br><span class="line">  (fc7): Linear(in_features=128, out_features=147584, bias=True)</span><br><span class="line">  (fc8): Linear(in_features=128, out_features=147584, bias=True)</span><br><span class="line">  (fc9): Linear(in_features=128, out_features=147584, bias=True)</span><br><span class="line">  (fc10): Linear(in_features=128, out_features=147584, bias=True)</span><br><span class="line">  (fc11): Linear(in_features=128, out_features=147584, bias=True)</span><br><span class="line">  (fc12): Linear(in_features=128, out_features=147584, bias=True)</span><br><span class="line">  (fc13): Linear(in_features=128, out_features=73792, bias=True)</span><br><span class="line">  (fc14): Linear(in_features=128, out_features=18464, bias=True)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="数据-1"><a href="#数据-1" class="headerlink" title="数据"></a>数据</h2><blockquote>
+<p>There are about 120k images in MS- COCO trainval set and about 80k images in the test set of WikiArt.</p>
+</blockquote>
+<p>要想训练这么大的模型，那么就必须要海量的风格图像和内容图像。原论文依旧选择了 COCO 作为内容数据集。而风格数据集选择了 <a href="https://www.kaggle.com/c/painter-by-numbers/data" target="_blank" rel="noopener">WikiArt</a>，该数据集包含大量艺术作品，很适合作为风格迁移的风格图片。</p>
+<blockquote>
+<p>During training, each content image or style image is resized to keep the smallest dimension in the range [256, 480], and randomly cropped regions of size 256 × 256.</p>
+</blockquote>
+<p>论文提到图像要先缩放到 [256, 480] 的尺寸，然后再随机裁剪为 256 × 256。</p>
+<p>代码如下：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">data_transform = transforms.Compose([</span><br><span class="line">    transforms.RandomResizedCrop(width, scale=(<span class="number">256</span>/<span class="number">480</span>, <span class="number">1</span>), ratio=(<span class="number">1</span>, <span class="number">1</span>)), </span><br><span class="line">    transforms.ToTensor(), </span><br><span class="line">    tensor_normalizer</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">style_dataset = torchvision.datasets.ImageFolder(<span class="string">'/home/ypw/WikiArt/'</span>, transform=data_transform)</span><br><span class="line">content_dataset = torchvision.datasets.ImageFolder(<span class="string">'/home/ypw/COCO/'</span>, transform=data_transform)</span><br></pre></td></tr></table></figure>
+<h2 id="训练-2"><a href="#训练-2" class="headerlink" title="训练"></a>训练</h2><h3 id="超参数-1"><a href="#超参数-1" class="headerlink" title="超参数"></a>超参数</h3><blockquote>
+<p>The weight of content loss is 1 while the weight of style loss is 250.</p>
+</blockquote>
+<p>虽然论文里给出的 <code>style_weight</code> 是 250，但是我这里测试得并不理想，可能是不同的预训练模型、不同的预处理方式造成的差异，设置为 50 是比较理想的。</p>
+<blockquote>
+<p>We use Adam (Kingma and Ba 2014) with fixed learning rate 0.001 for 600k iterations without weight decay.</p>
+</blockquote>
+<p>优化器使用了论文中提到的 Adam 1e-3。</p>
+<blockquote>
+<p>The transferred images are regularized with total variations loss with a strength of 10.</p>
+</blockquote>
+<p>因为这篇论文的作者用的是 caffe，VGG16 的预训练权值与 pytorch 差异比较大，所以我这里的 <code>tv_weight</code> 没有设置为论文中的10，而是选择了 1e-4。</p>
+<blockquote>
+<p> The batch size of content images is 8 and the meta network is trained for 20 iterations before changing the style image.</p>
+</blockquote>
+<p>这里的 batch_size 很有意思，每次来8张内容图片，但是每当训练20个 batch 之后，换一张风格图片。这样做的目的是为了保证 TransformNet 能在每张风格图像上都收敛一段时间，切换图像又能保证 MetaNet 能够适应所有的风格图像。</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><p>由于代码太长，这里也只贴一些关键代码：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> batch, (content_images, _) <span class="keyword">in</span> pbar:    </span><br><span class="line">    <span class="comment"># 每 20 个 batch 随机挑选一张新的风格图像，计算其特征</span></span><br><span class="line">    <span class="keyword">if</span> batch % <span class="number">20</span> == <span class="number">0</span>:</span><br><span class="line">        style_image = random.choice(style_dataset)[<span class="number">0</span>].unsqueeze(<span class="number">0</span>).to(device)</span><br><span class="line">        style_features = vgg16(style_image)</span><br><span class="line">        style_mean_std = mean_std(style_features)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 检查纯色</span></span><br><span class="line">    x = content_images.cpu().numpy()</span><br><span class="line">    <span class="keyword">if</span> (x.min(<span class="number">-1</span>).min(<span class="number">-1</span>) == x.max(<span class="number">-1</span>).max(<span class="number">-1</span>)).any():</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    </span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 使用风格图像生成风格模型</span></span><br><span class="line">    weights = metanet(mean_std(style_features))</span><br><span class="line">    transform_net.set_weights(weights, <span class="number">0</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 使用风格模型预测风格迁移图像</span></span><br><span class="line">    content_images = content_images.to(device)</span><br><span class="line">    transformed_images = transform_net(content_images)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 使用 vgg16 计算特征</span></span><br><span class="line">    content_features = vgg16(content_images)</span><br><span class="line">    transformed_features = vgg16(transformed_images)</span><br><span class="line">    transformed_mean_std = mean_std(transformed_features)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># content loss</span></span><br><span class="line">    content_loss = content_weight * F.mse_loss(transformed_features[<span class="number">2</span>], content_features[<span class="number">2</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># style loss</span></span><br><span class="line">    style_loss = style_weight * F.mse_loss(transformed_mean_std, </span><br><span class="line">                                           style_mean_std.expand_as(transformed_mean_std))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># total variation loss</span></span><br><span class="line">    y = transformed_images</span><br><span class="line">    tv_loss = tv_weight * (torch.sum(torch.abs(y[:, :, :, :<span class="number">-1</span>] - y[:, :, :, <span class="number">1</span>:])) + </span><br><span class="line">                            torch.sum(torch.abs(y[:, :, :<span class="number">-1</span>, :] - y[:, :, <span class="number">1</span>:, :])))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 求和</span></span><br><span class="line">    loss = content_loss + style_loss + tv_loss </span><br><span class="line">    </span><br><span class="line">    loss.backward()</span><br><span class="line">    optimizer.step()</span><br></pre></td></tr></table></figure>
+<p>这里有几点问题值得思考：</p>
+<ol>
+<li>如果内容图像是纯色的，那么权值会直接 nan，原因不明，为了避免这个问题，需要检查纯色，然后 continue 来避免 nan。</li>
+<li>权值会逐渐增大，目前没有比较好的解决方案。</li>
+</ol>
+<img src="/style-transfer/weights_diverge.png">
+<h2 id="效果-2"><a href="#效果-2" class="headerlink" title="效果"></a>效果</h2><p>最终效果如图所示：</p>
+<img src="/style-transfer/S3.jpg">
+<p>可以看到对于任意内容图片，转换网络都能转换为固定风格的图像。</p>
+<p>根据下面这段代码进行的测速，1080ti 可以在8.48秒内对 1000 张风格图像产出风格迁移模型，相当于117fps。而风格迁移模型转换的速度也很快，达到了4.59秒，相当于217fps。假设我们每一帧都用不同的风格，转换1000张图片也只需要13.1秒，相当于76fps，可以说做到了实时任意风格任意内容的极速风格迁移。</p>
+<img src="/style-transfer/S3_speed.png">
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>我们使用 pytorch 实现了以下三种风格迁移：</p>
+<ul>
+<li>固定风格固定内容的普通风格迁移（<a href="https://arxiv.org/abs/1508.06576" target="_blank" rel="noopener">A Neural Algorithm of Artistic Style</a>）</li>
+<li>固定风格任意内容的快速风格迁移（<a href="https://arxiv.org/abs/1603.08155" target="_blank" rel="noopener">Perceptual Losses for Real-Time Style Transfer and Super-Resolution</a>）</li>
+<li>任意风格任意内容的极速风格迁移（<a href="https://arxiv.org/abs/1709.04111" target="_blank" rel="noopener">Meta Networks for Neural Style Transfer</a>）</li>
+</ul>
+<p>首先第一篇论文打破了以往的思维定式：只有权值可以训练。它通过对图像进行训练实现了风格迁移。然后第二篇论文就比较正常，通过训练一个模型来实现风格迁移。第三篇论文就很神奇了，通过模型来生成权值，进而实现任意风格的风格迁移。不得不感谢这些走在科技前沿的科研工作者，给了我们许多新奇的思路。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/风格迁移/" rel="tag"># 风格迁移</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/buy-iphone-x/" rel="next" title="如何抢到 iPhone X 深空灰色 256G">
+                <i class="fa fa-chevron-left"></i> 如何抢到 iPhone X 深空灰色 256G
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="杨培文">
+            
+              <p class="site-author-name" itemprop="name">杨培文</p>
+              <p class="site-description motion-element" itemprop="description">杨培文的 blog</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ypwhs" title="GitHub &rarr; https://github.com/ypwhs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/ypwhs" title="Weibo &rarr; https://weibo.com/ypwhs" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://www.zhihu.com/people/yangpw" title="知乎 &rarr; http://www.zhihu.com/people/yangpw" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>知乎</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/ypwhs" title="Linkedin &rarr; https://www.linkedin.com/in/ypwhs" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#固定风格固定内容的普通风格迁移"><span class="nav-number">1.</span> <span class="nav-text">固定风格固定内容的普通风格迁移</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#VGG16"><span class="nav-number">1.1.</span> <span class="nav-text">VGG16</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内容"><span class="nav-number">1.2.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#风格"><span class="nav-number">1.3.</span> <span class="nav-text">风格</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gram-矩阵"><span class="nav-number">1.3.1.</span> <span class="nav-text">Gram 矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#风格损失"><span class="nav-number">1.3.2.</span> <span class="nav-text">风格损失</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#训练"><span class="nav-number">1.4.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">1.5.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#固定风格任意内容的快速风格迁移"><span class="nav-number">2.</span> <span class="nav-text">固定风格任意内容的快速风格迁移</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模型"><span class="nav-number">2.1.</span> <span class="nav-text">模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ConvLayer"><span class="nav-number">2.1.1.</span> <span class="nav-text">ConvLayer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ResidualBlock"><span class="nav-number">2.1.2.</span> <span class="nav-text">ResidualBlock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TransformNet"><span class="nav-number">2.1.3.</span> <span class="nav-text">TransformNet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据"><span class="nav-number">2.2.</span> <span class="nav-text">数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#训练-1"><span class="nav-number">2.3.</span> <span class="nav-text">训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#超参数"><span class="nav-number">2.3.1.</span> <span class="nav-text">超参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TotalVariation"><span class="nav-number">2.3.2.</span> <span class="nav-text">TotalVariation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.3.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果-1"><span class="nav-number">2.4.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#任意风格任意内容的极速风格迁移"><span class="nav-number">3.</span> <span class="nav-text">任意风格任意内容的极速风格迁移</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#情况1"><span class="nav-number">3.1.</span> <span class="nav-text">情况1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#情况2"><span class="nav-number">3.2.</span> <span class="nav-text">情况2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#情况3"><span class="nav-number">3.3.</span> <span class="nav-text">情况3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转换网络（TransformNet）"><span class="nav-number">3.4.</span> <span class="nav-text">转换网络（TransformNet）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MyConv2D"><span class="nav-number">3.4.1.</span> <span class="nav-text">MyConv2D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConvLayer-1"><span class="nav-number">3.4.2.</span> <span class="nav-text">ConvLayer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TransformNet-1"><span class="nav-number">3.4.3.</span> <span class="nav-text">TransformNet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MetaNet"><span class="nav-number">3.5.</span> <span class="nav-text">MetaNet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据-1"><span class="nav-number">3.6.</span> <span class="nav-text">数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#训练-2"><span class="nav-number">3.7.</span> <span class="nav-text">训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#超参数-1"><span class="nav-number">3.7.1.</span> <span class="nav-text">超参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">3.7.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果-2"><span class="nav-number">3.8.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">杨培文</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

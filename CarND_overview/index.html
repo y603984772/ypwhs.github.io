@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next pisces" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/xkl.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/xkl.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/xlk.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/xkl.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="无人驾驶课程一共有三个学期，每个学期三个月。 新手大礼包：CarND-Term1-Starter-Kit 测试环境：CarND-Term1-Starter-Kit-Test 第一学期第一学期主要介绍了图像方面的基础知识和应用，包括传统数字图像处理技术和深度学习。 P1 检测车道线  项目：CarND-LaneLines-P1">
+<meta name="keywords" content="CarND">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CarND-课程概览">
+<meta property="og:url" content="https://ypw.io/CarND_overview/index.html">
+<meta property="og:site_name" content="杨培文">
+<meta property="og:description" content="无人驾驶课程一共有三个学期，每个学期三个月。 新手大礼包：CarND-Term1-Starter-Kit 测试环境：CarND-Term1-Starter-Kit-Test 第一学期第一学期主要介绍了图像方面的基础知识和应用，包括传统数字图像处理技术和深度学习。 P1 检测车道线  项目：CarND-LaneLines-P1">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ypw.io/CarND_overview/P1.png">
+<meta property="og:image" content="https://ypw.io/CarND_overview/P1_vis.png">
+<meta property="og:image" content="https://ypw.io/CarND_overview/P2.jpg">
+<meta property="og:image" content="https://ypw.io/CarND_overview/P3.png">
+<meta property="og:image" content="https://ypw.io/CarND_overview/behavioral_cloning_3.gif">
+<meta property="og:image" content="https://ypw.io/CarND_overview/P4.png">
+<meta property="og:image" content="https://ypw.io/CarND_overview/P5.jpg">
+<meta property="og:image" content="https://ypw.io/CarND_overview/P6.png">
+<meta property="og:image" content="https://ypw.io/CarND_overview/P7.png">
+<meta property="og:image" content="https://ypw.io/CarND_overview/P8.png">
+<meta property="og:image" content="https://ypw.io/CarND_overview/P9.png">
+<meta property="og:image" content="https://ypw.io/CarND_overview/P10.png">
+<meta property="og:image" content="https://ypw.io/CarND_overview/P11.png">
+<meta property="og:image" content="https://ypw.io/CarND_overview/P12.png">
+<meta property="og:image" content="https://ypw.io/CarND_overview/P13.png">
+<meta property="og:image" content="https://ypw.io/CarND_overview/P14.jpg">
+<meta property="og:updated_time" content="2017-10-08T15:26:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CarND-课程概览">
+<meta name="twitter:description" content="无人驾驶课程一共有三个学期，每个学期三个月。 新手大礼包：CarND-Term1-Starter-Kit 测试环境：CarND-Term1-Starter-Kit-Test 第一学期第一学期主要介绍了图像方面的基础知识和应用，包括传统数字图像处理技术和深度学习。 P1 检测车道线  项目：CarND-LaneLines-P1">
+<meta name="twitter:image" content="https://ypw.io/CarND_overview/P1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ypw.io/CarND_overview/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>CarND-课程概览 | 杨培文</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杨培文</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Yang Peiwen</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ypw.io/CarND_overview/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="杨培文">
+      <meta itemprop="description" content="杨培文的 blog">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杨培文">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CarND-课程概览
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-12-26 13:56:00" itemprop="dateCreated datePublished" datetime="2016-12-26T13:56:00+08:00">2016-12-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2017-10-08 23:26:33" itemprop="dateModified" datetime="2017-10-08T23:26:33+08:00">2017-10-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>无人驾驶课程一共有三个学期，每个学期三个月。</p>
+<p>新手大礼包：<a href="https://github.com/nd013/CarND-Term1-Starter-Kit" target="_blank" rel="noopener">CarND-Term1-Starter-Kit</a></p>
+<p>测试环境：<a href="https://github.com/nd013/CarND-Term1-Starter-Kit-Test" target="_blank" rel="noopener">CarND-Term1-Starter-Kit-Test</a></p>
+<h1 id="第一学期"><a href="#第一学期" class="headerlink" title="第一学期"></a>第一学期</h1><p>第一学期主要介绍了图像方面的基础知识和应用，包括传统数字图像处理技术和深度学习。</p>
+<h2 id="P1-检测车道线"><a href="#P1-检测车道线" class="headerlink" title="P1 检测车道线"></a>P1 检测车道线</h2><img src="/CarND_overview/P1.png">
+<img src="/CarND_overview/P1_vis.png">
+<p>项目：<a href="https://github.com/nd013/CarND-LaneLines-P1" target="_blank" rel="noopener">CarND-LaneLines-P1</a></p>
+<a id="more"></a>
+<h2 id="P2-交通标志识别"><a href="#P2-交通标志识别" class="headerlink" title="P2 交通标志识别"></a>P2 交通标志识别</h2><img src="/CarND_overview/P2.jpg">
+<p>项目：<a href="https://github.com/nd013/CarND-Traffic-Sign-Classifier-Project-P2" target="_blank" rel="noopener">CarND-Traffic-Sign-Classifier-Project-P2</a></p>
+<p>支线任务：</p>
+<p><a href="https://github.com/nd013/CarND-TensorFlow-Lab" target="_blank" rel="noopener">CarND-TensorFlow-Lab</a></p>
+<p><a href="https://github.com/nd013/CarND-Keras-Lab" target="_blank" rel="noopener">CarND-Keras-Lab</a></p>
+<p><a href="https://github.com/nd013/CarND-Transfer-Learning-Lab" target="_blank" rel="noopener">CarND-Transfer-Learning-Lab</a></p>
+<p><a href="https://github.com/nd013/CarND-Alexnet-Feature-Extraction" target="_blank" rel="noopener">CarND-Alexnet-Feature-Extraction</a></p>
+<p><a href="https://github.com/nd013/CarND-LeNet-Lab" target="_blank" rel="noopener">CarND-LeNet-Lab</a></p>
+<h2 id="P3-行为克隆"><a href="#P3-行为克隆" class="headerlink" title="P3 行为克隆"></a>P3 行为克隆</h2><img src="/CarND_overview/P3.png">
+<img src="/CarND_overview/behavioral_cloning_3.gif">
+<p>项目：<a href="https://github.com/nd013/CarND-Behavioral-Cloning-P3" target="_blank" rel="noopener">CarND-Behavioral-Cloning-P3</a></p>
+<p>模拟器下载：</p>
+<ul>
+<li><a href="https://d17h27t6h515a5.cloudfront.net/topher/2017/February/58ae46bb_linux-sim/linux-sim.zip" target="_blank" rel="noopener">Linux</a></li>
+<li><a href="https://d17h27t6h515a5.cloudfront.net/topher/2017/February/58ae4594_mac-sim.app/mac-sim.app.zip" target="_blank" rel="noopener">macOS</a></li>
+<li><a href="https://d17h27t6h515a5.cloudfront.net/topher/2017/February/58ae4419_windows-sim/windows-sim.zip" target="_blank" rel="noopener">Windows</a></li>
+</ul>
+<p><a href="https://github.com/nd013/self-driving-car-sim" target="_blank" rel="noopener">self-driving-car-sim</a></p>
+<h2 id="P4-高级车道检测"><a href="#P4-高级车道检测" class="headerlink" title="P4 高级车道检测"></a>P4 高级车道检测</h2><img src="/CarND_overview/P4.png">
+<p>项目：<a href="https://github.com/nd013/CarND-Advanced-Lane-Lines" target="_blank" rel="noopener">CarND-Advanced-Lane-Lines</a></p>
+<p>支线任务：</p>
+<p><a href="https://github.com/nd013/CarND-Camera-Calibration" target="_blank" rel="noopener">CarND-Camera-Calibration</a></p>
+<h2 id="P5-车辆跟踪"><a href="#P5-车辆跟踪" class="headerlink" title="P5 车辆跟踪"></a>P5 车辆跟踪</h2><img src="/CarND_overview/P5.jpg">
+<p>项目：<a href="https://github.com/nd013/CarND-Vehicle-Detection-P5" target="_blank" rel="noopener">CarND-Vehicle-Detection-P5</a></p>
+<p>支线任务：</p>
+<p><a href="https://github.com/nd013/CarND-Object-Detection-Lab" target="_blank" rel="noopener">CarND-Object-Detection-Lab</a></p>
+<h1 id="第二学期"><a href="#第二学期" class="headerlink" title="第二学期"></a>第二学期</h1><h2 id="P6-扩展卡尔曼滤波器（EKF）"><a href="#P6-扩展卡尔曼滤波器（EKF）" class="headerlink" title="P6 扩展卡尔曼滤波器（EKF）"></a>P6 扩展卡尔曼滤波器（EKF）</h2><img src="/CarND_overview/P6.png">
+<p>项目：<a href="https://github.com/nd013/CarND-Extended-Kalman-Filter-Project" target="_blank" rel="noopener">CarND-Extended-Kalman-Filter-Project</a></p>
+<h2 id="P7-无迹卡尔曼滤波器（UKF）"><a href="#P7-无迹卡尔曼滤波器（UKF）" class="headerlink" title="P7 无迹卡尔曼滤波器（UKF）"></a>P7 无迹卡尔曼滤波器（UKF）</h2><img src="/CarND_overview/P7.png">
+<p>项目：<a href="https://github.com/nd013/CarND-Unscented-Kalman-Filter-Project-P7" target="_blank" rel="noopener">CarND-Unscented-Kalman-Filter-Project-P7</a></p>
+<p>支线任务：</p>
+<p><a href="https://github.com/nd013/CarND-Catch-Run-Away-Car-UKF" target="_blank" rel="noopener">CarND-Catch-Run-Away-Car-UKF</a></p>
+<h2 id="P8-定位车辆（Kidnapped-Vehicle）"><a href="#P8-定位车辆（Kidnapped-Vehicle）" class="headerlink" title="P8 定位车辆（Kidnapped Vehicle）"></a>P8 定位车辆（Kidnapped Vehicle）</h2><img src="/CarND_overview/P8.png">
+<p>项目：<a href="https://github.com/nd013/CarND-Kidnapped-Vehicle-Project-P8" target="_blank" rel="noopener">CarND-Kidnapped-Vehicle-Project-P8</a></p>
+<h2 id="P9-PID-控制"><a href="#P9-PID-控制" class="headerlink" title="P9 PID 控制"></a>P9 PID 控制</h2><img src="/CarND_overview/P9.png">
+<p>项目：<a href="https://github.com/nd013/CarND-PID-Control-Project-P9" target="_blank" rel="noopener">CarND-PID-Control-Project-P9</a></p>
+<p>模拟器：<a href="https://github.com/udacity/self-driving-car-sim/releases/tag/v1.45" target="_blank" rel="noopener">https://github.com/udacity/self-driving-car-sim/releases/tag/v1.45</a></p>
+<h2 id="P10-Model-Predictive-Control-MPC"><a href="#P10-Model-Predictive-Control-MPC" class="headerlink" title="P10 Model Predictive Control (MPC)"></a>P10 Model Predictive Control (MPC)</h2><img src="/CarND_overview/P10.png">
+<p>项目：<a href="https://github.com/nd013/CarND-MPC-Project-P10" target="_blank" rel="noopener">CarND-MPC-Project-P10</a></p>
+<h1 id="第三学期"><a href="#第三学期" class="headerlink" title="第三学期"></a>第三学期</h1><h2 id="P11-路径规划"><a href="#P11-路径规划" class="headerlink" title="P11 路径规划"></a>P11 路径规划</h2><img src="/CarND_overview/P11.png">
+<p>项目：<a href="https://github.com/nd013/CarND-Path-Planning-Project-P11" target="_blank" rel="noopener">CarND-Path-Planning-Project-P11</a></p>
+<p>模拟器：<a href="https://github.com/udacity/self-driving-car-sim/releases/tag/T3_v1.2" target="_blank" rel="noopener">https://github.com/udacity/self-driving-car-sim/releases/tag/T3_v1.2</a></p>
+<h2 id="P12-语义分割"><a href="#P12-语义分割" class="headerlink" title="P12 语义分割"></a>P12 语义分割</h2><img src="/CarND_overview/P12.png">
+<p>项目：<a href="https://github.com/nd013/CarND-Semantic-Segmentation-P12" target="_blank" rel="noopener">CarND-Semantic-Segmentation-P12</a></p>
+<h2 id="P13-功能安全"><a href="#P13-功能安全" class="headerlink" title="P13 功能安全"></a>P13 功能安全</h2><img src="/CarND_overview/P13.png">
+<p>项目：<a href="https://github.com/nd013/CarND-Functional-Safety-Project-P13" target="_blank" rel="noopener">CarND-Functional-Safety-Project-P13</a></p>
+<h2 id="P14-Clara"><a href="#P14-Clara" class="headerlink" title="P14 Clara"></a>P14 Clara</h2><img src="/CarND_overview/P14.jpg">
+<p>在真车上运行你的代码！</p>
+<p>项目：<a href="https://github.com/nd013/CarND-Capstone-P14" target="_blank" rel="noopener">CarND-Capstone-P14</a></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="https://medium.com/self-driving-cars/term-1-in-depth-on-udacitys-self-driving-car-curriculum-ffcf46af0c08" target="_blank" rel="noopener">Term 1: In-Depth on Udacity’s Self-Driving Car Curriculum</a></li>
+<li><a href="https://medium.com/udacity/term-2-in-depth-on-udacitys-self-driving-car-curriculum-775130aae502" target="_blank" rel="noopener">Term 2: In-Depth on Udacity’s Self-Driving Car Curriculum</a></li>
+<li><a href="https://medium.com/udacity/term-3-in-depth-on-udacitys-self-driving-car-curriculum-15d03e45d7ea" target="_blank" rel="noopener">Term 3: In-Depth on Udacity’s Self-Driving Car Curriculum</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CarND/" rel="tag"># CarND</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/使用 Karabiner 自动区分罗技鼠标和触控板/" rel="next" title="使用 Karabiner 自动区分罗技鼠标和触控板">
+                <i class="fa fa-chevron-left"></i> 使用 Karabiner 自动区分罗技鼠标和触控板
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/distracted-driver-detection/" rel="prev" title="驾驶员状态检测">
+                驾驶员状态检测 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="杨培文">
+            
+              <p class="site-author-name" itemprop="name">杨培文</p>
+              <p class="site-description motion-element" itemprop="description">杨培文的 blog</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ypwhs" title="GitHub &rarr; https://github.com/ypwhs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/ypwhs" title="Weibo &rarr; https://weibo.com/ypwhs" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://www.zhihu.com/people/yangpw" title="知乎 &rarr; http://www.zhihu.com/people/yangpw" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>知乎</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/ypwhs" title="Linkedin &rarr; https://www.linkedin.com/in/ypwhs" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一学期"><span class="nav-number">1.</span> <span class="nav-text">第一学期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1-检测车道线"><span class="nav-number">1.1.</span> <span class="nav-text">P1 检测车道线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2-交通标志识别"><span class="nav-number">1.2.</span> <span class="nav-text">P2 交通标志识别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3-行为克隆"><span class="nav-number">1.3.</span> <span class="nav-text">P3 行为克隆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P4-高级车道检测"><span class="nav-number">1.4.</span> <span class="nav-text">P4 高级车道检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P5-车辆跟踪"><span class="nav-number">1.5.</span> <span class="nav-text">P5 车辆跟踪</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二学期"><span class="nav-number">2.</span> <span class="nav-text">第二学期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P6-扩展卡尔曼滤波器（EKF）"><span class="nav-number">2.1.</span> <span class="nav-text">P6 扩展卡尔曼滤波器（EKF）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P7-无迹卡尔曼滤波器（UKF）"><span class="nav-number">2.2.</span> <span class="nav-text">P7 无迹卡尔曼滤波器（UKF）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P8-定位车辆（Kidnapped-Vehicle）"><span class="nav-number">2.3.</span> <span class="nav-text">P8 定位车辆（Kidnapped Vehicle）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P9-PID-控制"><span class="nav-number">2.4.</span> <span class="nav-text">P9 PID 控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P10-Model-Predictive-Control-MPC"><span class="nav-number">2.5.</span> <span class="nav-text">P10 Model Predictive Control (MPC)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第三学期"><span class="nav-number">3.</span> <span class="nav-text">第三学期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P11-路径规划"><span class="nav-number">3.1.</span> <span class="nav-text">P11 路径规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P12-语义分割"><span class="nav-number">3.2.</span> <span class="nav-text">P12 语义分割</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P13-功能安全"><span class="nav-number">3.3.</span> <span class="nav-text">P13 功能安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P14-Clara"><span class="nav-number">3.4.</span> <span class="nav-text">P14 Clara</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">杨培文</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
