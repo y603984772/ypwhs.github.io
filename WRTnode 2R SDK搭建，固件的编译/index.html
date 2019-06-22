@@ -136,6 +136,14 @@
 
 
 
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-111276663-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-111276663-1');
+  </script>
+
 
 
 
@@ -428,26 +436,26 @@
 
       
         <p>首先当然是安装ubuntu啦，我这里安装的是<strong>ubuntukylin-14.04.2-desktop-amd64.iso。</strong></p>
-<p><a href="/images/Snip20151016_3.png"><img src="/images/Snip20151016_3.png" alt=""></a></p>
+<p><a href="/images/Snip20151016_3.png"><img src="/images/Snip20151016_3.png"></a></p>
 <p>然后我们需要下载WRTnode的SDK，来自<a href="http://wiki.wrtnode.com/index.php?title=WRTnode2R%E5%86%85%E6%B5%8B%E7%89%88%E5%BC%80%E7%AE%B1%E6%8C%87%E5%8D%97" title="WRTnode2R%E5%86%85%E6%B5%8B%E7%89%88%E5%BC%80%E7%AE%B1%E6%8C%87%E5%8D%97" target="_blank" rel="noopener">WRTnode2R内测版开箱指南</a>，静态OpenWrt SDK，链接：<a href="http://pan.baidu.com/s/1hqya6H2" target="_blank" rel="noopener">http://pan.baidu.com/s/1hqya6H2</a> 密码：1kz6。</p>
 <blockquote>
-<p>注意：如果你需要安装更多功能，比如opencv，python等，那么你可能需要下载许多源码包，有一些会非常费时间，因此我将我这里已经下载好的包上传到了博客，大家可以下载好以后直接放在wrtnode目录下，减少编译所消耗的不必要时间。链接: <a href="http://pan.baidu.com/s/1c06YdH2" target="_blank" rel="noopener">http://pan.baidu.com/s/1c06YdH2</a> 密码: dfns<br>下载好之后，可以直接在ubuntu中打开，然后解压到桌面上。这里需要注意的一点是，如果你的ubuntu选择了中文，桌面文件夹是中文的“桌面”，而不是Desktop，那么你就需要换一个地方放你的SDK，因为<strong>Subversion不支持中文路径</strong>。如果习惯于使用终端操作，可以使用tar解压。</p>
+<p>注意：如果你需要安装更多功能，比如opencv，python等，那么你可能需要下载许多源码包，有一些会非常费时间，因此我将我这里已经下载好的包上传到了博客，大家可以下载好以后直接放在wrtnode目录下，减少编译所消耗的不必要时间。链接: <a href="http://pan.baidu.com/s/1c06YdH2" target="_blank" rel="noopener">http://pan.baidu.com/s/1c06YdH2</a> 密码: dfns 下载好之后，可以直接在ubuntu中打开，然后解压到桌面上。这里需要注意的一点是，如果你的ubuntu选择了中文，桌面文件夹是中文的“桌面”，而不是Desktop，那么你就需要换一个地方放你的SDK，因为<strong>Subversion不支持中文路径</strong>。如果习惯于使用终端操作，可以使用tar解压。</p>
 </blockquote>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -jxvf sdk.tar.bz2</span><br><span class="line"><span class="built_in">cd</span> wrtnode</span><br></pre></td></tr></table></figure>
-<p><a href="/images/Snip20151016_4.png"><img src="/images/Snip20151016_4.png" alt=""></a></p>
+<p><a href="/images/Snip20151016_4.png"><img src="/images/Snip20151016_4.png"></a></p>
 <p>然后我们可以打开终端，开始配置环境。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get -y upgrade</span><br><span class="line">sudo apt-get -y install build-essential subversion libncurses5-dev zlib1g-dev gawk gcc-multilib flex git-core gettext libssl-dev</span><br></pre></td></tr></table></figure>
-<p><a href="/images/Snip20151016_7.png"><img src="/images/Snip20151016_7.png" alt=""></a></p>
+<p><a href="/images/Snip20151016_7.png"><img src="/images/Snip20151016_7.png"></a></p>
 <p>配置好以后就可以进入wrtnode目录，进行相关配置，然后开始编译。这里需要注意的是，WRTnode 2R的CPU型号是MT7688，因此我们应该在Subtarget (MT7628 based boards)中选择<strong>MT7628 based boards</strong>，不然烧进去就会<strong>变砖</strong>。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Desktop/wrtnode</span><br><span class="line">make menuconfig</span><br><span class="line">make V=s</span><br></pre></td></tr></table></figure>
-<p><a href="/images/Snip20151015_42.png"><img src="/images/Snip20151015_42.png" alt=""></a></p>
+<p><a href="/images/Snip20151015_42.png"><img src="/images/Snip20151015_42.png"></a></p>
 <p>这个过程十分漫长，时间通常在半个小时到两个小时左右，第一次编译完成之后，之后的编译将会十分迅速。如果嫌编译速度慢，可以使用-j参数提高编译速度。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -j8</span><br></pre></td></tr></table></figure>
-<p><a href="/images/Snip20151015_44.png"><img src="/images/Snip20151015_44.png" alt=""></a></p>
+<p><a href="/images/Snip20151015_44.png"><img src="/images/Snip20151015_44.png"></a></p>
 <p>编译完成以后，固件的路径是wrtnode/bin/ramips/openwrt-ramips-mt7628-wrtnode2r-squashfs-sysupgrade.bin。</p>
-<p><a href="/images/Snip20151015_43.png"><img src="/images/Snip20151015_43.png" alt=""></a></p>
+<p><a href="/images/Snip20151015_43.png"><img src="/images/Snip20151015_43.png"></a></p>
 <p>得到bin文件之后，可以进入<a href="http://192.168.8.1" target="_blank" rel="noopener">http://192.168.8.1</a>开始刷机，选择系统，备份/升级，在刷写新的固件选项卡下选择刚才编译的文件，然后点击刷写固件。这个过程可能有五分钟，可以耐心等待，但是不可以断电。</p>
-<p><a href="/images/Snip20151015_47.png"><img src="/images/Snip20151015_47.png" alt=""></a></p>
+<p><a href="/images/Snip20151015_47.png"><img src="/images/Snip20151015_47.png"></a></p>
 
       
     </div>

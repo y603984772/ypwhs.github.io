@@ -133,6 +133,14 @@
 
 
 
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-111276663-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-111276663-1');
+  </script>
+
 
 
 
@@ -424,15 +432,16 @@
       
 
       
-        <p><a href="/images/IMG_20140804_233853.jpg"><img src="/images/IMG_20140804_233853.jpg" alt=""></a>这就是我见过的最小的单片机,只有八个脚,如下图:</p>
-<p><a href="/images/QQ截图20150224223448.png"><img src="/images/QQ截图20150224223448.png" alt=""></a></p>
+        <p><a href="/images/IMG_20140804_233853.jpg"><img src="/images/IMG_20140804_233853.jpg"></a>这就是我见过的最小的单片机,只有八个脚,如下图:</p>
+<p><a href="/images/QQ截图20150224223448.png"><img src="/images/QQ截图20150224223448.png"></a></p>
 <p>这小单片机只有芯片大小,但是该有的功能还是有的,可以用C语言编程,不需要外接晶振就能实现准确的时钟.</p>
-<p><a href="/images/QQ截图20150224224036.png"><img src="/images/QQ截图20150224224036.png" alt=""></a></p>
+<p><a href="/images/QQ截图20150224224036.png"><img src="/images/QQ截图20150224224036.png"></a></p>
 <p>那么这就是它的最小系统,其实就是在VCC和GND之间加了5V,然后加了两个电容滤波,无需晶振.</p>
-<p><a href="/images/QQ截图20150224224958.png"><img src="/images/QQ截图20150224224958.png" alt=""></a></p>
+<p><a href="/images/QQ截图20150224224958.png"><img src="/images/QQ截图20150224224958.png"></a></p>
 <p>然后就可以实现一些简单的功能,比如串口的收发,IO口的控制,PWM输出等,甚至可以通过电容充电时间来实现ADC,也可以模拟各种通信协议来实现传感器的扩展,比如I2C模拟等.</p>
-<p>下面是对PWM的模拟,非常简单.<br>程序如下:</p>
+<p>下面是对PWM的模拟,非常简单. 程序如下:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;REG2051.H&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span> <span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">while</span>(h--)<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">148</span>;i++);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> liangdu=<span class="number">0</span>,f=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">255</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(i&lt;liangdu)P3=<span class="number">0XFF</span>;<span class="keyword">else</span> P3=<span class="number">0x00</span>;</span><br><span class="line">		delay(<span class="number">500</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	liangdu+=f;</span><br><span class="line">    <span class="keyword">if</span>(liangdu==<span class="number">255</span>|liangdu==<span class="number">0</span>)f=-f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 

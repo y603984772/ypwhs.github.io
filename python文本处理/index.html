@@ -128,6 +128,14 @@
 
 
 
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-111276663-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-111276663-1');
+  </script>
+
 
 
 
@@ -420,7 +428,7 @@
 
       
         <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">zhongjian</span><span class="params">(yourstr, leftstr, rightstr)</span>:</span></span><br><span class="line">    leftposition = yourstr.find(leftstr)</span><br><span class="line">    rightposition = yourstr.find(rightstr, leftposition)</span><br><span class="line">    <span class="keyword">return</span> yourstr[leftposition+len(leftstr):rightposition]</span><br><span class="line"></span><br><span class="line">s = <span class="string">"test123abc"</span></span><br><span class="line"><span class="keyword">print</span> zhongjian(s, <span class="string">"test"</span>, <span class="string">"abc"</span>)</span><br></pre></td></tr></table></figure>
-<p>相信这个程序很简单,大家都能看得懂.<br>最经典的是这一段,一个数组取它的一部分可以直接这样取<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">str[left:right]</span><br></pre></td></tr></table></figure></p>
+<p>相信这个程序很简单,大家都能看得懂. 最经典的是这一段,一个数组取它的一部分可以直接这样取 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">str[left:right]</span><br></pre></td></tr></table></figure></p>
 
       
     </div>

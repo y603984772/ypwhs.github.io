@@ -138,6 +138,14 @@
 
 
 
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-111276663-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-111276663-1');
+  </script>
+
 
 
 
@@ -433,21 +441,21 @@
 <p>下载好之后解压，然后安装cmake，并打开cmake-gui开始配置交叉编译。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install cmake cmake-qt-gui</span><br><span class="line">cmake-gui</span><br></pre></td></tr></table></figure>
 <p>选好源码的目录，这里我在桌面上创建了一个目录叫opencv-mipsel，用来存放编译好的文件。</p>
-<p><a href="/images/Snip20151020_59.png"><img src="/images/Snip20151020_59.png" alt=""></a></p>
+<p><a href="/images/Snip20151020_59.png"><img src="/images/Snip20151020_59.png"></a></p>
 <p>设置好之后点击Configure。</p>
-<p><a href="/images/Snip20151020_60.png"><img src="/images/Snip20151020_60.png" alt=""></a></p>
+<p><a href="/images/Snip20151020_60.png"><img src="/images/Snip20151020_60.png"></a></p>
 <p>选择最后一个选项（交叉编译）。</p>
-<p><a href="/images/Snip20151020_62.png"><img src="/images/Snip20151020_62.png" alt=""></a></p>
+<p><a href="/images/Snip20151020_62.png"><img src="/images/Snip20151020_62.png"></a></p>
 <p>在Operating System填上Linux，然后c和c++编译器选择<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/home/ypw/Desktop/wrtnode/staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/bin/mipsel-openwrt-linux-gcc</span><br><span class="line">``` 这个编译器和</span><br></pre></td></tr></table></figure></p>
-<p>/home/ypw/Desktop/wrtnode/staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/bin/mipsel-openwrt-linux-g++<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Target Root就是</span><br></pre></td></tr></table></figure></p>
-<p>/home/ypw/Desktop/wrtnode/staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/bin<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[![](/images/Snip20151020_63.png)](/images/Snip20151020_63.png)</span><br><span class="line"></span><br><span class="line">首先我们应该去掉**WITH_GTK**，**WITH_FFMPEG**，因为它们无法编译成功。（此处参考[opencv-2.4.4的交叉编译](http://wiki.wrtnode.com/index.php?title=Common_method/zh-cn &quot;Common_method/zh-cn&quot;)，事实上我勾上以后并不会编译GTK和FFMPEG，也就是说能编译成功）</span><br><span class="line"></span><br><span class="line">[![](/images/Snip20151020_66.png)](/images/Snip20151020_66.png)</span><br><span class="line"></span><br><span class="line">然后还有**CMAKE_INSTALL_PREFIX**目录需要设置一下，这里我们选择了</span><br></pre></td></tr></table></figure></p>
-<p>/usr/local/openwrt<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[![](/images/Snip20151020_69.png)](/images/Snip20151020_69.png)</span><br><span class="line"></span><br><span class="line">最后点击Generate，然后进入openwrt-mipsel文件夹，输入make -j8开始编译。</span><br><span class="line"></span><br><span class="line">```sh</span><br><span class="line">cd /home/ypw/Desktop/opencv-mipsel</span><br><span class="line">make -j8</span><br></pre></td></tr></table></figure></p>
+<p>/home/ypw/Desktop/wrtnode/staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/bin/mipsel-openwrt-linux-g++ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Target Root就是</span><br></pre></td></tr></table></figure></p>
+<p>/home/ypw/Desktop/wrtnode/staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/bin <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[![](/images/Snip20151020_63.png)](/images/Snip20151020_63.png)</span><br><span class="line"></span><br><span class="line">首先我们应该去掉**WITH_GTK**，**WITH_FFMPEG**，因为它们无法编译成功。（此处参考[opencv-2.4.4的交叉编译](http://wiki.wrtnode.com/index.php?title=Common_method/zh-cn &quot;Common_method/zh-cn&quot;)，事实上我勾上以后并不会编译GTK和FFMPEG，也就是说能编译成功）</span><br><span class="line"></span><br><span class="line">[![](/images/Snip20151020_66.png)](/images/Snip20151020_66.png)</span><br><span class="line"></span><br><span class="line">然后还有**CMAKE_INSTALL_PREFIX**目录需要设置一下，这里我们选择了</span><br></pre></td></tr></table></figure></p>
+<p>/usr/local/openwrt <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[![](/images/Snip20151020_69.png)](/images/Snip20151020_69.png)</span><br><span class="line"></span><br><span class="line">最后点击Generate，然后进入openwrt-mipsel文件夹，输入make -j8开始编译。</span><br><span class="line"></span><br><span class="line">```sh</span><br><span class="line">cd /home/ypw/Desktop/opencv-mipsel</span><br><span class="line">make -j8</span><br></pre></td></tr></table></figure></p>
 <p>编译过程中我出现过<code>virtual memory exhausted: Cannot allocate memory</code>错误，建议将虚拟机内存扩大到4GB以上。</p>
 <p>编译过程中会看到各种花花绿绿的信息输出，不出意外的话大概需要编译十分钟。</p>
-<p><a href="/images/Snip20151020_70.png"><img src="/images/Snip20151020_70.png" alt=""></a></p>
+<p><a href="/images/Snip20151020_70.png"><img src="/images/Snip20151020_70.png"></a></p>
 <p>完成以后我们就可以安装刚编译好的库了。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-<p><a href="/images/Snip20151020_71.png"><img src="/images/Snip20151020_71.png" alt=""></a></p>
+<p><a href="/images/Snip20151020_71.png"><img src="/images/Snip20151020_71.png"></a></p>
 <p>除此之外还需要将库和头文件复制到toolchain中。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp -r /usr/local/openwrt/* /home/ypw/Desktop/wrtnode/staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2</span><br></pre></td></tr></table></figure>
 <p>然后我们就可以开始写我们的OpenCV程序了。参考<a href="http://docs.opencv.org/modules/highgui/doc/reading_and_writing_images_and_video.html" target="_blank" rel="noopener">Reading and Writing Images and Video</a>。</p>
@@ -456,25 +464,26 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mipsel-openwrt-linux-g++ test.cpp -o <span class="built_in">test</span> -lopencv_core -lopencv_highgui</span><br><span class="line">scp <span class="built_in">test</span> root@192.168.8.1:/root</span><br></pre></td></tr></table></figure>
 <p>如果你还没有给交叉编译器创建软链接，现在可以创建一个：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /home/ypw/Desktop/wrtnode/staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/bin/mipsel-openwrt-linux-g++ /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
-<p><a href="/images/Snip20151021_72.png"><img src="/images/Snip20151021_72.png" alt=""></a></p>
+<p><a href="/images/Snip20151021_72.png"><img src="/images/Snip20151021_72.png"></a></p>
 <p>此外，我们还需要在WRTnode上安装OpenCV，不然会提示缺少库，就像这样：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./test: can&apos;t load library &apos;libopencv_highgui.so.2.4&apos;</span><br></pre></td></tr></table></figure>
 <p>所以解决方法是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> Libraries  ---&gt;  opencv</span><br></pre></td></tr></table></figure>
-<p><a href="/images/Snip20151021_73.png"><img src="/images/Snip20151021_73.png" alt=""></a></p>
+<p><a href="/images/Snip20151021_73.png"><img src="/images/Snip20151021_73.png"></a></p>
 <p>开启opencv的编译，然后修改Makefile文件，开启highgui。为什么要开启highgui呢？因为要用VideoCapture就必须<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;opencv2/highgui/highgui.hpp&gt;</span><br><span class="line">``` 。要用USB摄像头就得用VideoCapture，所以我们就改一下Makefile，把它编译进去。</span><br><span class="line"></span><br><span class="line">```sh</span><br><span class="line">/home/ypw/Desktop/wrtnode/feeds/packages/libs/opencv/Makefile</span><br></pre></td></tr></table></figure></p>
 <p><strong>-DBUILD_opencv_highgui:BOOL=ON</strong></p>
-<p><a href="/images/Snip20151021_77.png"><img src="/images/Snip20151021_77.png" alt=""></a></p>
+<p><a href="/images/Snip20151021_77.png"><img src="/images/Snip20151021_77.png"></a></p>
 <p>然后<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make -j8</span><br><span class="line">```，如果以前编译过了OpenCV，最好先</span><br></pre></td></tr></table></figure></p>
-<p>make clean<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[![](/images/Snip20151021_78.png)](/images/Snip20151021_78.png)</span><br><span class="line"></span><br><span class="line">刷好新的固件之后，我们就可以在WRTnode上运行这个程序了。当然，刷完系统以后需要重新scp一下。</span><br><span class="line"></span><br><span class="line">```sh</span><br><span class="line">scp test root@192.168.8.1:/root</span><br></pre></td></tr></table></figure></p>
+<p>make clean <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[![](/images/Snip20151021_78.png)](/images/Snip20151021_78.png)</span><br><span class="line"></span><br><span class="line">刷好新的固件之后，我们就可以在WRTnode上运行这个程序了。当然，刷完系统以后需要重新scp一下。</span><br><span class="line"></span><br><span class="line">```sh</span><br><span class="line">scp test root@192.168.8.1:/root</span><br></pre></td></tr></table></figure></p>
 <p>当然，运行test之前，USB电流问题也是需要解决的：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh root@192.168.8.1</span><br><span class="line"><span class="built_in">echo</span> 1 &gt; /sys/bus/usb/devices/1-1.3/bConfigurationValue</span><br><span class="line">./<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-<p><a href="/images/Snip20151022_89.png"><img src="/images/Snip20151022_89.png" alt=""></a></p>
+<p><a href="/images/Snip20151022_89.png"><img src="/images/Snip20151022_89.png"></a></p>
 <p>我们可以看到，拍好了五张图片，每张大小在100kb左右。</p>
 <p>在Ubuntu中安装opencv的方法是这样的：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libopencv-dev</span><br></pre></td></tr></table></figure>
-<p>编译：<br>安装好之后可以直接用g++编译，在本机运行即可测试是否满足我们的需求。只要不含imshow之类的函数，一般可以直接移植到WRTnode 中运行。一般情况下我们会现在ubuntu里写好程序，再放到WRTnode中。</p>
+<p>编译： 安装好之后可以直接用g++编译，在本机运行即可测试是否满足我们的需求。只要不含imshow之类的函数，一般可以直接移植到WRTnode 中运行。一般情况下我们会现在ubuntu里写好程序，再放到WRTnode中。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ test.cpp -o <span class="built_in">test</span> -lopencv_core -lopencv_highgui</span><br></pre></td></tr></table></figure>
+
       
     </div>
 

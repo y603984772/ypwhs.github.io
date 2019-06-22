@@ -94,12 +94,12 @@
 
 
 
-  <meta name="description" content="网格搜索算法和K折交叉验证法是机器学习入门的时候遇到的重要的概念。 网格搜索算法是一种通过遍历给定的参数组合来优化模型表现的方法。 以决策树为例，当我们确定了要使用决策树算法的时候，为了能够更好地拟合和预测，我们需要调整它的参数。在决策树算法中，我们通常选择的参数是决策树的最大深度。 于是我们会给出一系列的最大深度的值，比如 {&amp;#39;max_depth&amp;#39;: [1,2,3,4,5]}，我">
+  <meta name="description" content="网格搜索算法和K折交叉验证法是机器学习入门的时候遇到的重要的概念。 网格搜索算法是一种通过遍历给定的参数组合来优化模型表现的方法。 以决策树为例，当我们确定了要使用决策树算法的时候，为了能够更好地拟合和预测，我们需要调整它的参数。在决策树算法中，我们通常选择的参数是决策树的最大深度。 于是我们会给出一系列的最大深度的值，比如 {&apos;max_depth&apos;: [1,2,3,4,5]}，我们会尽可能包含最">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网格搜索算法与K折交叉验证">
 <meta property="og:url" content="https://ypw.io/GridSearchCV/index.html">
 <meta property="og:site_name" content="杨培文">
-<meta property="og:description" content="网格搜索算法和K折交叉验证法是机器学习入门的时候遇到的重要的概念。 网格搜索算法是一种通过遍历给定的参数组合来优化模型表现的方法。 以决策树为例，当我们确定了要使用决策树算法的时候，为了能够更好地拟合和预测，我们需要调整它的参数。在决策树算法中，我们通常选择的参数是决策树的最大深度。 于是我们会给出一系列的最大深度的值，比如 {&amp;#39;max_depth&amp;#39;: [1,2,3,4,5]}，我">
+<meta property="og:description" content="网格搜索算法和K折交叉验证法是机器学习入门的时候遇到的重要的概念。 网格搜索算法是一种通过遍历给定的参数组合来优化模型表现的方法。 以决策树为例，当我们确定了要使用决策树算法的时候，为了能够更好地拟合和预测，我们需要调整它的参数。在决策树算法中，我们通常选择的参数是决策树的最大深度。 于是我们会给出一系列的最大深度的值，比如 {&apos;max_depth&apos;: [1,2,3,4,5]}，我们会尽可能包含最">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ypw.io/GridSearchCV/split.png">
 <meta property="og:image" content="https://ypw.io/GridSearchCV/Kfold.png">
@@ -107,7 +107,7 @@
 <meta property="og:updated_time" content="2017-12-15T05:03:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网格搜索算法与K折交叉验证">
-<meta name="twitter:description" content="网格搜索算法和K折交叉验证法是机器学习入门的时候遇到的重要的概念。 网格搜索算法是一种通过遍历给定的参数组合来优化模型表现的方法。 以决策树为例，当我们确定了要使用决策树算法的时候，为了能够更好地拟合和预测，我们需要调整它的参数。在决策树算法中，我们通常选择的参数是决策树的最大深度。 于是我们会给出一系列的最大深度的值，比如 {&amp;#39;max_depth&amp;#39;: [1,2,3,4,5]}，我">
+<meta name="twitter:description" content="网格搜索算法和K折交叉验证法是机器学习入门的时候遇到的重要的概念。 网格搜索算法是一种通过遍历给定的参数组合来优化模型表现的方法。 以决策树为例，当我们确定了要使用决策树算法的时候，为了能够更好地拟合和预测，我们需要调整它的参数。在决策树算法中，我们通常选择的参数是决策树的最大深度。 于是我们会给出一系列的最大深度的值，比如 {&apos;max_depth&apos;: [1,2,3,4,5]}，我们会尽可能包含最">
 <meta name="twitter:image" content="https://ypw.io/GridSearchCV/split.png">
 
 
@@ -130,6 +130,14 @@
 
 
 
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-111276663-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-111276663-1');
+  </script>
 
 
 
@@ -425,7 +433,7 @@
         <p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html" target="_blank" rel="noopener">网格搜索算法</a>和<a href="http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.KFold.html" target="_blank" rel="noopener">K折交叉验证法</a>是机器学习入门的时候遇到的重要的概念。</p>
 <p>网格搜索算法是一种通过遍历给定的参数组合来优化模型表现的方法。</p>
 <p>以<a href="https://zh.wikipedia.org/wiki/%E5%86%B3%E7%AD%96%E6%A0%91" target="_blank" rel="noopener">决策树</a>为例，当我们确定了要使用决策树算法的时候，为了能够更好地拟合和预测，我们需要调整它的参数。在决策树算法中，我们通常选择的参数是决策树的<strong>最大深度</strong>。</p>
-<p>于是我们会给出一系列的<strong>最大深度的值</strong>，比如 <code>{&#39;max_depth&#39;: [1,2,3,4,5]}</code>，我们会尽可能包含最优最大深度。</p>
+<p>于是我们会给出一系列的<strong>最大深度的值</strong>，比如 <code>{'max_depth': [1,2,3,4,5]}</code>，我们会尽可能包含最优最大深度。</p>
 <p>不过，我们如何知道哪一个最大深度的模型是最好的呢？我们需要一种可靠的评分方法，对每个最大深度的决策树模型都进行评分，这其中非常经典的一种方法就是交叉验证，下面我们就以<strong>K折交叉验证</strong>为例，详细介绍它的算法过程。</p>
 <p>首先我们先看一下数据集是如何分割的。我们拿到的原始数据集首先会按照一定的比例划分成训练集和测试集。比如下图，以8:2分割的数据集：</p>
 <img src="/GridSearchCV/split.png">
@@ -435,11 +443,12 @@
 <p>对于我们最开始选择的决策树的5个最大深度 ，以 max_depth=1 为例，我们先用第2-10份数据作为训练集训练模型，用第1份数据作为验证集对这次训练的模型进行评分，得到第一个分数；然后重新构建一个 max_depth=1 的决策树，用第1和3-10份数据作为训练集训练模型，用第2份数据作为验证集对这次训练的模型进行评分，得到第二个分数……以此类推，最后构建一个 max_depth=1 的决策树用第1-9份数据作为训练集训练模型，用第10份数据作为验证集对这次训练的模型进行评分，得到第十个分数。于是对于 max_depth=1 的决策树模型，我们训练了10次，验证了10次，得到了10个验证分数，然后计算这10个验证分数的平均分数，就是 max_depth=1 的决策树模型的最终验证分数。</p>
 <img src="/GridSearchCV/Kfold.png">
 <p>对于 max_depth = 2,3,4,5 时，分别进行和 max_depth=1 相同的交叉验证过程，得到它们的最终验证分数。然后我们就可以对这5个最大深度的决策树的最终验证分数进行比较，分数最高的那一个就是<strong>最优最大深度</strong>，对应的模型就是<strong>最优模型</strong>。</p>
-<p>下面提供一个简单的利用决策树预测<a href="https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic" target="_blank" rel="noopener">乳腺癌</a>)的例子：</p>
+<p>下面提供一个简单的利用决策树预测<a href="https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)" target="_blank" rel="noopener">乳腺癌</a>的例子：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV, KFold, train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> make_scorer, accuracy_score</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_breast_cancer</span><br><span class="line"></span><br><span class="line">data = load_breast_cancer()</span><br><span class="line"></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(</span><br><span class="line">    data[<span class="string">'data'</span>], data[<span class="string">'target'</span>], train_size=<span class="number">0.8</span>, random_state=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">regressor = DecisionTreeClassifier(random_state=<span class="number">0</span>)</span><br><span class="line">parameters = &#123;<span class="string">'max_depth'</span>: range(<span class="number">1</span>, <span class="number">6</span>)&#125;</span><br><span class="line">scoring_fnc = make_scorer(accuracy_score)</span><br><span class="line">kfold = KFold(n_splits=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">grid = GridSearchCV(regressor, parameters, scoring_fnc, cv=kfold)</span><br><span class="line">grid = grid.fit(X_train, y_train)</span><br><span class="line">reg = grid.best_estimator_</span><br><span class="line"></span><br><span class="line">print(<span class="string">'best score: %f'</span>%grid.best_score_)</span><br><span class="line">print(<span class="string">'best parameters:'</span>)</span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> parameters.keys():</span><br><span class="line">    print(<span class="string">'%s: %d'</span>%(key, reg.get_params()[key]))</span><br><span class="line"></span><br><span class="line">print(<span class="string">'test score: %f'</span>%reg.score(X_test, y_test))</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">pd.DataFrame(grid.cv_results_).T</span><br></pre></td></tr></table></figure>
 <p>直接用决策树得到的分数大约是92%，经过网格搜索优化以后，我们可以在测试集得到95.6%的准确率：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">best score: 0.938462</span><br><span class="line">best parameters:</span><br><span class="line">max_depth: 4</span><br><span class="line">test score: 0.956140</span><br></pre></td></tr></table></figure>
 <img src="/GridSearchCV/cv_results.png">
+
       
     </div>
 

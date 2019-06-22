@@ -94,18 +94,18 @@
 
 
 
-  <meta name="description" content="首先我们需要将启动的命令写入/etc/init.d/目录下：123sudo nano /etc/init.d/ypwtest/usr/bin/aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all 然后Ctrl+X保存退出，执行下面的命令：1update-rc.d ypwtest defaults 99 如果不想要这个启动项">
+  <meta name="description" content="首先我们需要将启动的命令写入/etc/init.d/目录下： 123sudo nano /etc/init.d/ypwtest/usr/bin/aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all 然后Ctrl+X保存退出，执行下面的命令： 1update-rc.d ypwtest defaults 99 如果不想要这个启">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux service启动项">
 <meta property="og:url" content="https://ypw.io/Linux service启动项/index.html">
 <meta property="og:site_name" content="杨培文">
-<meta property="og:description" content="首先我们需要将启动的命令写入/etc/init.d/目录下：123sudo nano /etc/init.d/ypwtest/usr/bin/aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all 然后Ctrl+X保存退出，执行下面的命令：1update-rc.d ypwtest defaults 99 如果不想要这个启动项">
+<meta property="og:description" content="首先我们需要将启动的命令写入/etc/init.d/目录下： 123sudo nano /etc/init.d/ypwtest/usr/bin/aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all 然后Ctrl+X保存退出，执行下面的命令： 1update-rc.d ypwtest defaults 99 如果不想要这个启">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2016-12-25T15:56:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux service启动项">
-<meta name="twitter:description" content="首先我们需要将启动的命令写入/etc/init.d/目录下：123sudo nano /etc/init.d/ypwtest/usr/bin/aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all 然后Ctrl+X保存退出，执行下面的命令：1update-rc.d ypwtest defaults 99 如果不想要这个启动项">
+<meta name="twitter:description" content="首先我们需要将启动的命令写入/etc/init.d/目录下： 123sudo nano /etc/init.d/ypwtest/usr/bin/aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all 然后Ctrl+X保存退出，执行下面的命令： 1update-rc.d ypwtest defaults 99 如果不想要这个启">
 
 
 
@@ -127,6 +127,14 @@
 
 
 
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-111276663-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-111276663-1');
+  </script>
 
 
 
@@ -419,9 +427,9 @@
       
 
       
-        <p>首先我们需要将启动的命令写入/etc/init.d/目录下：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/init.d/ypwtest</span><br><span class="line"></span><br><span class="line">/usr/bin/aria2c --<span class="built_in">enable</span>-rpc --rpc-listen-all=<span class="literal">true</span> --rpc-allow-origin-all</span><br></pre></td></tr></table></figure></p>
-<p>然后Ctrl+X保存退出，执行下面的命令：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-rc.d ypwtest defaults 99</span><br></pre></td></tr></table></figure></p>
-<p>如果不想要这个启动项了，可以执行这个：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-rc.d -f ypwtest remove</span><br></pre></td></tr></table></figure></p>
+        <p>首先我们需要将启动的命令写入/etc/init.d/目录下： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/init.d/ypwtest</span><br><span class="line"></span><br><span class="line">/usr/bin/aria2c --<span class="built_in">enable</span>-rpc --rpc-listen-all=<span class="literal">true</span> --rpc-allow-origin-all</span><br></pre></td></tr></table></figure></p>
+<p>然后Ctrl+X保存退出，执行下面的命令： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-rc.d ypwtest defaults 99</span><br></pre></td></tr></table></figure></p>
+<p>如果不想要这个启动项了，可以执行这个： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-rc.d -f ypwtest remove</span><br></pre></td></tr></table></figure></p>
 
       
     </div>

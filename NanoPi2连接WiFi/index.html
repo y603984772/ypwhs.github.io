@@ -131,6 +131,14 @@
 
 
 
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-111276663-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-111276663-1');
+  </script>
+
 
 
 
@@ -427,13 +435,13 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/network/interfaces.d/wlan0</span><br></pre></td></tr></table></figure>
 <p>我们将之前的ap模式的static改为client模式的dhcp，然后设置好ssid和密码。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">allow-hotplug wlan0</span><br><span class="line">auto wlan0</span><br><span class="line"></span><br><span class="line"># iface wlan0 inet static</span><br><span class="line"># address 192.168.8.1</span><br><span class="line"># netmask 255.255.255.0</span><br><span class="line"></span><br><span class="line">iface wlan0 inet dhcp</span><br><span class="line">wpa-ssid YPW-Macbook-Pro</span><br><span class="line">wpa-ap-scan 1</span><br><span class="line">wpa-psk 88888888888</span><br></pre></td></tr></table></figure>
-<p><a href="/images/Snip20151218_19.png"><img src="/images/Snip20151218_19.png" alt=""></a></p>
+<p><a href="/images/Snip20151218_19.png"><img src="/images/Snip20151218_19.png"></a></p>
 <p>然后输入：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">turn-wifi-into-apmode no</span><br></pre></td></tr></table></figure>
 <p>等待大约十秒钟，不出意外WiFi已经连上了。</p>
 <p>通过下面的命令可以查看WiFi是否已经连上，当然也可以ping百度或者apt-get。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
-<p><a href="/images/Snip20151218_17.png"><img src="/images/Snip20151218_17.png" alt=""></a></p>
+<p><a href="/images/Snip20151218_17.png"><img src="/images/Snip20151218_17.png"></a></p>
 
       
     </div>

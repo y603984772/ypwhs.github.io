@@ -128,6 +128,14 @@
 
 
 
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-111276663-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-111276663-1');
+  </script>
+
 
 
 
@@ -420,7 +428,7 @@
 
       
         <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">"config.php"</span>);</span><br><span class="line">$username = $_GET[<span class="string">'username'</span>];</span><br><span class="line">$con = mysql_connect(MYSQL_IP.<span class="string">':'</span>.MYSQL_PORT,MYSQL_USER,MYSQL_PSWD);</span><br><span class="line">    <span class="keyword">if</span> (!$con)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">'Could not connect: '</span> . mysql_error());</span><br><span class="line">    &#125;<span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        mysql_select_db(<span class="string">"ypw"</span>, $con);</span><br><span class="line">        mysql_query(<span class="string">"SET NAMES UTF8"</span>);</span><br><span class="line">        $result = mysql_query(<span class="string">"SELECT *  FROM `users` WHERE `username` = '$username';"</span>);</span><br><span class="line">        $row = mysql_fetch_array($result);</span><br><span class="line">        <span class="keyword">echo</span> $row[<span class="string">'password'</span>];</span><br><span class="line">        mysql_close($con);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><a href="http://xxx.com/login.php?username=ypw" target="_blank" rel="noopener">http://xxx.com/login.php?username=ypw</a></p>
+<p>http://xxx.com/login.php?username=ypw</p>
 
       
     </div>

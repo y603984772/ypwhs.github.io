@@ -94,13 +94,13 @@
 
 
 
-  <meta name="description" content="需要:  Python 2.7.9 (default, Dec 10 2014, 12:24:55) [MSC v.1500 32 bit (Intel)] on win 32 BeautifulSoup(安装方式:pip install BeautifulSoup)(文档)首先让我们来体验一下python的魔力吧~获取第一个页面.  12345from urllib import *html =">
+  <meta name="description" content="需要:  Python 2.7.9 (default, Dec 10 2014, 12:24:55) [MSC v.1500 32 bit (Intel)] on win 32 BeautifulSoup(安装方式:pip install BeautifulSoup)(文档) 首先让我们来体验一下python的魔力吧~获取第一个页面.  12345from urllib import *html">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python制作的第一个爬虫">
 <meta property="og:url" content="https://ypw.io/python制作的第一个爬虫/index.html">
 <meta property="og:site_name" content="杨培文">
-<meta property="og:description" content="需要:  Python 2.7.9 (default, Dec 10 2014, 12:24:55) [MSC v.1500 32 bit (Intel)] on win 32 BeautifulSoup(安装方式:pip install BeautifulSoup)(文档)首先让我们来体验一下python的魔力吧~获取第一个页面.  12345from urllib import *html =">
+<meta property="og:description" content="需要:  Python 2.7.9 (default, Dec 10 2014, 12:24:55) [MSC v.1500 32 bit (Intel)] on win 32 BeautifulSoup(安装方式:pip install BeautifulSoup)(文档) 首先让我们来体验一下python的魔力吧~获取第一个页面.  12345from urllib import *html">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ypw.io/images/QQ截图20150217102452.png">
 <meta property="og:image" content="https://ypw.io/images/QQ截图20150217104010.png">
@@ -108,7 +108,7 @@
 <meta property="og:updated_time" content="2016-12-25T15:56:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python制作的第一个爬虫">
-<meta name="twitter:description" content="需要:  Python 2.7.9 (default, Dec 10 2014, 12:24:55) [MSC v.1500 32 bit (Intel)] on win 32 BeautifulSoup(安装方式:pip install BeautifulSoup)(文档)首先让我们来体验一下python的魔力吧~获取第一个页面.  12345from urllib import *html =">
+<meta name="twitter:description" content="需要:  Python 2.7.9 (default, Dec 10 2014, 12:24:55) [MSC v.1500 32 bit (Intel)] on win 32 BeautifulSoup(安装方式:pip install BeautifulSoup)(文档) 首先让我们来体验一下python的魔力吧~获取第一个页面.  12345from urllib import *html">
 <meta name="twitter:image" content="https://ypw.io/images/QQ截图20150217102452.png">
 
 
@@ -131,6 +131,14 @@
 
 
 
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-111276663-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-111276663-1');
+  </script>
 
 
 
@@ -424,56 +432,56 @@
 
       
         <p>需要:</p>
-<ol>
-<li>Python 2.7.9 (default, Dec 10 2014, 12:24:55) [MSC v.1500 32 bit (Intel)] on win 32</li>
-<li>BeautifulSoup(安装方式:pip install BeautifulSoup)(<a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html" target="_blank" rel="noopener">文档</a>)<br>首先让我们来体验一下python的魔力吧~获取第一个页面.</li>
+<ol type="1">
+<li>Python 2.7.9 (default, Dec 10 2014, 12:24:55) [MSC v.1500 32 bit (Intel)] on win 32</li>
+<li>BeautifulSoup(安装方式:pip install BeautifulSoup)(<a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html" target="_blank" rel="noopener">文档</a>) 首先让我们来体验一下python的魔力吧~获取第一个页面.</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> *</span><br><span class="line">html = urlopen(<span class="string">"http://m.lssdjt.com/?date=2015-1-1"</span>).read()</span><br><span class="line">html = html.decode(<span class="string">"utf-8"</span>)</span><br><span class="line">print(html)</span><br></pre></td></tr></table></figure>
-<p><a href="/images/QQ截图20150217102452.png"><img src="/images/QQ截图20150217102452.png" alt=""></a></p>
+<p><a href="/images/QQ截图20150217102452.png"><img src="/images/QQ截图20150217102452.png"></a></p>
 <p>这是历史上的今天的页面,我们看到页面已经正常地被加载了.现在我们来讲一下其中是怎么工作的.</p>
-<ol>
+<ol type="1">
 <li>引入urllib这个库.</li>
 <li>urlopen读取url数据,并且read()成string</li>
 <li>解码,由于页面是UTF-8编码的,为了显示出来不至于乱码,我们进行了解码</li>
-<li>输出到屏幕上.<br>python.就是这么简单.</li>
+<li>输出到屏幕上. python.就是这么简单.</li>
 </ol>
 <p>好了,我们抓到了网页数据之后呢,就要进行<span style="color: #ff0000;">分析</span>了.这个页面<a href="http://m.lssdjt.com/?date=2015-1-1" target="_blank" rel="noopener">http://m.lssdjt.com/?date=2015-1-1</a>如果大家去看呢,就会发现我们需要抓的仅仅就是那些链接.接下来我们摆出大招,<span style="color: #ff0000;">抓链接</span>.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">html = urlopen(<span class="string">"http://m.lssdjt.com/?date=2015-1-1"</span>).read()</span><br><span class="line">soup = BeautifulSoup(html)</span><br><span class="line"><span class="keyword">for</span> link <span class="keyword">in</span> soup.find_all(<span class="string">'a'</span>):</span><br><span class="line">    <span class="keyword">if</span> link.string <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">        title = link.get_text()</span><br><span class="line">        href = link[<span class="string">'href'</span>]</span><br><span class="line">        <span class="keyword">print</span> href, title</span><br></pre></td></tr></table></figure>
 <p>这里我们输出结果就十分漂亮了.</p>
-<p><a href="/images/QQ截图20150217104010.png"><img src="/images/QQ截图20150217104010.png" alt=""></a></p>
+<p><a href="/images/QQ截图20150217104010.png"><img src="/images/QQ截图20150217104010.png"></a></p>
 <p>分析:</p>
-<ol>
-<li>for link in soup.find_all(‘a’): 寻找所有a标签,也就是<a href="d/20100101.html">2010年-中国－东盟自贸区正式建成</a>这样的标签,找到之后用link循环</li>
+<ol type="1">
+<li>for link in soup.find_all('a'): 寻找所有a标签,也就是<a href="d/20100101.html">2010年-中国－东盟自贸区正式建成</a>这样的标签,找到之后用link循环</li>
 <li>if link.string is not None: 如果它不是空的</li>
-<li>title = link.get_text()  获取文本,也就是标签之间的文字</li>
-<li>href = link[‘href’]获取链接,也就是href=”xxx”</li>
-<li>输出<br>现在我们链接也OK了,直接下载下来存在硬盘里就OK拉.</li>
+<li>title = link.get_text()  获取文本,也就是标签之间的文字</li>
+<li>href = link['href']获取链接,也就是href="xxx"</li>
+<li>输出 现在我们链接也OK了,直接下载下来存在硬盘里就OK拉.</li>
 </ol>
 <p>为了我们方便寻找,我决定把title和href保存成csv文件(表格).</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line">__author__ = <span class="string">'ypw'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">html = urlopen(<span class="string">"http://m.lssdjt.com/?date=2015-1-1"</span>).read()</span><br><span class="line">soup = BeautifulSoup(html)</span><br><span class="line">f = open(<span class="string">'data.csv'</span>, <span class="string">'w'</span>)</span><br><span class="line"><span class="keyword">for</span> link <span class="keyword">in</span> soup.find_all(<span class="string">'a'</span>):</span><br><span class="line">    <span class="keyword">if</span> link.string <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">        title = link.get_text()</span><br><span class="line">        <span class="keyword">print</span> title</span><br><span class="line">        title = title.encode(<span class="string">"gbk"</span>)</span><br><span class="line">        href = link[<span class="string">'href'</span>]</span><br><span class="line">        urlretrieve(<span class="string">"http://m.lssdjt.com/"</span> + href, href)</span><br><span class="line">        f.write(href + <span class="string">","</span> + title + <span class="string">"n"</span>)</span><br><span class="line"></span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
 <p>讲解:</p>
-<ol>
-<li>f = open(‘data.csv’, ‘w’)  以写文件(<span style="color: #ff0000;">‘w’</span>)的模式打开data.csv文件</li>
-<li>title = title.encode(“gbk”)  windows环境下,我们用gbk编码,excel才不会乱码</li>
-<li>urlretrieve(“<a href="http://m.lssdjt.com/&quot;" target="_blank" rel="noopener">http://m.lssdjt.com/&quot;</a> + href, href)  这里的urlretrieve是<span style="color: #ff0000;">下载文件</span>的命令,我们这样用就行:urlretrieve(url,filename),如果需要更详细的用法请自行百度.</li>
-<li>f.write(href + “,” + title + “n”)  在csv文件里写一行数据</li>
-<li>f.close() 关闭文件<br>以上代码请<span style="color: #ff0000;">新建一个文件夹</span>,把上面的代码保存成一个<span style="color: #ff0000;">.py文件</span>,然后<span style="color: #ff0000;">新建一个d文件夹</span>(因为链接是/d/xxx.html).最后才打开你刚才保存的.py文件.<span style="color: #ff0000;">不要在cmd中直接运行以上代码</span>,如果你直接运行你会发现系统目录下多了很多html文件,别问我怎么知道的..</li>
+<ol type="1">
+<li>f = open('data.csv', 'w')  以写文件(<span style="color: #ff0000;">'w'</span>)的模式打开data.csv文件</li>
+<li>title = title.encode("gbk")  windows环境下,我们用gbk编码,excel才不会乱码</li>
+<li>urlretrieve("http://m.lssdjt.com/" + href, href)  这里的urlretrieve是<span style="color: #ff0000;">下载文件</span>的命令,我们这样用就行:urlretrieve(url,filename),如果需要更详细的用法请自行百度.</li>
+<li>f.write(href + "," + title + "n")  在csv文件里写一行数据</li>
+<li>f.close() 关闭文件 以上代码请<span style="color: #ff0000;">新建一个文件夹</span>,把上面的代码保存成一个<span style="color: #ff0000;">.py文件</span>,然后<span style="color: #ff0000;">新建一个d文件夹</span>(因为链接是/d/xxx.html).最后才打开你刚才保存的.py文件.<span style="color: #ff0000;">不要在cmd中直接运行以上代码</span>,如果你直接运行你会发现系统目录下多了很多html文件,别问我怎么知道的..</li>
 </ol>
 <p>在刚才创建的文件夹中运行之后你就会发现神奇的事情:</p>
-<p><a href="/images/QQ截图20150217105227.png"><img src="/images/QQ截图20150217105227.png" alt=""></a></p>
+<p><a href="/images/QQ截图20150217105227.png"><img src="/images/QQ截图20150217105227.png"></a></p>
 <p>抓下来了所有的页面.</p>
-<p>之后我们再来一个循环,第一页下载完之后就下载第二天.<br>那么怎么寻找第二页呢?我们看这个第二天的链接:</p>
+<p>之后我们再来一个循环,第一页下载完之后就下载第二天. 那么怎么寻找第二页呢?我们看这个第二天的链接:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"r"</span> <span class="attr">onClick</span>=<span class="string">"location.href='?date=2015-1-2'"</span>&gt;</span>后一天&gt;&gt;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>主要特征:li,class=r,onClick=xxx,那么我们可以构建这样的语句来抓取onClick:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">soup.find(<span class="string">"li"</span>, <span class="string">"r"</span>)[<span class="string">'onclick'</span>]</span><br></pre></td></tr></table></figure>
-<p>这里为什么onclick是小写的呢?因为soup抓出来的我们输出的时候就是小写的了..我也不知道为什么.大写报错所以就小写呗.<br>输出location.href=’?date=2015-1-2’<br>我们再用文本处理的办法得到’’里的数据</p>
+<p>这里为什么onclick是小写的呢?因为soup抓出来的我们输出的时候就是小写的了..我也不知道为什么.大写报错所以就小写呗. 输出location.href='?date=2015-1-2' 我们再用文本处理的办法得到''里的数据</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">r = soup.find(<span class="string">"li"</span>, <span class="string">"r"</span>)[<span class="string">'onclick'</span>].split(<span class="string">"'"</span>)[<span class="number">1</span>]</span><br><span class="line"><span class="keyword">print</span> r</span><br></pre></td></tr></table></figure>
-<p>看看我们加了什么,我们把取出来的location.href=’?date=2015-1-2’首先split(“‘“)了,这样就会变成这样:<br>[‘location.href=’, ‘?date=2015-1-2’, ‘’]<br>然后我们需要的是第二段,于是我们就[1]<br>这样最后的结果就是?date=2015-1-2了.</p>
+<p>看看我们加了什么,我们把取出来的location.href='?date=2015-1-2'首先split("'")了,这样就会变成这样: ['location.href=', '?date=2015-1-2', ''] 然后我们需要的是第二段,于是我们就[1] 这样最后的结果就是?date=2015-1-2了.</p>
 <p>然后写个循环,爬一年,然后避免出错我们选择在下载的时候用try语句,为了节省时间我们设置socket3秒超时.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line">__author__ = <span class="string">'ypw'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">socket.setdefaulttimeout(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'data.csv'</span>, <span class="string">'w'</span>)</span><br><span class="line">r = <span class="string">"?date=2015-1-1"</span></span><br><span class="line">t = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    t += <span class="number">1</span></span><br><span class="line">    html = urlopen(<span class="string">"http://m.lssdjt.com/"</span>+r).read()</span><br><span class="line">    soup = BeautifulSoup(html)</span><br><span class="line">    r = soup.find(<span class="string">"li"</span>, <span class="string">"r"</span>)[<span class="string">'onclick'</span>].split(<span class="string">"'"</span>)[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">for</span> link <span class="keyword">in</span> soup.find_all(<span class="string">'a'</span>):</span><br><span class="line">        <span class="keyword">if</span> link.string <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            title = link.get_text()</span><br><span class="line">            <span class="keyword">print</span> title</span><br><span class="line">            title = title.encode(<span class="string">"gbk"</span>, <span class="string">"ignore"</span>)</span><br><span class="line">            href = link[<span class="string">'href'</span>]</span><br><span class="line">            <span class="keyword">if</span> href.find(<span class="string">"html"</span>) &gt; <span class="number">0</span>:</span><br><span class="line">                success = <span class="keyword">True</span></span><br><span class="line">                <span class="keyword">while</span> success:</span><br><span class="line">                    <span class="keyword">try</span>:</span><br><span class="line">                        <span class="keyword">print</span> <span class="string">"getting "</span> + href</span><br><span class="line">                        urlretrieve(<span class="string">"http://m.lssdjt.com/"</span> + href, href)</span><br><span class="line">                        success = <span class="keyword">False</span></span><br><span class="line">                    <span class="keyword">except</span> IOError:</span><br><span class="line">                        <span class="keyword">print</span> <span class="string">"超时"</span></span><br><span class="line"></span><br><span class="line">            f.write(href + <span class="string">","</span> + title + <span class="string">"n"</span>)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"这是第&#123;0&#125;天"</span>.format(t)</span><br><span class="line">    <span class="keyword">if</span> t &gt; <span class="number">365</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
 <p>上面就是我目前正在运行的程序.</p>
 <p>目前它已经运行完毕,爬了将近一万四千个页面.</p>
-<p>以下是抓取的href,title的表格<br><a href="/images/data.csv">data.csv</a></p>
+<p>以下是抓取的href,title的表格 <a href="/images/data.csv">data.csv</a></p>
 
       
     </div>

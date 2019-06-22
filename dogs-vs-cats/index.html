@@ -94,13 +94,13 @@
 
 
 
-  <meta name="description" content="猫狗大战Dogs vs. Cats">
+  <meta name="description" content="猫狗大战 Dogs vs. Cats">
 <meta name="keywords" content="Udacity">
 <meta property="og:type" content="article">
 <meta property="og:title" content="猫狗大战">
 <meta property="og:url" content="https://ypw.io/dogs-vs-cats/index.html">
 <meta property="og:site_name" content="杨培文">
-<meta property="og:description" content="猫狗大战Dogs vs. Cats">
+<meta property="og:description" content="猫狗大战 Dogs vs. Cats">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ypw.io/dogs-vs-cats/dogs_vs_cats.png">
 <meta property="og:image" content="https://ypw.io/dogs-vs-cats/pet_annotations.jpg">
@@ -109,7 +109,7 @@
 <meta property="og:updated_time" content="2017-01-03T08:05:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="猫狗大战">
-<meta name="twitter:description" content="猫狗大战Dogs vs. Cats">
+<meta name="twitter:description" content="猫狗大战 Dogs vs. Cats">
 <meta name="twitter:image" content="https://ypw.io/dogs-vs-cats/dogs_vs_cats.png">
 
 
@@ -132,6 +132,14 @@
 
 
 
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-111276663-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-111276663-1');
+  </script>
 
 
 
@@ -412,18 +420,22 @@
       
 
       
-        <h1 id="猫狗大战"><a href="#猫狗大战" class="headerlink" title="猫狗大战"></a>猫狗大战</h1><p><a href="https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition" target="_blank" rel="noopener">Dogs vs. Cats</a></p>
+        <h1 id="猫狗大战">猫狗大战</h1>
+<p><a href="https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition" target="_blank" rel="noopener">Dogs vs. Cats</a></p>
 <img src="/dogs-vs-cats/dogs_vs_cats.png">
 <a id="more"></a>
-<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>使用深度学习方法识别一张图片是猫还是狗。</p>
+<h2 id="描述">描述</h2>
+<p>使用深度学习方法识别一张图片是猫还是狗。</p>
 <ul>
 <li>输入：一张彩色图片</li>
 <li>输出：是猫还是狗</li>
 </ul>
-<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>此数据集可以从 kaggle 上下载。<a href="https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition" target="_blank" rel="noopener">Dogs vs. Cats</a></p>
+<h2 id="数据">数据</h2>
+<p>此数据集可以从 kaggle 上下载。<a href="https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition" target="_blank" rel="noopener">Dogs vs. Cats</a></p>
 <p>此外还有一个数据集也非常好：<a href="http://www.robots.ox.ac.uk/~vgg/data/pets/" target="_blank" rel="noopener">The Oxford-IIIT Pet Dataset</a></p>
 <img src="/dogs-vs-cats/pet_annotations.jpg">
-<h2 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h2><p>建议使用 OpenCV, tensorflow, Keras 完成该项目。其他的工具也可以尝试，比如 caffe, mxnet 等。</p>
+<h2 id="建议">建议</h2>
+<p>建议使用 OpenCV, tensorflow, Keras 完成该项目。其他的工具也可以尝试，比如 caffe, mxnet 等。</p>
 <ul>
 <li><a href="https://github.com/opencv/opencv" target="_blank" rel="noopener">OpenCV</a></li>
 <li><a href="http://docs.opencv.org/3.1.0/d6/d00/tutorial_py_root.html" target="_blank" rel="noopener">OpenCV python tutorials</a></li>
@@ -431,7 +443,8 @@
 <li><a href="https://github.com/fchollet/keras" target="_blank" rel="noopener">Keras</a></li>
 <li><a href="http://keras-cn.readthedocs.io/" target="_blank" rel="noopener">Keras 中文文档</a></li>
 </ul>
-<h3 id="建议模型"><a href="#建议模型" class="headerlink" title="建议模型"></a>建议模型</h3><p>如果你不知道如何去构建你的模型，可以尝试以下的模型，后面的数字代表年份和月份：</p>
+<h3 id="建议模型">建议模型</h3>
+<p>如果你不知道如何去构建你的模型，可以尝试以下的模型，后面的数字代表年份和月份：</p>
 <ul>
 <li><a href="http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf" target="_blank" rel="noopener">LeNet</a> 1998</li>
 <li><a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf" target="_blank" rel="noopener">AlexNet</a> 12</li>
@@ -443,24 +456,31 @@
 <li><a href="https://arxiv.org/abs/1611.05431" target="_blank" rel="noopener">ResNeXt</a> 16.11</li>
 </ul>
 <p>参考代码：<a href="https://github.com/fchollet/deep-learning-models" target="_blank" rel="noopener">deep learning models for keras</a></p>
-<h2 id="应用-可选-推荐"><a href="#应用-可选-推荐" class="headerlink" title="应用(可选)(推荐)"></a>应用(可选)(推荐)</h2><p>应用形式多种多样，可以是在本地调用摄像头跑的程序，也可以网页的，也可以是 iOS APP 或 Android APP，甚至可以是微信公众号。</p>
-<h3 id="网页应用"><a href="#网页应用" class="headerlink" title="网页应用"></a>网页应用</h3><p>推荐的工具：</p>
+<h2 id="应用可选推荐">应用(可选)(推荐)</h2>
+<p>应用形式多种多样，可以是在本地调用摄像头跑的程序，也可以网页的，也可以是 iOS APP 或 Android APP，甚至可以是微信公众号。</p>
+<h3 id="网页应用">网页应用</h3>
+<p>推荐的工具：</p>
 <ul>
 <li><a href="https://github.com/pallets/flask" target="_blank" rel="noopener">Flask</a></li>
 <li><a href="http://docs.jinkan.org/docs/flask/" target="_blank" rel="noopener">Flask 中文文档</a></li>
 </ul>
-<h3 id="微信公众号"><a href="#微信公众号" class="headerlink" title="微信公众号"></a>微信公众号</h3><p>可以参考这个例子：<a href="https://github.com/ypwhs/wechat_digit_recognition" target="_blank" rel="noopener">微信数字识别</a>。</p>
+<h3 id="微信公众号">微信公众号</h3>
+<p>可以参考这个例子：<a href="https://github.com/ypwhs/wechat_digit_recognition" target="_blank" rel="noopener">微信数字识别</a>。</p>
 <p>网页接口部分可以参考 <a href="https://github.com/pallets/flask" target="_blank" rel="noopener">Flask</a> 而不必用 python cgi。</p>
-<h3 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h3><p>在 iOS 平台上你可以使用 <a href="https://developer.apple.com/reference/metalperformanceshaders" target="_blank" rel="noopener">MetalPerformanceShaders</a> 来实现卷积神经网络。推荐的语言：Swift。</p>
+<h3 id="ios">iOS</h3>
+<p>在 iOS 平台上你可以使用 <a href="https://developer.apple.com/reference/metalperformanceshaders" target="_blank" rel="noopener">MetalPerformanceShaders</a> 来实现卷积神经网络。推荐的语言：Swift。</p>
 <p>这里有一个 <a href="https://github.com/shu223/iOS-10-Sampler/blob/master/iOS-10-Sampler/Samples/Inception3Net.swift" target="_blank" rel="noopener">Inception v3</a> 在 iOS 上跑的例子。</p>
 <img src="/dogs-vs-cats/imagerecog.gif">
 <p>OpenCV 的 iOS Framework 文件可以直接在这里下载：<a href="https://github.com/opencv/opencv/releases" target="_blank" rel="noopener">OpenCV releases</a>。这里有一份教程，可以轻松入门：<a href="http://docs.opencv.org/3.2.0/d7/d88/tutorial_hello.html" target="_blank" rel="noopener">turorial_hello</a></p>
 <p>最终效果可以参考这个 app ：<a href="https://itunes.apple.com/cn/app/petornot/id926645155?l=en&amp;mt=8" target="_blank" rel="noopener">PetOrNot</a></p>
 <img src="/dogs-vs-cats/PetOrNot.jpeg">
-<h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><p>在 Android 上运行 tensorflow 可以参考 <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/android" target="_blank" rel="noopener">android tensorflow</a>。</p>
+<h3 id="android">Android</h3>
+<p>在 Android 上运行 tensorflow 可以参考 <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/android" target="_blank" rel="noopener">android tensorflow</a>。</p>
 <p>在 Android 上运行 OpenCV 可以参考 <a href="http://docs.opencv.org/3.2.0/da/d2a/tutorial_O4A_SDK.html" target="_blank" rel="noopener">OpenCV4Android SDK</a>。</p>
-<h2 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h2><p>你的项目会由优达学城项目评审师依照<a href="https://review.udacity.com/#!/rubrics/273/view" target="_blank" rel="noopener">机器学习毕业项目要求</a>来评审。请确定你已完整的读过了这个要求，并在提交前对照检查过了你的项目。提交项目必须满足所有要求中每一项才能算作项目通过。</p>
-<h2 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h2><ul>
+<h2 id="评估">评估</h2>
+<p>你的项目会由优达学城项目评审师依照<a href="https://review.udacity.com/#!/rubrics/273/view" target="_blank" rel="noopener">机器学习毕业项目要求</a>来评审。请确定你已完整的读过了这个要求，并在提交前对照检查过了你的项目。提交项目必须满足所有要求中每一项才能算作项目通过。</p>
+<h2 id="提交">提交</h2>
+<ul>
 <li>PDF 报告文件</li>
 <li>数据预处理代码（建议使用 jupyter notebook ）</li>
 <li>模型训练代码（建议使用 jupyter notebook ）</li>
@@ -724,7 +744,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#猫狗大战"><span class="nav-number">1.</span> <span class="nav-text">猫狗大战</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#描述"><span class="nav-number">1.1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据"><span class="nav-number">1.2.</span> <span class="nav-text">数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建议"><span class="nav-number">1.3.</span> <span class="nav-text">建议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建议模型"><span class="nav-number">1.3.1.</span> <span class="nav-text">建议模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用-可选-推荐"><span class="nav-number">1.4.</span> <span class="nav-text">应用(可选)(推荐)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网页应用"><span class="nav-number">1.4.1.</span> <span class="nav-text">网页应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微信公众号"><span class="nav-number">1.4.2.</span> <span class="nav-text">微信公众号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS"><span class="nav-number">1.4.3.</span> <span class="nav-text">iOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android"><span class="nav-number">1.4.4.</span> <span class="nav-text">Android</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评估"><span class="nav-number">1.5.</span> <span class="nav-text">评估</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提交"><span class="nav-number">1.6.</span> <span class="nav-text">提交</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#猫狗大战"><span class="nav-number">1.</span> <span class="nav-text">猫狗大战</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#描述"><span class="nav-number">1.1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据"><span class="nav-number">1.2.</span> <span class="nav-text">数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建议"><span class="nav-number">1.3.</span> <span class="nav-text">建议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建议模型"><span class="nav-number">1.3.1.</span> <span class="nav-text">建议模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用可选推荐"><span class="nav-number">1.4.</span> <span class="nav-text">应用(可选)(推荐)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网页应用"><span class="nav-number">1.4.1.</span> <span class="nav-text">网页应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微信公众号"><span class="nav-number">1.4.2.</span> <span class="nav-text">微信公众号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ios"><span class="nav-number">1.4.3.</span> <span class="nav-text">iOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#android"><span class="nav-number">1.4.4.</span> <span class="nav-text">Android</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评估"><span class="nav-number">1.5.</span> <span class="nav-text">评估</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提交"><span class="nav-number">1.6.</span> <span class="nav-text">提交</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -126,6 +126,14 @@
 
 
 
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-111276663-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-111276663-1');
+  </script>
+
 
 
 
@@ -576,7 +584,8 @@
 
       
         
-          <h1 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h1><p>因为没有在首发的时候抢到 iPhone X，又想早点拿到 iPhone X，等3~4周是不可能的，所以就只能从官网预约到 Apple Store 购买。而官网11月3日没有开放预约，于是就只能在11月4号预约。</p>
+          <h1 id="吐槽">吐槽</h1>
+<p>因为没有在首发的时候抢到 iPhone X，又想早点拿到 iPhone X，等3~4周是不可能的，所以就只能从官网预约到 Apple Store 购买。而官网11月3日没有开放预约，于是就只能在11月4号预约。</p>
 <p>一大早八点钟起来预约 iPhone X，懒得起床就在手机上直接预约。iPhone X 的火爆程度不出我的意料，八点整还能刷出来有货，预约的时候经过手机短信、身份证、选店铺等繁琐的流程以后，iPhone X 果然没货了。然而在去年就抢过 iPhone 7 Plus 的我知道，苹果店每小时都会放出来一批货，于是我就顺手写了个脚本。</p>
           <!--noindex-->
           
@@ -739,7 +748,8 @@
       
         
           <p>本文会通过 Keras 搭建一个深度卷积神经网络来识别一张图片是猫还是狗，在验证集上的准确率可以达到99.6%，建议使用显卡来运行该项目。本项目使用的 Keras 版本是1.2.2。</p>
-<h1 id="猫狗大战"><a href="#猫狗大战" class="headerlink" title="猫狗大战"></a>猫狗大战</h1><p>数据集来自 kaggle 上的一个竞赛：<a href="https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition" target="_blank" rel="noopener">Dogs vs. Cats</a>，训练集有25000张，猫狗各占一半。测试集12500张，没有标定是猫还是狗。</p>
+<h1 id="猫狗大战">猫狗大战</h1>
+<p>数据集来自 kaggle 上的一个竞赛：<a href="https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition" target="_blank" rel="noopener">Dogs vs. Cats</a>，训练集有25000张，猫狗各占一半。测试集12500张，没有标定是猫还是狗。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">➜  猫狗大战 ls train | head</span><br><span class="line">cat.0.jpg</span><br><span class="line">cat.1.jpg</span><br><span class="line">cat.10.jpg</span><br><span class="line">cat.100.jpg</span><br><span class="line">cat.1000.jpg</span><br><span class="line">cat.10000.jpg</span><br><span class="line">cat.10001.jpg</span><br><span class="line">cat.10002.jpg</span><br><span class="line">cat.10003.jpg</span><br><span class="line">cat.10004.jpg</span><br><span class="line">➜  猫狗大战 ls test | head</span><br><span class="line">1.jpg</span><br><span class="line">10.jpg</span><br><span class="line">100.jpg</span><br><span class="line">1000.jpg</span><br><span class="line">10000.jpg</span><br><span class="line">10001.jpg</span><br><span class="line">10002.jpg</span><br><span class="line">10003.jpg</span><br><span class="line">10004.jpg</span><br><span class="line">10005.jpg</span><br></pre></td></tr></table></figure>
 <p>下面是训练集的一部分例子：</p>
 <img src="/dogs-vs-cats-2/dataset.png">
@@ -905,7 +915,8 @@
         
           <p>本文会通过 Keras 搭建一个深度卷积神经网络来识别 captcha 验证码，建议使用显卡来运行该项目。</p>
 <p>下面的可视化代码都是在 <code>jupyter notebook</code> 中完成的，如果你希望写成 python 脚本，稍加修改即可正常运行，当然也可以去掉这些可视化代码。Keras 版本：1.2.2。</p>
-<h1 id="captcha"><a href="#captcha" class="headerlink" title="captcha"></a>captcha</h1><p>captcha 是用 python 写的生成验证码的库，它支持图片验证码和语音验证码，我们使用的是它生成图片验证码的功能。</p>
+<h1 id="captcha">captcha</h1>
+<p>captcha 是用 python 写的生成验证码的库，它支持图片验证码和语音验证码，我们使用的是它生成图片验证码的功能。</p>
 <p>首先我们设置我们的验证码格式为数字加大写字母，生成一串验证码试试看：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> captcha.image <span class="keyword">import</span> ImageCaptcha</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br><span class="line">%config InlineBackend.figure_format = <span class="string">'retina'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line">characters = string.digits + string.ascii_uppercase</span><br><span class="line">print(characters)</span><br><span class="line"></span><br><span class="line">width, height, n_len, n_class = <span class="number">170</span>, <span class="number">80</span>, <span class="number">4</span>, len(characters)</span><br><span class="line"></span><br><span class="line">generator = ImageCaptcha(width=width, height=height)</span><br><span class="line">random_str = <span class="string">''</span>.join([random.choice(characters) <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">4</span>)])</span><br><span class="line">img = generator.generate_image(random_str)</span><br><span class="line"></span><br><span class="line">plt.imshow(img)</span><br><span class="line">plt.title(random_str)</span><br></pre></td></tr></table></figure>
 <img src="/captcha/captcha.png">
@@ -1072,7 +1083,7 @@
           <p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html" target="_blank" rel="noopener">网格搜索算法</a>和<a href="http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.KFold.html" target="_blank" rel="noopener">K折交叉验证法</a>是机器学习入门的时候遇到的重要的概念。</p>
 <p>网格搜索算法是一种通过遍历给定的参数组合来优化模型表现的方法。</p>
 <p>以<a href="https://zh.wikipedia.org/wiki/%E5%86%B3%E7%AD%96%E6%A0%91" target="_blank" rel="noopener">决策树</a>为例，当我们确定了要使用决策树算法的时候，为了能够更好地拟合和预测，我们需要调整它的参数。在决策树算法中，我们通常选择的参数是决策树的<strong>最大深度</strong>。</p>
-<p>于是我们会给出一系列的<strong>最大深度的值</strong>，比如 <code>{&#39;max_depth&#39;: [1,2,3,4,5]}</code>，我们会尽可能包含最优最大深度。</p>
+<p>于是我们会给出一系列的<strong>最大深度的值</strong>，比如 <code>{'max_depth': [1,2,3,4,5]}</code>，我们会尽可能包含最优最大深度。</p>
 <p>不过，我们如何知道哪一个最大深度的模型是最好的呢？我们需要一种可靠的评分方法，对每个最大深度的决策树模型都进行评分，这其中非常经典的一种方法就是交叉验证，下面我们就以<strong>K折交叉验证</strong>为例，详细介绍它的算法过程。</p>
 <p>首先我们先看一下数据集是如何分割的。我们拿到的原始数据集首先会按照一定的比例划分成训练集和测试集。比如下图，以8:2分割的数据集：</p>
 <img src="/GridSearchCV/split.png">
@@ -1237,7 +1248,8 @@
       
         
           <img src="/pm/demo.jpg">
-<h1 id="为什么做这个"><a href="#为什么做这个" class="headerlink" title="为什么做这个"></a>为什么做这个</h1><p>其实很简单，我本科学自动化的，毕业设计选题的时候正好看到了这个题目，觉得很简单，对于生活在帝都的我也很实用，于是就想做个这个<strong>室内空气质量检测仪</strong>。</p>
+<h1 id="为什么做这个">为什么做这个</h1>
+<p>其实很简单，我本科学自动化的，毕业设计选题的时候正好看到了这个题目，觉得很简单，对于生活在帝都的我也很实用，于是就想做个这个<strong>室内空气质量检测仪</strong>。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1398,7 +1410,8 @@
 
       
         
-          <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p><a href="https://aws.amazon.com/cn/ec2/instance-types/p2/" target="_blank" rel="noopener">Amazon EC2 P2 实例</a></p>
+          <h1 id="介绍">介绍</h1>
+<p><a href="https://aws.amazon.com/cn/ec2/instance-types/p2/" target="_blank" rel="noopener">Amazon EC2 P2 实例</a></p>
 <p>p2.xlarge 是一种非常适合深度学习的云服务器，它配备了 12G 显存的 Tesla K80 显卡，4核 CPU，60G 内存，以及 500M 的网速。如果你还嫌不够，可以选择它的8倍和16倍的版本。</p>
 <img src="/aws_p2/gpu.png">
           <!--noindex-->
@@ -1549,7 +1562,8 @@
 
       
         
-          <h1 id="猫狗大战"><a href="#猫狗大战" class="headerlink" title="猫狗大战"></a>猫狗大战</h1><p><a href="https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition" target="_blank" rel="noopener">Dogs vs. Cats</a></p>
+          <h1 id="猫狗大战">猫狗大战</h1>
+<p><a href="https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition" target="_blank" rel="noopener">Dogs vs. Cats</a></p>
 <img src="/dogs-vs-cats/dogs_vs_cats.png">
           <!--noindex-->
           
@@ -1864,8 +1878,10 @@
           <p>无人驾驶课程一共有三个学期，每个学期三个月。</p>
 <p>新手大礼包：<a href="https://github.com/nd013/CarND-Term1-Starter-Kit" target="_blank" rel="noopener">CarND-Term1-Starter-Kit</a></p>
 <p>测试环境：<a href="https://github.com/nd013/CarND-Term1-Starter-Kit-Test" target="_blank" rel="noopener">CarND-Term1-Starter-Kit-Test</a></p>
-<h1 id="第一学期"><a href="#第一学期" class="headerlink" title="第一学期"></a>第一学期</h1><p>第一学期主要介绍了图像方面的基础知识和应用，包括传统数字图像处理技术和深度学习。</p>
-<h2 id="P1-检测车道线"><a href="#P1-检测车道线" class="headerlink" title="P1 检测车道线"></a>P1 检测车道线</h2><img src="/CarND_overview/P1.png">
+<h1 id="第一学期">第一学期</h1>
+<p>第一学期主要介绍了图像方面的基础知识和应用，包括传统数字图像处理技术和深度学习。</p>
+<h2 id="p1-检测车道线">P1 检测车道线</h2>
+<img src="/CarND_overview/P1.png">
 <img src="/CarND_overview/P1_vis.png">
 <p>项目：<a href="https://github.com/nd013/CarND-LaneLines-P1" target="_blank" rel="noopener">CarND-LaneLines-P1</a></p>
           <!--noindex-->

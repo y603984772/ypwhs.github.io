@@ -94,13 +94,13 @@
 
 
 
-  <meta name="description" content="当你修改了网络设置，或者刷了其他型号的固件，或者各种复杂的原因，导致了你无法连接上WRTnode，那么我们就可以认为WRTnode已经变成砖头了。这时候就需要救砖。 可能需要的软件：tftp.zip包括tftpd32，putty，sscom42，openwrt-ramips-mt7628-wrtnode2r-squashfs-sysupgrade.bin（自己编译的WRTnode 2R固件，带中文">
+  <meta name="description" content="当你修改了网络设置，或者刷了其他型号的固件，或者各种复杂的原因，导致了你无法连接上WRTnode，那么我们就可以认为WRTnode已经变成砖头了。这时候就需要救砖。 可能需要的软件：tftp.zip 包括tftpd32，putty，sscom42，openwrt-ramips-mt7628-wrtnode2r-squashfs-sysupgrade.bin（自己编译的WRTnode 2R固件，带中">
 <meta name="keywords" content="WRTnode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WRTnode 2R 救砖教程">
 <meta property="og:url" content="https://ypw.io/WRTnode 2R 救砖教程/index.html">
 <meta property="og:site_name" content="杨培文">
-<meta property="og:description" content="当你修改了网络设置，或者刷了其他型号的固件，或者各种复杂的原因，导致了你无法连接上WRTnode，那么我们就可以认为WRTnode已经变成砖头了。这时候就需要救砖。 可能需要的软件：tftp.zip包括tftpd32，putty，sscom42，openwrt-ramips-mt7628-wrtnode2r-squashfs-sysupgrade.bin（自己编译的WRTnode 2R固件，带中文">
+<meta property="og:description" content="当你修改了网络设置，或者刷了其他型号的固件，或者各种复杂的原因，导致了你无法连接上WRTnode，那么我们就可以认为WRTnode已经变成砖头了。这时候就需要救砖。 可能需要的软件：tftp.zip 包括tftpd32，putty，sscom42，openwrt-ramips-mt7628-wrtnode2r-squashfs-sysupgrade.bin（自己编译的WRTnode 2R固件，带中">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ypw.io/images/2R-pin-map.jpg">
 <meta property="og:image" content="https://ypw.io/images/IMG_0674.jpg">
@@ -113,7 +113,7 @@
 <meta property="og:updated_time" content="2016-12-26T02:44:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WRTnode 2R 救砖教程">
-<meta name="twitter:description" content="当你修改了网络设置，或者刷了其他型号的固件，或者各种复杂的原因，导致了你无法连接上WRTnode，那么我们就可以认为WRTnode已经变成砖头了。这时候就需要救砖。 可能需要的软件：tftp.zip包括tftpd32，putty，sscom42，openwrt-ramips-mt7628-wrtnode2r-squashfs-sysupgrade.bin（自己编译的WRTnode 2R固件，带中文">
+<meta name="twitter:description" content="当你修改了网络设置，或者刷了其他型号的固件，或者各种复杂的原因，导致了你无法连接上WRTnode，那么我们就可以认为WRTnode已经变成砖头了。这时候就需要救砖。 可能需要的软件：tftp.zip 包括tftpd32，putty，sscom42，openwrt-ramips-mt7628-wrtnode2r-squashfs-sysupgrade.bin（自己编译的WRTnode 2R固件，带中">
 <meta name="twitter:image" content="https://ypw.io/images/2R-pin-map.jpg">
 
 
@@ -136,6 +136,14 @@
 
 
 
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-111276663-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-111276663-1');
+  </script>
 
 
 
@@ -429,31 +437,31 @@
 
       
         <p>当你修改了网络设置，或者刷了其他型号的固件，或者各种复杂的原因，导致了你无法连接上WRTnode，那么我们就可以认为WRTnode已经变成砖头了。这时候就需要救砖。</p>
-<p>可能需要的软件：<a href="/images/tftp.zip">tftp.zip</a><br>包括tftpd32，putty，sscom42，openwrt-ramips-mt7628-wrtnode2r-squashfs-sysupgrade.bin（自己编译的WRTnode 2R固件，带中文，有点偏大是因为我之前编译过opencv之类的东西可能有依赖库没有去掉）</p>
+<p>可能需要的软件：<a href="/images/tftp.zip">tftp.zip</a> 包括tftpd32，putty，sscom42，openwrt-ramips-mt7628-wrtnode2r-squashfs-sysupgrade.bin（自己编译的WRTnode 2R固件，带中文，有点偏大是因为我之前编译过opencv之类的东西可能有依赖库没有去掉）</p>
 <p>首先我们需要一个USB转TTL，通过它我们可以让电脑连上WRTnode的UART接口。这是单片机常用的通讯方式，这里不作详细介绍。接线方式：</p>
-<p>WRTndoe —- USB to TTL<br>TX0 —- RXD<br>RX0 —- TXD<br>GND —- GND</p>
-<p><a href="/images/2R-pin-map.jpg"><img src="/images/2R-pin-map.jpg" alt=""></a></p>
+<p>WRTndoe ---- USB to TTL TX0 ---- RXD RX0 ---- TXD GND ---- GND</p>
+<p><a href="/images/2R-pin-map.jpg"><img src="/images/2R-pin-map.jpg"></a></p>
 <p>如图所示：</p>
-<p><a href="/images/IMG_0674.jpg"><img src="/images/IMG_0674.jpg" alt=""></a></p>
+<p><a href="/images/IMG_0674.jpg"><img src="/images/IMG_0674.jpg"></a></p>
 <p>然后我们还需要连接上网线口，如图所示：</p>
-<p><a href="/images/IMG_0675.jpg"><img src="/images/IMG_0675.jpg" alt=""></a></p>
+<p><a href="/images/IMG_0675.jpg"><img src="/images/IMG_0675.jpg"></a></p>
 <p>我们连接网线以后，需要设置静态IP，设置方法如下：</p>
-<p><a href="/images/Snip20151103_10.png"><img src="/images/Snip20151103_10.png" alt=""></a></p>
+<p><a href="/images/Snip20151103_10.png"><img src="/images/Snip20151103_10.png"></a></p>
 <p>然后我们打开串口助手，上电，可以看到类似的信息输出：</p>
-<p><a href="/images/Snip20151103_5.png"><img src="/images/Snip20151103_5.png" alt=""></a></p>
-<p>很显然内核挂了，我们打开Tftpd32软件，配置如图所示：<a href="/images/无标题21.png"><img src="/images/无标题21.png" alt=""></a></p>
+<p><a href="/images/Snip20151103_5.png"><img src="/images/Snip20151103_5.png"></a></p>
+<p>很显然内核挂了，我们打开Tftpd32软件，配置如图所示：<a href="/images/无标题21.png"><img src="/images/无标题21.png"></a></p>
 <p>配置好之后将WRTnode的电断掉再插上，再次重启，然后在出现下面这段话的时候按2，然后按y来配置IP等信息：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Please choose the operation: </span><br><span class="line"></span><br><span class="line">   1: Load system code to SDRAM via TFTP. </span><br><span class="line"></span><br><span class="line">   2: Load system code then write to Flash via TFTP. </span><br><span class="line"></span><br><span class="line">   3: Boot system code via Flash (default).</span><br><span class="line"></span><br><span class="line">   4: Entr boot command line interface.</span><br><span class="line"></span><br><span class="line">   7: Load Boot Loader code then write to Flash via Serial. </span><br><span class="line"></span><br><span class="line">   9: Load Boot Loader code then write to Flash via TFTP.</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">You choosed 2</span><br><span class="line"></span><br><span class="line">2: System Load Linux Kernel then write to Flash via TFTP. </span><br><span class="line"></span><br><span class="line"> Warning!! Erase Linux in Flash then burn new one. Are you sure?(Y/N)</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Please Input new ones /or Ctrl-C to discard</span><br><span class="line"></span><br><span class="line">	Input device IP (192.168.1.1) ==:192.168.1.1</span><br><span class="line"></span><br><span class="line">	Input server IP (192.168.1.100) ==:192.168.1.100</span><br><span class="line"></span><br><span class="line">	Input Linux Kernel filename () ==:test.bin</span><br></pre></td></tr></table></figure>
 <p>当你按下回车的那一瞬间，Tftpd32就会开始传输你选择的固件。</p>
-<p><a href="/images/无标题.png"><img src="/images/无标题.png" alt=""></a></p>
+<p><a href="/images/无标题.png"><img src="/images/无标题.png"></a></p>
 <p>传输完成之后，WRTnode就会开始进行刷机，这时候注意千万不能断电。</p>
-<p><a href="/images/无标题2.png"><img src="/images/无标题2.png" alt=""></a></p>
+<p><a href="/images/无标题2.png"><img src="/images/无标题2.png"></a></p>
 <p>最后我们可以看到，WRTnode已经可以正常启动！</p>
-<p>&lt;video width=100% src=/images/A-55.mp4 controls /&gt;</p>
+<video width="100%" src="/images/A-55.mp4" controls>
 <p>久违的闪瞎眼的LED！</p>
-
+</video>
       
     </div>
 

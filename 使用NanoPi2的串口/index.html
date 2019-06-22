@@ -131,6 +131,14 @@
 
 
 
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-111276663-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-111276663-1');
+  </script>
+
 
 
 
@@ -429,9 +437,9 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nano read.c</span><br><span class="line">gcc read.c -o <span class="built_in">read</span></span><br><span class="line">./<span class="built_in">read</span></span><br></pre></td></tr></table></figure>
 <p>然后我们向串口写入数据：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> hello &gt; /dev/ttyAMA2</span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">test</span> &gt; /dev/ttyAMA2</span><br><span class="line"><span class="built_in">echo</span> hahaha &gt; /dev/ttyAMA2</span><br></pre></td></tr></table></figure>
-<p><a href="/images/Snip20151229_71.png"><img src="/images/Snip20151229_71.png" alt=""></a></p>
+<p><a href="/images/Snip20151229_71.png"><img src="/images/Snip20151229_71.png"></a></p>
 <p>read程序就会输出刚才发送的字符，带换行。</p>
-<p><a href="/images/Snip20151229_70.png"><img src="/images/Snip20151229_70.png" alt=""></a></p>
+<p><a href="/images/Snip20151229_70.png"><img src="/images/Snip20151229_70.png"></a></p>
 
       
     </div>

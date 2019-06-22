@@ -94,13 +94,13 @@
 
 
 
-  <meta name="description" content="首先是简单的拍照功能,通过下面的php可以实现远程查看照片 12345&amp;lt;?phpecho shell_exec(&quot;raspistill -t 1 -o /home/pi/www/a.jpg -w 2592 -h 1944&quot;);echo &apos;&amp;lt;img style=&quot;width: 80%&quot; src=a.jpg&amp;gt;&apos;;?&amp;gt; 如果出错需要执行下面的代码:12chmod a+rw /">
+  <meta name="description" content="首先是简单的拍照功能,通过下面的php可以实现远程查看照片 12345&amp;lt;?phpecho shell_exec(&quot;raspistill -t 1 -o /home/pi/www/a.jpg -w 2592 -h 1944&quot;);echo &apos;&amp;lt;img style=&quot;width: 80%&quot; src=a.jpg&amp;gt;&apos;;?&amp;gt; 如果出错需要执行下面的代码: 12chmod a+rw">
 <meta name="keywords" content="树莓派">
 <meta property="og:type" content="article">
 <meta property="og:title" content="树莓派定时拍照器">
 <meta property="og:url" content="https://ypw.io/树莓派定时拍照器/index.html">
 <meta property="og:site_name" content="杨培文">
-<meta property="og:description" content="首先是简单的拍照功能,通过下面的php可以实现远程查看照片 12345&amp;lt;?phpecho shell_exec(&quot;raspistill -t 1 -o /home/pi/www/a.jpg -w 2592 -h 1944&quot;);echo &apos;&amp;lt;img style=&quot;width: 80%&quot; src=a.jpg&amp;gt;&apos;;?&amp;gt; 如果出错需要执行下面的代码:12chmod a+rw /">
+<meta property="og:description" content="首先是简单的拍照功能,通过下面的php可以实现远程查看照片 12345&amp;lt;?phpecho shell_exec(&quot;raspistill -t 1 -o /home/pi/www/a.jpg -w 2592 -h 1944&quot;);echo &apos;&amp;lt;img style=&quot;width: 80%&quot; src=a.jpg&amp;gt;&apos;;?&amp;gt; 如果出错需要执行下面的代码: 12chmod a+rw">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ypw.io/images/IMG_20150319_225003.jpg">
 <meta property="og:image" content="https://ypw.io/images/IMG_20150319_225016.jpg">
@@ -112,7 +112,7 @@
 <meta property="og:updated_time" content="2016-12-25T15:56:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="树莓派定时拍照器">
-<meta name="twitter:description" content="首先是简单的拍照功能,通过下面的php可以实现远程查看照片 12345&amp;lt;?phpecho shell_exec(&quot;raspistill -t 1 -o /home/pi/www/a.jpg -w 2592 -h 1944&quot;);echo &apos;&amp;lt;img style=&quot;width: 80%&quot; src=a.jpg&amp;gt;&apos;;?&amp;gt; 如果出错需要执行下面的代码:12chmod a+rw /">
+<meta name="twitter:description" content="首先是简单的拍照功能,通过下面的php可以实现远程查看照片 12345&amp;lt;?phpecho shell_exec(&quot;raspistill -t 1 -o /home/pi/www/a.jpg -w 2592 -h 1944&quot;);echo &apos;&amp;lt;img style=&quot;width: 80%&quot; src=a.jpg&amp;gt;&apos;;?&amp;gt; 如果出错需要执行下面的代码: 12chmod a+rw">
 <meta name="twitter:image" content="https://ypw.io/images/IMG_20150319_225003.jpg">
 
 
@@ -135,6 +135,14 @@
 
 
 
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-111276663-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-111276663-1');
+  </script>
 
 
 
@@ -427,12 +435,12 @@
       
 
       
-        <iframe src="http://player.youku.com/embed/XOTE2NDMwMjk2" width="498" height="320" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-
+        <iframe src="http://player.youku.com/embed/XOTE2NDMwMjk2" width="498" height="320" frameborder="0" allowfullscreen="allowfullscreen">
+</iframe>
 <p>首先是简单的拍照功能,通过下面的php可以实现远程查看照片</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> shell_exec(<span class="string">"raspistill -t 1 -o /home/pi/www/a.jpg -w 2592 -h 1944"</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;img style="width: 80%" src=a.jpg&gt;'</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p>如果出错需要执行下面的代码:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">chmod a+rw /dev/vchiq</span><br></pre></td></tr></table></figure></p>
-<p>来自:<a href="http://www.raspbian.org/RaspbianQuake3" target="_blank" rel="noopener">http://www.raspbian.org/RaspbianQuake3</a></p>
+<p>如果出错需要执行下面的代码: <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">chmod a+rw /dev/vchiq</span><br></pre></td></tr></table></figure></p>
+<p>来自:http://www.raspbian.org/RaspbianQuake3</p>
 <p>然后,是C语言写的定时拍照器,一分钟一张照片</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">char</span> cmd[<span class="number">100</span>];</span><br><span class="line">    <span class="built_in">sprintf</span>(cmd, <span class="string">"raspistill -t 1 -o /home/pi/www/img/%d.jpg -w 1920 -h 1080"</span>, $</span><br><span class="line">    system(cmd);</span><br><span class="line">    <span class="built_in">printf</span>(cmd);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">    sleep(<span class="number">60</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后我们可以通过gcc编译并执行:</p>
@@ -443,19 +451,19 @@
 <p>然后有了那么多照片之后,怎么样去查看呢?</p>
 <p>那么我们就需要一个php遍历文件了</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"zh-CN"</span>&gt;</span><br><span class="line">        &lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=utf-8"</span> /&gt;</span><br><span class="line">        &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span><br><span class="line">        &lt;title&gt;拍的照片们&lt;/title&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$dir=dirname(<span class="keyword">__FILE__</span>);</span><br><span class="line">$files = scandir($dir);</span><br><span class="line"><span class="keyword">foreach</span>($files <span class="keyword">as</span> $file)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(strpos($file,<span class="string">".jpg"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'&lt;img style="width:80%" src='</span>.$file.<span class="string">'&gt;&lt;br&gt;'</span>;</span><br><span class="line">        $time=filemtime($file);</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"文件名：$file    拍摄时间："</span>.date(<span class="string">"Y-m-d H:i:s"</span>,$time).<span class="string">"&lt;br&gt;\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p>然后保存到/home/pi/www/img文件夹下,这样访问<a href="http://192.168.191.3/img/的时候就会返回所有的照片" target="_blank" rel="noopener">http://192.168.191.3/img/的时候就会返回所有的照片</a>.</p>
+<p>然后保存到/home/pi/www/img文件夹下,这样访问http://192.168.191.3/img/的时候就会返回所有的照片.</p>
 <p>拍了一天之后,照片有一千多张,访问刚才那个页面之后内存会崩溃,这样我们就没办法去查看图片了,这时候就需要python来帮忙下载了.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">__author__ = <span class="string">'lucky dog'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">url = <span class="string">"http://192.168.191.3/img/"</span></span><br><span class="line"></span><br><span class="line">html = urlopen(url).read()</span><br><span class="line">soup = BeautifulSoup(html)</span><br><span class="line">imgs = soup.findAll(<span class="string">"img"</span>)</span><br><span class="line"><span class="keyword">for</span> img <span class="keyword">in</span> imgs:</span><br><span class="line">    <span class="keyword">print</span> img[<span class="string">'src'</span>]</span><br><span class="line">    url2 = <span class="string">"http://192.168.191.3/img/"</span>+img[<span class="string">'src'</span>]</span><br><span class="line">    filepath = <span class="string">"img/"</span>+img[<span class="string">'src'</span>]</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(filepath):</span><br><span class="line">        urlretrieve(url2.encode(<span class="string">'utf-8'</span>), filepath)</span><br></pre></td></tr></table></figure>
 <p>这样图片就都下载下来了.</p>
 <p>下面这几张图片就是树莓派和我的植物</p>
-<p><a href="/images/IMG_20150319_225003.jpg"><img src="/images/IMG_20150319_225003.jpg" alt=""></a></p>
-<p><a href="/images/IMG_20150319_225016.jpg"><img src="/images/IMG_20150319_225016.jpg" alt=""></a></p>
-<p><a href="/images/IMG_20150319_225123.jpg"><img src="/images/IMG_20150319_225123.jpg" alt=""></a></p>
-<p><a href="/images/IMG_20150319_225303.jpg"><img src="/images/IMG_20150319_225303.jpg" alt=""></a></p>
+<p><a href="/images/IMG_20150319_225003.jpg"><img src="/images/IMG_20150319_225003.jpg"></a></p>
+<p><a href="/images/IMG_20150319_225016.jpg"><img src="/images/IMG_20150319_225016.jpg"></a></p>
+<p><a href="/images/IMG_20150319_225123.jpg"><img src="/images/IMG_20150319_225123.jpg"></a></p>
+<p><a href="/images/IMG_20150319_225303.jpg"><img src="/images/IMG_20150319_225303.jpg"></a></p>
 <p>之后我觉得晚上都是黑色的图片多无聊,我就加了个灯</p>
-<p><a href="/images/IMG_20150320_232026.jpg"><img src="/images/IMG_20150320_232026.jpg" alt=""></a></p>
-<p><a href="/images/627bd2050fe26555.png"><img src="/images/627bd2050fe26555.png" alt=""></a></p>
-<p><a href="/images/415cc11db0d897c7.jpg"><img src="/images/415cc11db0d897c7.jpg" alt=""></a></p>
+<p><a href="/images/IMG_20150320_232026.jpg"><img src="/images/IMG_20150320_232026.jpg"></a></p>
+<p><a href="/images/627bd2050fe26555.png"><img src="/images/627bd2050fe26555.png"></a></p>
+<p><a href="/images/415cc11db0d897c7.jpg"><img src="/images/415cc11db0d897c7.jpg"></a></p>
 
       
     </div>

@@ -94,13 +94,13 @@
 
 
 
-  <meta name="description" content="WRTnode2r_STM32_bootloader.hex rtthread.bin 首先放上来的这两个文件，是WRTnode群共享放出的bootloader和我自己编译的rtthread程序。大家可以先拿编译好的固件使用。 STM32固件的烧写接线我这里使用的烧写工具是ST-Link，接线方式参考pinMap：  只需要接GND，SWCLK和SWDIO即可调试。 烧写接好之后，我们打开STM3">
+  <meta name="description" content="WRTnode2r_STM32_bootloader.hex rtthread.bin 首先放上来的这两个文件，是WRTnode群共享放出的bootloader和我自己编译的rtthread程序。大家可以先拿编译好的固件使用。 STM32固件的烧写 接线 我这里使用的烧写工具是ST-Link，接线方式参考pinMap：  只需要接GND，SWCLK和SWDIO即可调试。 烧写 接好之后，我们打开S">
 <meta name="keywords" content="WRTnode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WRTnode 2R STM32固件的烧写和spi-bridge的使用">
 <meta property="og:url" content="https://ypw.io/WRTnode 2R STM32固件的烧写和spi-bridge的使用/index.html">
 <meta property="og:site_name" content="杨培文">
-<meta property="og:description" content="WRTnode2r_STM32_bootloader.hex rtthread.bin 首先放上来的这两个文件，是WRTnode群共享放出的bootloader和我自己编译的rtthread程序。大家可以先拿编译好的固件使用。 STM32固件的烧写接线我这里使用的烧写工具是ST-Link，接线方式参考pinMap：  只需要接GND，SWCLK和SWDIO即可调试。 烧写接好之后，我们打开STM3">
+<meta property="og:description" content="WRTnode2r_STM32_bootloader.hex rtthread.bin 首先放上来的这两个文件，是WRTnode群共享放出的bootloader和我自己编译的rtthread程序。大家可以先拿编译好的固件使用。 STM32固件的烧写 接线 我这里使用的烧写工具是ST-Link，接线方式参考pinMap：  只需要接GND，SWCLK和SWDIO即可调试。 烧写 接好之后，我们打开S">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ypw.io/images/2R-pin-map.jpg">
 <meta property="og:image" content="https://ypw.io/images/Snip20151123_33.png">
@@ -111,7 +111,7 @@
 <meta property="og:updated_time" content="2016-12-26T03:26:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WRTnode 2R STM32固件的烧写和spi-bridge的使用">
-<meta name="twitter:description" content="WRTnode2r_STM32_bootloader.hex rtthread.bin 首先放上来的这两个文件，是WRTnode群共享放出的bootloader和我自己编译的rtthread程序。大家可以先拿编译好的固件使用。 STM32固件的烧写接线我这里使用的烧写工具是ST-Link，接线方式参考pinMap：  只需要接GND，SWCLK和SWDIO即可调试。 烧写接好之后，我们打开STM3">
+<meta name="twitter:description" content="WRTnode2r_STM32_bootloader.hex rtthread.bin 首先放上来的这两个文件，是WRTnode群共享放出的bootloader和我自己编译的rtthread程序。大家可以先拿编译好的固件使用。 STM32固件的烧写 接线 我这里使用的烧写工具是ST-Link，接线方式参考pinMap：  只需要接GND，SWCLK和SWDIO即可调试。 烧写 接好之后，我们打开S">
 <meta name="twitter:image" content="https://ypw.io/images/2R-pin-map.jpg">
 
 
@@ -134,6 +134,14 @@
 
 
 
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-111276663-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-111276663-1');
+  </script>
 
 
 
@@ -429,23 +437,28 @@
         <p><a href="/images/WRTnode2r_STM32_bootloader.hex">WRTnode2r_STM32_bootloader.hex</a></p>
 <p><a href="/images/rtthread.bin">rtthread.bin</a></p>
 <p>首先放上来的这两个文件，是WRTnode群共享放出的bootloader和我自己编译的rtthread程序。大家可以先拿编译好的固件使用。</p>
-<h2 id="STM32固件的烧写"><a href="#STM32固件的烧写" class="headerlink" title="STM32固件的烧写"></a>STM32固件的烧写</h2><h3 id="接线"><a href="#接线" class="headerlink" title="接线"></a>接线</h3><p>我这里使用的烧写工具是ST-Link，接线方式参考pinMap：</p>
-<p><a href="/images/2R-pin-map.jpg"><img src="/images/2R-pin-map.jpg" alt=""></a></p>
+<h2 id="stm32固件的烧写">STM32固件的烧写</h2>
+<h3 id="接线">接线</h3>
+<p>我这里使用的烧写工具是ST-Link，接线方式参考pinMap：</p>
+<p><a href="/images/2R-pin-map.jpg"><img src="/images/2R-pin-map.jpg"></a></p>
 <p>只需要接GND，SWCLK和SWDIO即可调试。</p>
-<h3 id="烧写"><a href="#烧写" class="headerlink" title="烧写"></a>烧写</h3><p>接好之后，我们打开<a href="http://www.st.com/web/cn/catalog/tools/PF258168" target="_blank" rel="noopener">STM32 ST-LINK Utility</a>软件开始烧写固件。</p>
+<h3 id="烧写">烧写</h3>
+<p>接好之后，我们打开<a href="http://www.st.com/web/cn/catalog/tools/PF258168" target="_blank" rel="noopener">STM32 ST-LINK Utility</a>软件开始烧写固件。</p>
 <p>首先点击Connect to the target连接STM32，连接成功之后应该可以在右上角看到STM32F10xx Medium-density，64KBytes等信息，这是STM32F103T8U6芯片的信息。</p>
 <p><a href="/images/Snip20151123_33.png"><img src="/images/Snip20151123_33.png" alt="Snip20151123_33"></a></p>
 <p>然后我们点击Program verify，选WRTnode2r_STM32_bootloader.hex开始烧写。</p>
-<p><a href="/images/Snip20151123_32.png"><img src="/images/Snip20151123_33.png" alt="Snip20151123_33"></a> </p>
+<p><a href="/images/Snip20151123_32.png"><img src="/images/Snip20151123_33.png" alt="Snip20151123_33"></a></p>
 <p>然后烧写rtthread.bin，这里一定要记得地址必须填0x08001000，不然bootloader就没了。</p>
-<p><a href="/images/Snip20151123_31.png"><img src="/images/Snip20151123_31.png" alt=""></a> 烧好以后，就可以在终端中使用spi-bridge与STM32进行交互了。</p>
-<h2 id="spi-bridge"><a href="#spi-bridge" class="headerlink" title="spi-bridge"></a>spi-bridge</h2><h3 id="更新-amp-编译"><a href="#更新-amp-编译" class="headerlink" title="更新&amp;编译"></a>更新&amp;编译</h3><p>在内测版WRTnode 2R的SDK中是没有WRTndoe2r-stm32这个package的，所以我们首先得更新feeds，进入wrtnode文件夹，然后输入：</p>
+<p><a href="/images/Snip20151123_31.png"><img src="/images/Snip20151123_31.png"></a> 烧好以后，就可以在终端中使用spi-bridge与STM32进行交互了。</p>
+<h2 id="spi-bridge">spi-bridge</h2>
+<h3 id="更新编译">更新&amp;编译</h3>
+<p>在内测版WRTnode 2R的SDK中是没有WRTndoe2r-stm32这个package的，所以我们首先得更新feeds，进入wrtnode文件夹，然后输入：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./scripts/feeds update wrtnode</span><br><span class="line">./scripts/feeds install -a</span><br><span class="line">make menuconfig</span><br></pre></td></tr></table></figure>
 <p>在WRTnode中选择WRTndoe2r-stm32，你将得到spi-bridge命令和flash-stm32命令。</p>
-<p><a href="/images/Snip20151124_47.png"><img src="/images/Snip20151124_47.png" alt=""></a></p>
+<p><a href="/images/Snip20151124_47.png"><img src="/images/Snip20151124_47.png"></a></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spi-bridge</span><br></pre></td></tr></table></figure>
 <p>下图就是spi-bridge的效果：</p>
-<p><a href="/images/Snip20151123_35.png"><img src="/images/Snip20151123_35.png" alt=""></a></p>
+<p><a href="/images/Snip20151123_35.png"><img src="/images/Snip20151123_35.png"></a></p>
 <p>输入tab，回车，就可以看到所有的命令和命令的解释说明。个人认为最大的亮点在于，它加入了Arduino的语法，可以使用pinMode，digitalWrite，digitalRead等命令，由于是测试版，还未加入所有的功能，以后肯定会加入诸如analogWrite(PWM)，analogRead(ADC)等功能，大大降低单片机开发难度，让更多人能够跨入这个门槛中。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spi-bridge             <span class="comment"># 进入交互模式</span></span><br><span class="line">spi-bridge write ps    <span class="comment"># 执行命令</span></span><br><span class="line">spi-bridge <span class="built_in">read</span>        <span class="comment"># 读取命令结果</span></span><br><span class="line">spi-bridge status      <span class="comment"># 获取当前状态，通常返回OK</span></span><br></pre></td></tr></table></figure>
 <p>通过输入下面的命令，我们可以控制PB5输出高电平：</p>
@@ -711,7 +724,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#STM32固件的烧写"><span class="nav-number">1.</span> <span class="nav-text">STM32固件的烧写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#接线"><span class="nav-number">1.1.</span> <span class="nav-text">接线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#烧写"><span class="nav-number">1.2.</span> <span class="nav-text">烧写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spi-bridge"><span class="nav-number">2.</span> <span class="nav-text">spi-bridge</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更新-amp-编译"><span class="nav-number">2.1.</span> <span class="nav-text">更新&amp;编译</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#stm32固件的烧写"><span class="nav-number">1.</span> <span class="nav-text">STM32固件的烧写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#接线"><span class="nav-number">1.1.</span> <span class="nav-text">接线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#烧写"><span class="nav-number">1.2.</span> <span class="nav-text">烧写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spi-bridge"><span class="nav-number">2.</span> <span class="nav-text">spi-bridge</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更新编译"><span class="nav-number">2.1.</span> <span class="nav-text">更新&amp;编译</span></a></li></ol></li></ol></div>
             
 
           </div>
