@@ -13,7 +13,7 @@
 
 
 <html class="theme-next pisces" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -37,6 +37,10 @@
 
 
 
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
 
 
 
@@ -73,7 +77,7 @@
     scheme: 'Pisces',
     version: '6.7.0',
     sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
     lazyload: false,
     tabs: true,
@@ -94,13 +98,13 @@
 
 
 
-  <meta name="description" content="上图是我应用得最多的一款单片机...因为它跟最小系统板没啥区别了...整个电路板非常简洁,已烧好bootloader,依靠串口烧写程序,功能与下图的板子没什么区别,价格仅需十块钱不到...因此小制作中大量采用此板.   这款板子最大的好处就是引出了大量IO口,舵机什么的可以直插,而且相比上面的板子增加了了3.3V电源,USB转串口,底板AMS1117稳压5V,因此可以接9V电池等.不过鉴于目前">
+  <meta name="description" content="上图是我应用得最多的一款单片机…因为它跟最小系统板没啥区别了…整个电路板非常简洁,已烧好bootloader,依靠串口烧写程序,功能与下图的板子没什么区别,价格仅需十块钱不到…因此小制作中大量采用此板. 这款板子最大的好处就是引出了大量IO口,舵机什么的可以直插,而且相比上面的板子增加了了3.3V电源,USB转串口,底板AMS1117稳压5V,因此可以接9V电池等.不过鉴于目前USB口非常多(">
 <meta name="keywords" content="arduino,单片机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="arduino板子介绍">
 <meta property="og:url" content="https://ypw.io/arduino板子介绍/index.html">
 <meta property="og:site_name" content="杨培文">
-<meta property="og:description" content="上图是我应用得最多的一款单片机...因为它跟最小系统板没啥区别了...整个电路板非常简洁,已烧好bootloader,依靠串口烧写程序,功能与下图的板子没什么区别,价格仅需十块钱不到...因此小制作中大量采用此板.   这款板子最大的好处就是引出了大量IO口,舵机什么的可以直插,而且相比上面的板子增加了了3.3V电源,USB转串口,底板AMS1117稳压5V,因此可以接9V电池等.不过鉴于目前">
+<meta property="og:description" content="上图是我应用得最多的一款单片机…因为它跟最小系统板没啥区别了…整个电路板非常简洁,已烧好bootloader,依靠串口烧写程序,功能与下图的板子没什么区别,价格仅需十块钱不到…因此小制作中大量采用此板. 这款板子最大的好处就是引出了大量IO口,舵机什么的可以直插,而且相比上面的板子增加了了3.3V电源,USB转串口,底板AMS1117稳压5V,因此可以接9V电池等.不过鉴于目前USB口非常多(">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ypw.io/images/IMG_20150210_152848.jpg">
 <meta property="og:image" content="https://ypw.io/images/IMG_20150210_153323.jpg">
@@ -111,7 +115,7 @@
 <meta property="og:updated_time" content="2016-12-25T15:56:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="arduino板子介绍">
-<meta name="twitter:description" content="上图是我应用得最多的一款单片机...因为它跟最小系统板没啥区别了...整个电路板非常简洁,已烧好bootloader,依靠串口烧写程序,功能与下图的板子没什么区别,价格仅需十块钱不到...因此小制作中大量采用此板.   这款板子最大的好处就是引出了大量IO口,舵机什么的可以直插,而且相比上面的板子增加了了3.3V电源,USB转串口,底板AMS1117稳压5V,因此可以接9V电池等.不过鉴于目前">
+<meta name="twitter:description" content="上图是我应用得最多的一款单片机…因为它跟最小系统板没啥区别了…整个电路板非常简洁,已烧好bootloader,依靠串口烧写程序,功能与下图的板子没什么区别,价格仅需十块钱不到…因此小制作中大量采用此板. 这款板子最大的好处就是引出了大量IO口,舵机什么的可以直插,而且相比上面的板子增加了了3.3V电源,USB转串口,底板AMS1117稳压5V,因此可以接9V电池等.不过鉴于目前USB口非常多(">
 <meta name="twitter:image" content="https://ypw.io/images/IMG_20150210_152848.jpg">
 
 
@@ -178,7 +182,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -188,7 +192,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -335,20 +339,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ypw.io/arduino板子介绍/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="杨培文">
       <meta itemprop="description" content="杨培文的 blog">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="杨培文">
     </span>
 
@@ -434,11 +438,11 @@
       
 
       
-        <p><a href="/images/IMG_20150210_152848.jpg"><img src="/images/IMG_20150210_152848.jpg"></a></p>
-<p><a href="/images/IMG_20150210_153323.jpg"><img src="/images/IMG_20150210_153323.jpg"></a></p>
-<p>上图是我应用得最多的一款单片机...因为它跟最小系统板没啥区别了...整个电路板非常简洁,已烧好bootloader,依靠串口烧写程序,功能与下图的板子没什么区别,价格仅需十块钱不到...因此小制作中大量采用此板.</p>
-<p><a href="/images/IMG_20150210_152915.jpg"><img src="/images/IMG_20150210_152915.jpg"></a> <a href="/images/IMG_20150210_153256.jpg"><img src="/images/IMG_20150210_153256.jpg"></a> 这款板子最大的好处就是引出了大量IO口,舵机什么的可以直插,而且相比上面的板子增加了了3.3V电源,USB转串口,底板AMS1117稳压5V,因此可以接9V电池等.不过鉴于目前USB口非常多(比如移动电源),这个好处也没有那么明显.我最开始入门的时候用的这块板子,之后通常只在需要3.3V电源的时候才会用它.</p>
-<p><a href="/images/IMG_20150210_153230.jpg"><img src="/images/IMG_20150210_153230.jpg"></a> <a href="/images/IMG_20150210_152950.jpg"><img src="/images/IMG_20150210_152950.jpg"></a> 这块板最大的好处应该就是IO口巨多,并且可以烧更大的程序(Atmega2560芯片,容量256kb),舵机一多的时候,就需要这款单片机了,因为它有多达16个PWM...之前的芯片数字口总数才13个...当然这个板子唯一的缺点就是贵啦...一块MEGA2560相当于最上面的小板五块了.</p>
+        <p><a href="/images/IMG_20150210_152848.jpg"><img src="/images/IMG_20150210_152848.jpg" alt></a></p>
+<p><a href="/images/IMG_20150210_153323.jpg"><img src="/images/IMG_20150210_153323.jpg" alt></a></p>
+<p>上图是我应用得最多的一款单片机…因为它跟最小系统板没啥区别了…整个电路板非常简洁,已烧好bootloader,依靠串口烧写程序,功能与下图的板子没什么区别,价格仅需十块钱不到…因此小制作中大量采用此板.</p>
+<p><a href="/images/IMG_20150210_152915.jpg"><img src="/images/IMG_20150210_152915.jpg" alt></a><br><a href="/images/IMG_20150210_153256.jpg"><img src="/images/IMG_20150210_153256.jpg" alt></a><br>这款板子最大的好处就是引出了大量IO口,舵机什么的可以直插,而且相比上面的板子增加了了3.3V电源,USB转串口,底板AMS1117稳压5V,因此可以接9V电池等.不过鉴于目前USB口非常多(比如移动电源),这个好处也没有那么明显.我最开始入门的时候用的这块板子,之后通常只在需要3.3V电源的时候才会用它.</p>
+<p><a href="/images/IMG_20150210_153230.jpg"><img src="/images/IMG_20150210_153230.jpg" alt></a><br><a href="/images/IMG_20150210_152950.jpg"><img src="/images/IMG_20150210_152950.jpg" alt></a><br>这块板最大的好处应该就是IO口巨多,并且可以烧更大的程序(Atmega2560芯片,容量256kb),舵机一多的时候,就需要这款单片机了,因为它有多达16个PWM…之前的芯片数字口总数才13个…当然这个板子唯一的缺点就是贵啦…一块MEGA2560相当于最上面的小板五块了.</p>
 
       
     </div>
@@ -537,7 +541,7 @@
 
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="杨培文">
             
@@ -552,7 +556,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-count">68</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -704,7 +708,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
@@ -763,6 +767,8 @@
 
 
 
+  
+
 
 
 
@@ -785,6 +791,9 @@
 
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   

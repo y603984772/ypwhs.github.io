@@ -13,7 +13,7 @@
 
 
 <html class="theme-next pisces" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -37,6 +37,10 @@
 
 
 
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
 
 
 
@@ -73,7 +77,7 @@
     scheme: 'Pisces',
     version: '6.7.0',
     sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
     lazyload: false,
     tabs: true,
@@ -94,13 +98,13 @@
 
 
 
-  <meta name="description" content="烧写镜像文件到SD卡中以后，SD卡变成了4GB，可是我的卡是32GB的，因此我们可以在linux中用gparted命令来调整分区。 12sudo apt-get install gparted sudo gparted 进入gparted界面以后，首先在右上角选择你的SD卡，一般情况下是sdb。  然后卸载你要扩容的那个分区。  右击需要扩容的分区，选择更改大小/移动。  直接拖到最右，并点击调整">
+  <meta name="description" content="烧写镜像文件到SD卡中以后，SD卡变成了4GB，可是我的卡是32GB的，因此我们可以在linux中用gparted命令来调整分区。12sudo apt-get install gparted sudo gparted 进入gparted界面以后，首先在右上角选择你的SD卡，一般情况下是sdb。  然后卸载你要扩容的那个分区。  右击需要扩容的分区，选择更改大小/移动。  直接拖到最右，并点击调整大">
 <meta name="keywords" content="linux,NanoPi2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gparted调整分区">
 <meta property="og:url" content="https://ypw.io/gparted调整分区/index.html">
 <meta property="og:site_name" content="杨培文">
-<meta property="og:description" content="烧写镜像文件到SD卡中以后，SD卡变成了4GB，可是我的卡是32GB的，因此我们可以在linux中用gparted命令来调整分区。 12sudo apt-get install gparted sudo gparted 进入gparted界面以后，首先在右上角选择你的SD卡，一般情况下是sdb。  然后卸载你要扩容的那个分区。  右击需要扩容的分区，选择更改大小/移动。  直接拖到最右，并点击调整">
+<meta property="og:description" content="烧写镜像文件到SD卡中以后，SD卡变成了4GB，可是我的卡是32GB的，因此我们可以在linux中用gparted命令来调整分区。12sudo apt-get install gparted sudo gparted 进入gparted界面以后，首先在右上角选择你的SD卡，一般情况下是sdb。  然后卸载你要扩容的那个分区。  右击需要扩容的分区，选择更改大小/移动。  直接拖到最右，并点击调整大">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ypw.io/images/Snip20151221_4.png">
 <meta property="og:image" content="https://ypw.io/images/Snip20151221_5.png">
@@ -113,7 +117,7 @@
 <meta property="og:updated_time" content="2016-12-25T15:56:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gparted调整分区">
-<meta name="twitter:description" content="烧写镜像文件到SD卡中以后，SD卡变成了4GB，可是我的卡是32GB的，因此我们可以在linux中用gparted命令来调整分区。 12sudo apt-get install gparted sudo gparted 进入gparted界面以后，首先在右上角选择你的SD卡，一般情况下是sdb。  然后卸载你要扩容的那个分区。  右击需要扩容的分区，选择更改大小/移动。  直接拖到最右，并点击调整">
+<meta name="twitter:description" content="烧写镜像文件到SD卡中以后，SD卡变成了4GB，可是我的卡是32GB的，因此我们可以在linux中用gparted命令来调整分区。12sudo apt-get install gparted sudo gparted 进入gparted界面以后，首先在右上角选择你的SD卡，一般情况下是sdb。  然后卸载你要扩容的那个分区。  右击需要扩容的分区，选择更改大小/移动。  直接拖到最右，并点击调整大">
 <meta name="twitter:image" content="https://ypw.io/images/Snip20151221_4.png">
 
 
@@ -180,7 +184,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -190,7 +194,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -337,20 +341,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ypw.io/gparted调整分区/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="杨培文">
       <meta itemprop="description" content="杨培文的 blog">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="杨培文">
     </span>
 
@@ -436,23 +440,23 @@
       
 
       
-        <p>烧写镜像文件到SD卡中以后，SD卡变成了4GB，可是我的卡是32GB的，因此我们可以在linux中用gparted命令来调整分区。 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gparted </span><br><span class="line">sudo gparted</span><br></pre></td></tr></table></figure></p>
+        <p>烧写镜像文件到SD卡中以后，SD卡变成了4GB，可是我的卡是32GB的，因此我们可以在linux中用gparted命令来调整分区。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gparted </span><br><span class="line">sudo gparted</span><br></pre></td></tr></table></figure></p>
 <p>进入gparted界面以后，首先在右上角选择你的SD卡，一般情况下是sdb。</p>
-<p><a href="/images/Snip20151221_4.png"><img src="/images/Snip20151221_4.png"></a></p>
+<p><a href="/images/Snip20151221_4.png"><img src="/images/Snip20151221_4.png" alt></a></p>
 <p>然后卸载你要扩容的那个分区。</p>
-<p><a href="/images/Snip20151221_5.png"><img src="/images/Snip20151221_5.png"></a></p>
+<p><a href="/images/Snip20151221_5.png"><img src="/images/Snip20151221_5.png" alt></a></p>
 <p>右击需要扩容的分区，选择更改大小/移动。</p>
-<p><a href="/images/Snip20151221_6.png"><img src="/images/Snip20151221_6.png"></a></p>
+<p><a href="/images/Snip20151221_6.png"><img src="/images/Snip20151221_6.png" alt></a></p>
 <p>直接拖到最右，并点击调整大小/移动。</p>
-<p><a href="/images/Snip20151221_7.png"><img src="/images/Snip20151221_7.png"></a></p>
+<p><a href="/images/Snip20151221_7.png"><img src="/images/Snip20151221_7.png" alt></a></p>
 <p>点击图中的钩，并且应用。</p>
-<p><a href="/images/Snip20151221_8.png"><img src="/images/Snip20151221_8.png"></a></p>
+<p><a href="/images/Snip20151221_8.png"><img src="/images/Snip20151221_8.png" alt></a></p>
 <p>这个过程比较久，我的32GB卡扩容需要用5分钟，理论上越大越久。</p>
-<p><a href="/images/Snip20151221_9.png"><img src="/images/Snip20151221_9.png"></a></p>
+<p><a href="/images/Snip20151221_9.png"><img src="/images/Snip20151221_9.png" alt></a></p>
 <p>我们可以看到，将近六分钟以后成功完成所有操作。</p>
-<p><a href="/images/Snip20151221_10.png"><img src="/images/Snip20151221_10.png"></a></p>
+<p><a href="/images/Snip20151221_10.png"><img src="/images/Snip20151221_10.png" alt></a></p>
 <p>分区顺利扩容。</p>
-<p><a href="/images/Snip20151221_11.png"><img src="/images/Snip20151221_11.png"></a></p>
+<p><a href="/images/Snip20151221_11.png"><img src="/images/Snip20151221_11.png" alt></a></p>
 <p>参考自：<a href="http://forum.lemaker.org/cn/forum.php?mod=viewthread&amp;tid=8869" target="_blank" rel="noopener">http://forum.lemaker.org/cn/forum.php?mod=viewthread&amp;tid=8869</a></p>
 
       
@@ -552,7 +556,7 @@
 
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="杨培文">
             
@@ -567,7 +571,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-count">68</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -719,7 +723,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
@@ -778,6 +782,8 @@
 
 
 
+  
+
 
 
 
@@ -800,6 +806,9 @@
 
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   

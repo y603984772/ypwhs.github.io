@@ -13,7 +13,7 @@
 
 
 <html class="theme-next pisces" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -37,6 +37,10 @@
 
 
 
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
 
 
 
@@ -73,7 +77,7 @@
     scheme: 'Pisces',
     version: '6.7.0',
     sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
     lazyload: false,
     tabs: true,
@@ -94,13 +98,13 @@
 
 
 
-  <meta name="description" content="第一次用单片机的三个IO来控制串行数码管模块输出八位数字. 该模块的原理是利用2片74HC595级联实现控制8个数码管,一个控制显示哪一位数码管,一个控制显示什么数字.  这个图是百度百科上的74HC595的芯片引脚图.我们可以看到VCC和GND接电源,左边七个和右边那个Q0一共八个引脚用来输出,ST_CP,SH_CP,DS用来输入,MR保持低高电平,OE接地,如果需要级联,那么第一级的Q7&apos;需">
+  <meta name="description" content="第一次用单片机的三个IO来控制串行数码管模块输出八位数字. 该模块的原理是利用2片74HC595级联实现控制8个数码管,一个控制显示哪一位数码管,一个控制显示什么数字. 这个图是百度百科上的74HC595的芯片引脚图.我们可以看到VCC和GND接电源,左边七个和右边那个Q0一共八个引脚用来输出,ST_CP,SH_CP,DS用来输入,MR保持低高电平,OE接地,如果需要级联,那么第一级的Q7’需要">
 <meta name="keywords" content="电子制作,单片机,Arduino">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数码管">
 <meta property="og:url" content="https://ypw.io/数码管/index.html">
 <meta property="og:site_name" content="杨培文">
-<meta property="og:description" content="第一次用单片机的三个IO来控制串行数码管模块输出八位数字. 该模块的原理是利用2片74HC595级联实现控制8个数码管,一个控制显示哪一位数码管,一个控制显示什么数字.  这个图是百度百科上的74HC595的芯片引脚图.我们可以看到VCC和GND接电源,左边七个和右边那个Q0一共八个引脚用来输出,ST_CP,SH_CP,DS用来输入,MR保持低高电平,OE接地,如果需要级联,那么第一级的Q7&apos;需">
+<meta property="og:description" content="第一次用单片机的三个IO来控制串行数码管模块输出八位数字. 该模块的原理是利用2片74HC595级联实现控制8个数码管,一个控制显示哪一位数码管,一个控制显示什么数字. 这个图是百度百科上的74HC595的芯片引脚图.我们可以看到VCC和GND接电源,左边七个和右边那个Q0一共八个引脚用来输出,ST_CP,SH_CP,DS用来输入,MR保持低高电平,OE接地,如果需要级联,那么第一级的Q7’需要">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ypw.io/images/2014年4月4日.jpg">
 <meta property="og:image" content="https://ypw.io/images/95eef01f3a292df506712810bc315c6034a87301.jpg">
@@ -108,7 +112,7 @@
 <meta property="og:updated_time" content="2016-12-25T15:56:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数码管">
-<meta name="twitter:description" content="第一次用单片机的三个IO来控制串行数码管模块输出八位数字. 该模块的原理是利用2片74HC595级联实现控制8个数码管,一个控制显示哪一位数码管,一个控制显示什么数字.  这个图是百度百科上的74HC595的芯片引脚图.我们可以看到VCC和GND接电源,左边七个和右边那个Q0一共八个引脚用来输出,ST_CP,SH_CP,DS用来输入,MR保持低高电平,OE接地,如果需要级联,那么第一级的Q7&apos;需">
+<meta name="twitter:description" content="第一次用单片机的三个IO来控制串行数码管模块输出八位数字. 该模块的原理是利用2片74HC595级联实现控制8个数码管,一个控制显示哪一位数码管,一个控制显示什么数字. 这个图是百度百科上的74HC595的芯片引脚图.我们可以看到VCC和GND接电源,左边七个和右边那个Q0一共八个引脚用来输出,ST_CP,SH_CP,DS用来输入,MR保持低高电平,OE接地,如果需要级联,那么第一级的Q7’需要">
 <meta name="twitter:image" content="https://ypw.io/images/2014年4月4日.jpg">
 
 
@@ -175,7 +179,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -185,7 +189,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -332,20 +336,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ypw.io/数码管/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="杨培文">
       <meta itemprop="description" content="杨培文的 blog">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="杨培文">
     </span>
 
@@ -431,13 +435,13 @@
       
 
       
-        <p><a href="/images/2014年4月4日.jpg"><img src="/images/2014年4月4日.jpg"></a></p>
+        <p><a href="/images/2014年4月4日.jpg"><img src="/images/2014年4月4日.jpg" alt></a></p>
 <p>第一次用单片机的三个IO来控制串行数码管模块输出八位数字.</p>
 <p>该模块的原理是利用2片74HC595级联实现控制8个数码管,一个控制显示哪一位数码管,一个控制显示什么数字.</p>
-<p><a href="/images/95eef01f3a292df506712810bc315c6034a87301.jpg"><img src="/images/95eef01f3a292df506712810bc315c6034a87301.jpg"></a> 这个图是百度百科上的74HC595的芯片引脚图.我们可以看到VCC和GND接电源,左边七个和右边那个Q0一共八个引脚用来输出,ST_CP,SH_CP,DS用来输入,MR保持低高电平,OE接地,如果需要级联,那么第一级的Q7'需要接第二级的DS,ST_CP和SH_CP共用即可.</p>
+<p><a href="/images/95eef01f3a292df506712810bc315c6034a87301.jpg"><img src="/images/95eef01f3a292df506712810bc315c6034a87301.jpg" alt></a><br>这个图是百度百科上的74HC595的芯片引脚图.我们可以看到VCC和GND接电源,左边七个和右边那个Q0一共八个引脚用来输出,ST_CP,SH_CP,DS用来输入,MR保持低高电平,OE接地,如果需要级联,那么第一级的Q7’需要接第二级的DS,ST_CP和SH_CP共用即可.</p>
 <p>时序图如下图:</p>
-<p><a href="/images/5f9f96a3n7631c7493539amp.jpg"><img src="/images/5f9f96a3n7631c7493539amp.jpg"></a> (随便找的一张图)</p>
-<p>大家看到这个时序图肯定会喷死我，这TM是个什么玩意，我来形象地讲解一下大致原理。 首先是数据怎么传入的。这里面的原理是一根数据线，一根时钟线，时钟线一旦从低到高（或者从高到低），我们就记录一次数据线上的电平高低，然后往里面压一位数据。比如我想传输10101010，我就首先让数据位输出0，然后让时钟线从低到高，再从高到低，也就是输出10，然后0就会被记录下来，然后我再依次推入1，0，1，0…… 数据就是这样变化的： 0 10 010 1010 01010 101010 0101010 10101010 然后数据就传输完毕了。 那么数据传输完毕之后，还要输出，我就把第三根线叫做更新线吧，更新线也10（高电平低电平）一次，那么芯片的八个引脚就会按照储存器里面的数据输出。如果没有这个更新的步骤，输出就不会变。你说我能不能不要这个更新，让他时刻都更新啊，那样的话除非你输入的00000000，只要有1就会在数据中来回游动，数码管就会八个led都亮了。视觉暂留现象。</p>
+<p><a href="/images/5f9f96a3n7631c7493539amp.jpg"><img src="/images/5f9f96a3n7631c7493539amp.jpg" alt></a><br>(随便找的一张图)</p>
+<p>大家看到这个时序图肯定会喷死我，这TM是个什么玩意，我来形象地讲解一下大致原理。<br>首先是数据怎么传入的。这里面的原理是一根数据线，一根时钟线，时钟线一旦从低到高（或者从高到低），我们就记录一次数据线上的电平高低，然后往里面压一位数据。比如我想传输10101010，我就首先让数据位输出0，然后让时钟线从低到高，再从高到低，也就是输出10，然后0就会被记录下来，然后我再依次推入1，0，1，0……<br>数据就是这样变化的：<br>0<br>10<br>010<br>1010<br>01010<br>101010<br>0101010<br>10101010<br>然后数据就传输完毕了。<br>那么数据传输完毕之后，还要输出，我就把第三根线叫做更新线吧，更新线也10（高电平低电平）一次，那么芯片的八个引脚就会按照储存器里面的数据输出。如果没有这个更新的步骤，输出就不会变。你说我能不能不要这个更新，让他时刻都更新啊，那样的话除非你输入的00000000，只要有1就会在数据中来回游动，数码管就会八个led都亮了。视觉暂留现象。</p>
 <p>其实这只是数据在芯片之间传输的一种方法，还一种很普遍的方法叫串口，它就没有时钟线什么的，只有两根线，一根输出一根输入（全双工），数据传输速度是一开始就商量好了的，之后我传输过去的东西你就按照时间去算，这个优点很明显，节省io，原理简单，缺点也明显，速度慢，一位错了就全错了。</p>
 
       
@@ -535,7 +539,7 @@
 
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="杨培文">
             
@@ -550,7 +554,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-count">68</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -702,7 +706,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
@@ -761,6 +765,8 @@
 
 
 
+  
+
 
 
 
@@ -783,6 +789,9 @@
 
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   

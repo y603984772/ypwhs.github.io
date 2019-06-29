@@ -13,7 +13,7 @@
 
 
 <html class="theme-next pisces" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -37,6 +37,10 @@
 
 
 
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
 
 
 
@@ -73,7 +77,7 @@
     scheme: 'Pisces',
     version: '6.7.0',
     sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
     lazyload: false,
     tabs: true,
@@ -94,20 +98,20 @@
 
 
 
-  <meta name="description" content="V4L2全称是Video for Linux 2，通过它可以驱动摄像头。 在Ubuntu中，已经内置了V4L2，因此不需要安装多余的东西。在WRTnode中，如果你需要使用V4L2，需要这样： 1Libraries  ---&amp;gt;    libv4l  然后直接上代码： 123456789101112131415161718192021222324252627282930313233343536">
+  <meta name="description" content="V4L2全称是Video for Linux 2，通过它可以驱动摄像头。 在Ubuntu中，已经内置了V4L2，因此不需要安装多余的东西。在WRTnode中，如果你需要使用V4L2，需要这样：1Libraries  ---&amp;gt;    libv4l  然后直接上代码：12345678910111213141516171819202122232425262728293031323334353637">
 <meta name="keywords" content="linux,WRTnode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用V4L2获取摄像头的信息">
 <meta property="og:url" content="https://ypw.io/使用V4L2获取摄像头的信息/index.html">
 <meta property="og:site_name" content="杨培文">
-<meta property="og:description" content="V4L2全称是Video for Linux 2，通过它可以驱动摄像头。 在Ubuntu中，已经内置了V4L2，因此不需要安装多余的东西。在WRTnode中，如果你需要使用V4L2，需要这样： 1Libraries  ---&amp;gt;    libv4l  然后直接上代码： 123456789101112131415161718192021222324252627282930313233343536">
+<meta property="og:description" content="V4L2全称是Video for Linux 2，通过它可以驱动摄像头。 在Ubuntu中，已经内置了V4L2，因此不需要安装多余的东西。在WRTnode中，如果你需要使用V4L2，需要这样：1Libraries  ---&amp;gt;    libv4l  然后直接上代码：12345678910111213141516171819202122232425262728293031323334353637">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ypw.io/images/Snip20151025_1.png">
 <meta property="og:image" content="https://ypw.io/images/Snip20151025_2.png">
 <meta property="og:updated_time" content="2016-12-25T15:56:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用V4L2获取摄像头的信息">
-<meta name="twitter:description" content="V4L2全称是Video for Linux 2，通过它可以驱动摄像头。 在Ubuntu中，已经内置了V4L2，因此不需要安装多余的东西。在WRTnode中，如果你需要使用V4L2，需要这样： 1Libraries  ---&amp;gt;    libv4l  然后直接上代码： 123456789101112131415161718192021222324252627282930313233343536">
+<meta name="twitter:description" content="V4L2全称是Video for Linux 2，通过它可以驱动摄像头。 在Ubuntu中，已经内置了V4L2，因此不需要安装多余的东西。在WRTnode中，如果你需要使用V4L2，需要这样：1Libraries  ---&amp;gt;    libv4l  然后直接上代码：12345678910111213141516171819202122232425262728293031323334353637">
 <meta name="twitter:image" content="https://ypw.io/images/Snip20151025_1.png">
 
 
@@ -174,7 +178,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -184,7 +188,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -331,20 +335,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ypw.io/使用V4L2获取摄像头的信息/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="杨培文">
       <meta itemprop="description" content="杨培文的 blog">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="杨培文">
     </span>
 
@@ -431,11 +435,11 @@
 
       
         <p>V4L2全称是Video for Linux 2，通过它可以驱动摄像头。</p>
-<p>在Ubuntu中，已经内置了V4L2，因此不需要安装多余的东西。在WRTnode中，如果你需要使用V4L2，需要这样： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Libraries  ---&gt;    libv4l</span><br></pre></td></tr></table></figure></p>
-<p><a href="/images/Snip20151025_1.png"><img src="/images/Snip20151025_1.png"></a></p>
-<p>然后直接上代码： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;fcntl.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;linux/videodev2.h&gt;</span></span><br><span class="line"></span><br><span class="line">char videodevice[] = <span class="string">"/dev/video0"</span>;</span><br><span class="line">void printFrameInterval(int fd, unsigned int fmt, unsigned int width, unsigned int height)</span><br><span class="line">&#123;</span><br><span class="line">    struct v4l2_frmivalenum frmival;</span><br><span class="line">    memset(&amp;frmival,0,sizeof(frmival));</span><br><span class="line">    frmival.pixel_format = fmt;</span><br><span class="line">    frmival.width = width;</span><br><span class="line">    frmival.height = height;</span><br><span class="line">    <span class="keyword">while</span> (ioctl(fd, VIDIOC_ENUM_FRAMEINTERVALS, &amp;frmival) == 0) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (frmival.type == V4L2_FRMIVAL_TYPE_DISCRETE) </span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"[%dx%d] %f fps\n"</span>, width, height, 1.0*frmival.discrete.denominator/frmival.discrete.numerator);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"[%dx%d] [%f,%f] fps\n"</span>, width, height, 1.0*frmival.stepwise.max.denominator/frmival.stepwise.max.numerator, 1.0*frmival.stepwise.min.denominator/frmival.stepwise.min.numerator);</span><br><span class="line">        frmival.index++;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	//打开摄像头设备</span><br><span class="line">	int fd = -1;</span><br><span class="line">	fd = open (videodevice, O_RDWR, 0);</span><br><span class="line">	<span class="keyword">if</span>(fd&lt;0)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"failed to open\n"</span>);</span><br><span class="line">		<span class="built_in">return</span> -1;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"打开摄像头设备成功，%s\n"</span>, videodevice);</span><br><span class="line"></span><br><span class="line">	//查询摄像头信息，VIDIOC_QUERYCAP</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"------------\n"</span>);</span><br><span class="line">	struct v4l2_capability <span class="built_in">cap</span>;</span><br><span class="line">	ioctl (fd, VIDIOC_QUERYCAP, &amp;<span class="built_in">cap</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Driver Name:%s\nCard Name:%s\nBus info:%s\nDriver Version:%u.%u.%u\n\n"</span>,cap.driver,cap.card,cap.bus_info,(cap.version&gt;&gt;16)&amp;0XFF, (cap.version&gt;&gt;8)&amp;0XFF,cap.version&amp;0XFF);</span><br><span class="line"></span><br><span class="line">	//查询摄像头视频格式，VIDIOC_ENUM_FMT</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"------------\n"</span>);</span><br><span class="line">	struct v4l2_fmtdesc fmtdesc;</span><br><span class="line">	fmtdesc.index=0;</span><br><span class="line">	fmtdesc.type=V4L2_BUF_TYPE_VIDEO_CAPTURE;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Supportformat:\n"</span>);</span><br><span class="line">	<span class="keyword">while</span>(ioctl(fd,VIDIOC_ENUM_FMT,&amp;fmtdesc)!=-1)  </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\t%d.%c%c%c%c\t%s\n"</span>,fmtdesc.index+1,fmtdesc.pixelformat &amp; 0xFF, (fmtdesc.pixelformat &gt;&gt; 8) &amp; 0xFF,(fmtdesc.pixelformat &gt;&gt; 16) &amp; 0xFF, (fmtdesc.pixelformat &gt;&gt; 24) &amp; 0xFF,fmtdesc.description);</span><br><span class="line">		fmtdesc.index++;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	v4l2_close(fd);</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在Ubuntu中，已经内置了V4L2，因此不需要安装多余的东西。在WRTnode中，如果你需要使用V4L2，需要这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Libraries  ---&gt;    libv4l</span><br></pre></td></tr></table></figure></p>
+<p><a href="/images/Snip20151025_1.png"><img src="/images/Snip20151025_1.png" alt></a></p>
+<p>然后直接上代码：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;fcntl.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;linux/videodev2.h&gt;</span></span><br><span class="line"></span><br><span class="line">char videodevice[] = <span class="string">"/dev/video0"</span>;</span><br><span class="line">void printFrameInterval(int fd, unsigned int fmt, unsigned int width, unsigned int height)</span><br><span class="line">&#123;</span><br><span class="line">    struct v4l2_frmivalenum frmival;</span><br><span class="line">    memset(&amp;frmival,0,sizeof(frmival));</span><br><span class="line">    frmival.pixel_format = fmt;</span><br><span class="line">    frmival.width = width;</span><br><span class="line">    frmival.height = height;</span><br><span class="line">    <span class="keyword">while</span> (ioctl(fd, VIDIOC_ENUM_FRAMEINTERVALS, &amp;frmival) == 0) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (frmival.type == V4L2_FRMIVAL_TYPE_DISCRETE) </span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"[%dx%d] %f fps\n"</span>, width, height, 1.0*frmival.discrete.denominator/frmival.discrete.numerator);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"[%dx%d] [%f,%f] fps\n"</span>, width, height, 1.0*frmival.stepwise.max.denominator/frmival.stepwise.max.numerator, 1.0*frmival.stepwise.min.denominator/frmival.stepwise.min.numerator);</span><br><span class="line">        frmival.index++;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	//打开摄像头设备</span><br><span class="line">	int fd = -1;</span><br><span class="line">	fd = open (videodevice, O_RDWR, 0);</span><br><span class="line">	<span class="keyword">if</span>(fd&lt;0)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"failed to open\n"</span>);</span><br><span class="line">		<span class="built_in">return</span> -1;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"打开摄像头设备成功，%s\n"</span>, videodevice);</span><br><span class="line"></span><br><span class="line">	//查询摄像头信息，VIDIOC_QUERYCAP</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"------------\n"</span>);</span><br><span class="line">	struct v4l2_capability <span class="built_in">cap</span>;</span><br><span class="line">	ioctl (fd, VIDIOC_QUERYCAP, &amp;<span class="built_in">cap</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Driver Name:%s\nCard Name:%s\nBus info:%s\nDriver Version:%u.%u.%u\n\n"</span>,cap.driver,cap.card,cap.bus_info,(cap.version&gt;&gt;16)&amp;0XFF, (cap.version&gt;&gt;8)&amp;0XFF,cap.version&amp;0XFF);</span><br><span class="line"></span><br><span class="line">	//查询摄像头视频格式，VIDIOC_ENUM_FMT</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"------------\n"</span>);</span><br><span class="line">	struct v4l2_fmtdesc fmtdesc;</span><br><span class="line">	fmtdesc.index=0;</span><br><span class="line">	fmtdesc.type=V4L2_BUF_TYPE_VIDEO_CAPTURE;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Supportformat:\n"</span>);</span><br><span class="line">	<span class="keyword">while</span>(ioctl(fd,VIDIOC_ENUM_FMT,&amp;fmtdesc)!=-1)  </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\t%d.%c%c%c%c\t%s\n"</span>,fmtdesc.index+1,fmtdesc.pixelformat &amp; 0xFF, (fmtdesc.pixelformat &gt;&gt; 8) &amp; 0xFF,(fmtdesc.pixelformat &gt;&gt; 16) &amp; 0xFF, (fmtdesc.pixelformat &gt;&gt; 24) &amp; 0xFF,fmtdesc.description);</span><br><span class="line">		fmtdesc.index++;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	v4l2_close(fd);</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc test.c -o <span class="built_in">test</span> -lv4l2</span><br><span class="line">./<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-<p><a href="/images/Snip20151025_2.png"><img src="/images/Snip20151025_2.png"></a></p>
+<p><a href="/images/Snip20151025_2.png"><img src="/images/Snip20151025_2.png" alt></a></p>
 <p>这里我获取了三个摄像头的信息。</p>
 
       
@@ -535,7 +539,7 @@
 
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="杨培文">
             
@@ -550,7 +554,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-count">68</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -702,7 +706,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
@@ -761,6 +765,8 @@
 
 
 
+  
+
 
 
 
@@ -783,6 +789,9 @@
 
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   

@@ -13,7 +13,7 @@
 
 
 <html class="theme-next pisces" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -37,6 +37,10 @@
 
 
 
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
 
 
 
@@ -73,7 +77,7 @@
     scheme: 'Pisces',
     version: '6.7.0',
     sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
     lazyload: false,
     tabs: true,
@@ -94,13 +98,13 @@
 
 
 
-  <meta name="description" content="这里是openssl编译好的库,可以在iOS设备以及MacBook上使用:http://pan.baidu.com/s/1mgkjGs4 如果感兴趣的话可以自行编译openssl的源码,记得编译成arm使用的文件就行. 在xcode中导入 直接将文件拖入xcode目录中即可,如图:  然后,我们如果是swift,我们需要引入一个桥梁,操作如下: 1,File-&amp;gt;New-&amp;gt;File  2">
+  <meta name="description" content="这里是openssl编译好的库,可以在iOS设备以及MacBook上使用:http://pan.baidu.com/s/1mgkjGs4 如果感兴趣的话可以自行编译openssl的源码,记得编译成arm使用的文件就行. 在xcode中导入 直接将文件拖入xcode目录中即可,如图: 然后,我们如果是swift,我们需要引入一个桥梁,操作如下:1,File-&amp;gt;New-&amp;gt;File2,新建一">
 <meta name="keywords" content="instabtbu,iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在iOS中使用RSA加密">
 <meta property="og:url" content="https://ypw.io/在iOS中使用RSA加密/index.html">
 <meta property="og:site_name" content="杨培文">
-<meta property="og:description" content="这里是openssl编译好的库,可以在iOS设备以及MacBook上使用:http://pan.baidu.com/s/1mgkjGs4 如果感兴趣的话可以自行编译openssl的源码,记得编译成arm使用的文件就行. 在xcode中导入 直接将文件拖入xcode目录中即可,如图:  然后,我们如果是swift,我们需要引入一个桥梁,操作如下: 1,File-&amp;gt;New-&amp;gt;File  2">
+<meta property="og:description" content="这里是openssl编译好的库,可以在iOS设备以及MacBook上使用:http://pan.baidu.com/s/1mgkjGs4 如果感兴趣的话可以自行编译openssl的源码,记得编译成arm使用的文件就行. 在xcode中导入 直接将文件拖入xcode目录中即可,如图: 然后,我们如果是swift,我们需要引入一个桥梁,操作如下:1,File-&amp;gt;New-&amp;gt;File2,新建一">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ypw.io/images/屏幕快照-2015-02-25-下午12.30.58.png">
 <meta property="og:image" content="https://ypw.io/images/屏幕快照-2015-02-25-下午12.35.09.png">
@@ -113,7 +117,7 @@
 <meta property="og:updated_time" content="2019-01-27T05:18:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在iOS中使用RSA加密">
-<meta name="twitter:description" content="这里是openssl编译好的库,可以在iOS设备以及MacBook上使用:http://pan.baidu.com/s/1mgkjGs4 如果感兴趣的话可以自行编译openssl的源码,记得编译成arm使用的文件就行. 在xcode中导入 直接将文件拖入xcode目录中即可,如图:  然后,我们如果是swift,我们需要引入一个桥梁,操作如下: 1,File-&amp;gt;New-&amp;gt;File  2">
+<meta name="twitter:description" content="这里是openssl编译好的库,可以在iOS设备以及MacBook上使用:http://pan.baidu.com/s/1mgkjGs4 如果感兴趣的话可以自行编译openssl的源码,记得编译成arm使用的文件就行. 在xcode中导入 直接将文件拖入xcode目录中即可,如图: 然后,我们如果是swift,我们需要引入一个桥梁,操作如下:1,File-&amp;gt;New-&amp;gt;File2,新建一">
 <meta name="twitter:image" content="https://ypw.io/images/屏幕快照-2015-02-25-下午12.30.58.png">
 
 
@@ -180,7 +184,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -190,7 +194,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -337,20 +341,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ypw.io/在iOS中使用RSA加密/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="杨培文">
       <meta itemprop="description" content="杨培文的 blog">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="杨培文">
     </span>
 
@@ -439,19 +443,19 @@
         <p>这里是openssl编译好的库,可以在iOS设备以及MacBook上使用:<a href="http://pan.baidu.com/s/1mgkjGs4" target="_blank" rel="noopener">http://pan.baidu.com/s/1mgkjGs4</a></p>
 <p>如果感兴趣的话可以自行编译openssl的源码,记得编译成arm使用的文件就行.</p>
 <p>在xcode中导入</p>
-<p>直接将文件拖入xcode目录中即可,如图: <a href="/images/屏幕快照-2015-02-25-下午12.30.58.png"><img src="/images/屏幕快照-2015-02-25-下午12.30.58.png"></a></p>
-<p>然后,我们如果是swift,我们需要引入一个桥梁,操作如下: 1,File-&gt;New-&gt;File <a href="/images/屏幕快照-2015-02-25-下午12.35.09.png"><img src="/images/屏幕快照-2015-02-25-下午12.35.09.png"></a> 2,新建一个C</p>
-<p><a href="/images/屏幕快照-2015-02-25-下午12.44.07.png"><img src="/images/屏幕快照-2015-02-25-下午12.44.07.png"></a></p>
+<p>直接将文件拖入xcode目录中即可,如图:<br><a href="/images/屏幕快照-2015-02-25-下午12.30.58.png"><img src="/images/屏幕快照-2015-02-25-下午12.30.58.png" alt></a></p>
+<p>然后,我们如果是swift,我们需要引入一个桥梁,操作如下:<br>1,File-&gt;New-&gt;File<br><a href="/images/屏幕快照-2015-02-25-下午12.35.09.png"><img src="/images/屏幕快照-2015-02-25-下午12.35.09.png" alt></a><br>2,新建一个C</p>
+<p><a href="/images/屏幕快照-2015-02-25-下午12.44.07.png"><img src="/images/屏幕快照-2015-02-25-下午12.44.07.png" alt></a></p>
 <p>3,输入名字</p>
-<p><a href="/images/屏幕快照-2015-02-25-下午12.44.26.png"><img src="/images/屏幕快照-2015-02-25-下午12.44.26.png"></a></p>
+<p><a href="/images/屏幕快照-2015-02-25-下午12.44.26.png"><img src="/images/屏幕快照-2015-02-25-下午12.44.26.png" alt></a></p>
 <p>4,选择目录</p>
-<p><a href="/images/屏幕快照-2015-02-25-下午12.44.54.png"><img src="/images/屏幕快照-2015-02-25-下午12.44.54.png"></a></p>
+<p><a href="/images/屏幕快照-2015-02-25-下午12.44.54.png"><img src="/images/屏幕快照-2015-02-25-下午12.44.54.png" alt></a></p>
 <p>5,最关键的,创建一个桥梁文件</p>
-<p><a href="/images/屏幕快照-2015-02-25-下午12.45.00.png"><img src="/images/屏幕快照-2015-02-25-下午12.45.00.png"></a></p>
+<p><a href="/images/屏幕快照-2015-02-25-下午12.45.00.png"><img src="/images/屏幕快照-2015-02-25-下午12.45.00.png" alt></a></p>
 <p>6,创建成功,注意最后那个test-Bridging-Header.h</p>
-<p><a href="/images/屏幕快照-2015-02-25-下午12.45.06.png"><img src="/images/屏幕快照-2015-02-25-下午12.45.06.png"></a></p>
+<p><a href="/images/屏幕快照-2015-02-25-下午12.45.06.png"><img src="/images/屏幕快照-2015-02-25-下午12.45.06.png" alt></a></p>
 <p>然后,我们把openssl拖进来</p>
-<p><a href="/images/屏幕快照-2015-02-25-下午12.52.55.png"><img src="/images/屏幕快照-2015-02-25-下午12.52.55.png"></a></p>
+<p><a href="/images/屏幕快照-2015-02-25-下午12.52.55.png"><img src="/images/屏幕快照-2015-02-25-下午12.52.55.png" alt></a></p>
 <p>在.h头文件里加上这样两句话:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rsajiami</span><span class="params">(<span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span>* in,<span class="keyword">int</span> size,<span class="keyword">unsigned</span> <span class="keyword">char</span>* out)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rsajiemi</span><span class="params">(<span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span>* in,<span class="keyword">unsigned</span> <span class="keyword">char</span>* out)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>就像这样:</p>
@@ -462,7 +466,6 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">jiami</span><span class="params">(buf:[Byte])</span></span>-&gt;[<span class="type">Byte</span>]&#123;</span><br><span class="line">    <span class="keyword">var</span> re:[<span class="type">UInt8</span>] = [<span class="type">UInt8</span>](<span class="built_in">count</span>:<span class="number">128</span>,repeatedValue:<span class="number">0x0</span>)</span><br><span class="line">    rsajiami(buf,<span class="type">CInt</span>(<span class="built_in">countElements</span>(buf)),&amp;re)</span><br><span class="line">    <span class="keyword">return</span> re</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>同样的也可以调用解密函数:</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">remain = [<span class="type">UInt8</span>](<span class="built_in">count</span>:<span class="number">20</span>,repeatedValue:<span class="number">0x0</span>)</span><br><span class="line">rsajiemi(re,&amp;remain)</span><br></pre></td></tr></table></figure>
-
       
     </div>
 
@@ -560,7 +563,7 @@
 
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="杨培文">
             
@@ -575,7 +578,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-count">68</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -727,7 +730,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
@@ -786,6 +789,8 @@
 
 
 
+  
+
 
 
 
@@ -808,6 +813,9 @@
 
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   

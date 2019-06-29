@@ -13,7 +13,7 @@
 
 
 <html class="theme-next pisces" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -37,6 +37,10 @@
 
 
 
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
 
 
 
@@ -73,7 +77,7 @@
     scheme: 'Pisces',
     version: '6.7.0',
     sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
     lazyload: false,
     tabs: true,
@@ -94,13 +98,13 @@
 
 
 
-  <meta name="description" content="介绍 Amazon EC2 P2 实例 p2.xlarge 是一种非常适合深度学习的云服务器，它配备了 12G 显存的 Tesla K80 显卡，4核 CPU，60G 内存，以及 500M 的网速。如果你还嫌不够，可以选择它的8倍和16倍的版本。">
+  <meta name="description" content="介绍Amazon EC2 P2 实例 p2.xlarge 是一种非常适合深度学习的云服务器，它配备了 12G 显存的 Tesla K80 显卡，4核 CPU，60G 内存，以及 500M 的网速。如果你还嫌不够，可以选择它的8倍和16倍的版本。">
 <meta name="keywords" content="Udacity,aws">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在AWS上配置深度学习主机">
 <meta property="og:url" content="https://ypw.io/aws_p2/index.html">
 <meta property="og:site_name" content="杨培文">
-<meta property="og:description" content="介绍 Amazon EC2 P2 实例 p2.xlarge 是一种非常适合深度学习的云服务器，它配备了 12G 显存的 Tesla K80 显卡，4核 CPU，60G 内存，以及 500M 的网速。如果你还嫌不够，可以选择它的8倍和16倍的版本。">
+<meta property="og:description" content="介绍Amazon EC2 P2 实例 p2.xlarge 是一种非常适合深度学习的云服务器，它配备了 12G 显存的 Tesla K80 显卡，4核 CPU，60G 内存，以及 500M 的网速。如果你还嫌不够，可以选择它的8倍和16倍的版本。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ypw.io/aws_p2/gpu.png">
 <meta property="og:image" content="https://ypw.io/aws_p2/limit.png">
@@ -117,7 +121,7 @@
 <meta property="og:updated_time" content="2017-03-23T09:19:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在AWS上配置深度学习主机">
-<meta name="twitter:description" content="介绍 Amazon EC2 P2 实例 p2.xlarge 是一种非常适合深度学习的云服务器，它配备了 12G 显存的 Tesla K80 显卡，4核 CPU，60G 内存，以及 500M 的网速。如果你还嫌不够，可以选择它的8倍和16倍的版本。">
+<meta name="twitter:description" content="介绍Amazon EC2 P2 实例 p2.xlarge 是一种非常适合深度学习的云服务器，它配备了 12G 显存的 Tesla K80 显卡，4核 CPU，60G 内存，以及 500M 的网速。如果你还嫌不够，可以选择它的8倍和16倍的版本。">
 <meta name="twitter:image" content="https://ypw.io/aws_p2/gpu.png">
 
 
@@ -184,7 +188,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -194,7 +198,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -341,20 +345,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ypw.io/aws_p2/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="杨培文">
       <meta itemprop="description" content="杨培文的 blog">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="杨培文">
     </span>
 
@@ -440,36 +444,27 @@
       
 
       
-        <h1 id="介绍">介绍</h1>
-<p><a href="https://aws.amazon.com/cn/ec2/instance-types/p2/" target="_blank" rel="noopener">Amazon EC2 P2 实例</a></p>
+        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p><a href="https://aws.amazon.com/cn/ec2/instance-types/p2/" target="_blank" rel="noopener">Amazon EC2 P2 实例</a></p>
 <p>p2.xlarge 是一种非常适合深度学习的云服务器，它配备了 12G 显存的 Tesla K80 显卡，4核 CPU，60G 内存，以及 500M 的网速。如果你还嫌不够，可以选择它的8倍和16倍的版本。</p>
 <img src="/aws_p2/gpu.png">
 <a id="more"></a>
-<h1 id="注册账号">注册账号</h1>
-<p>首先我们需要注册一个 aws 账号，从刚才的地址可以注册，需要 visa 或 mastercard 信用卡。</p>
+<h1 id="注册账号"><a href="#注册账号" class="headerlink" title="注册账号"></a>注册账号</h1><p>首先我们需要注册一个 aws 账号，从刚才的地址可以注册，需要 visa 或 mastercard 信用卡。</p>
 <p>注册好了以后，我们需要申请 p2.xlarge 的权限，因为默认限制0台。</p>
-<h1 id="填写工单">填写工单</h1>
-<p><a href="https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&amp;limitType=service-code-ec2-instances" target="_blank" rel="noopener">请求提高限制</a></p>
+<h1 id="填写工单"><a href="#填写工单" class="headerlink" title="填写工单"></a>填写工单</h1><p><a href="https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&amp;limitType=service-code-ec2-instances" target="_blank" rel="noopener">请求提高限制</a></p>
 <p>不然就会出现可恶的 <code>Instance Count Limit Exceeded</code> 。</p>
 <img src="/aws_p2/limit.png">
 <p>填写方法很简单，随便写点理由证明你需要 GPU 就行，一般都能通过。</p>
 <img src="/aws_p2/case.png">
 <p>图中的地区是<code>美国东部 (弗吉尼亚北部)</code>，你可以根据自己的喜好选择不同的地址。</p>
-<h1 id="开启实例">开启实例</h1>
-<h2 id="选择-ami">选择 AMI</h2>
-<p><a href="https://console.aws.amazon.com/ec2/v2/home" target="_blank" rel="noopener">EC2 控制面板</a></p>
+<h1 id="开启实例"><a href="#开启实例" class="headerlink" title="开启实例"></a>开启实例</h1><h2 id="选择-AMI"><a href="#选择-AMI" class="headerlink" title="选择 AMI"></a>选择 AMI</h2><p><a href="https://console.aws.amazon.com/ec2/v2/home" target="_blank" rel="noopener">EC2 控制面板</a></p>
 <p>首先点击启动实例，然后这里我们记得选择 Udacity 的 AMI，因为预装了Tensorflow GPU, Keras, OpenCV，比较省折腾。</p>
 <img src="/aws_p2/udacity.png">
-<h2 id="选择一个实例类型">选择一个实例类型</h2>
-<p>这里选 p2.xlarge 就好，开启以后一分钟和59分钟都算一个小时，所以开了以后可以放心大胆折腾一个小时，坏了也不用怕，删掉再开一个就好。</p>
-<h2 id="配置安全组">配置安全组</h2>
-<img src="/aws_p2/safe.png">
+<h2 id="选择一个实例类型"><a href="#选择一个实例类型" class="headerlink" title="选择一个实例类型"></a>选择一个实例类型</h2><p>这里选 p2.xlarge 就好，开启以后一分钟和59分钟都算一个小时，所以开了以后可以放心大胆折腾一个小时，坏了也不用怕，删掉再开一个就好。</p>
+<h2 id="配置安全组"><a href="#配置安全组" class="headerlink" title="配置安全组"></a>配置安全组</h2><img src="/aws_p2/safe.png">
 <p>入站和出站记得配置成任所有流量和任意位置，不然到时候 <code>ssh</code> 不上去，或者开 <code>jupyter notebook</code> 连不上去。懂的人可以自行配置，不懂就直接写所有流量就好了，反正有 key 才能连上去。</p>
-<h2 id="配置密钥对">配置密钥对</h2>
-<p>如果你有自己常用的私钥和公钥，可以从<a href="https://console.aws.amazon.com/ec2/v2/home#KeyPairs" target="_blank" rel="noopener">密钥对</a>这里导入，否则你可以生成一个新的密钥，然后下载密钥对。</p>
+<h2 id="配置密钥对"><a href="#配置密钥对" class="headerlink" title="配置密钥对"></a>配置密钥对</h2><p>如果你有自己常用的私钥和公钥，可以从<a href="https://console.aws.amazon.com/ec2/v2/home#KeyPairs" target="_blank" rel="noopener">密钥对</a>这里导入，否则你可以生成一个新的密钥，然后下载密钥对。</p>
 <img src="/aws_p2/key.png">
-<h1 id="连接">连接</h1>
-<p>在连接以前，它需要进行一段时间初始化（大概五分钟），所以你可以先等待一会。等它显示已通过的时候，你就可以用 ssh 连接它了。下面是我连接的命令：</p>
+<h1 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h1><p>在连接以前，它需要进行一段时间初始化（大概五分钟），所以你可以先等待一会。等它显示已通过的时候，你就可以用 ssh 连接它了。下面是我连接的命令：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -i Downloads/test.pem ubuntu@52.91.231.174</span><br></pre></td></tr></table></figure>
 <p>其中的 key 你需要改为你自己的路径，IP 地址也要改为你自己的主机的 IP 地址。如果它提示你是否要确定连接，你要确定：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Are you sure you want to continue connecting (yes/no)? yes</span><br></pre></td></tr></table></figure>
@@ -477,21 +472,15 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">Permissions 0644 for &apos;Downloads/test.pem&apos; are too open.</span><br></pre></td></tr></table></figure>
 <p>你需要将你的 key 的权限改为只有你可以访问，然后再进行连接：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 700 Downloads/test.pem</span><br></pre></td></tr></table></figure>
-<h1 id="停止">停止</h1>
-<p>当你不使用实例的时候，记得停止它。停止以后，不会计费。</p>
+<h1 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h1><p>当你不使用实例的时候，记得停止它。停止以后，不会计费。</p>
 <p>事实上由于我是新用户，所以会有一年免费 EBS 试用，一年以后的收费可以参照这里：<a href="https://aws.amazon.com/cn/ebs/pricing/" target="_blank" rel="noopener">https://aws.amazon.com/cn/ebs/pricing/</a>，一个月 30G 的 SSD 收费是3美元，因此你可以自行权衡数据和价格，若是一个月以后还要用这些数据，而你愿意出3美元保持这些数据，避免一个月以后麻烦，那么你可以不必终止该实例。当你长期不打算使用该实例时，请务必终止该实例。</p>
-<h1 id="竞价实例">竞价实例</h1>
-<p>竞价实例是一种特殊的实例，它可以以超低的价格提供配置一样的实例，和普通实例的差别在于不可停止，因此当你想跑比较大的网络的时候（训练时间大于1小时），用竞价实例会非常划算。0.9美元每小时的 p2.xlarge 在竞价实例一个月的历史记录里很少超过0.3美元。即使超过了，我们也不会出高于0.9美元的价格。</p>
+<h1 id="竞价实例"><a href="#竞价实例" class="headerlink" title="竞价实例"></a>竞价实例</h1><p>竞价实例是一种特殊的实例，它可以以超低的价格提供配置一样的实例，和普通实例的差别在于不可停止，因此当你想跑比较大的网络的时候（训练时间大于1小时），用竞价实例会非常划算。0.9美元每小时的 p2.xlarge 在竞价实例一个月的历史记录里很少超过0.3美元。即使超过了，我们也不会出高于0.9美元的价格。</p>
 <img src="/aws_p2/bill.png">
 <p>上图是这两天的账单，我用了40小时，才花了5.33美元，平均一小时0.13美元。</p>
-<h1 id="创建自己的映像ami">创建自己的映像（AMI）</h1>
-<p>当你想创建竞价实例的时候，你可能并不想重新配置一遍环境，这时候你可以创建自己的映像，然后在创建竞价实例的时候使用该映像，这样创建的竞价实例可以完好无损地迁移之前的驱动，环境，以及数据和代码。</p>
-<h2 id="创建映像">创建映像</h2>
-<img src="/aws_p2/ami.png">
-<h2 id="选择映像ami">选择映像（AMI）</h2>
-<img src="/aws_p2/spot.png">
-<h1 id="实际体验">实际体验</h1>
-<img src="/aws_p2/gpu.png">
+<h1 id="创建自己的映像（AMI）"><a href="#创建自己的映像（AMI）" class="headerlink" title="创建自己的映像（AMI）"></a>创建自己的映像（AMI）</h1><p>当你想创建竞价实例的时候，你可能并不想重新配置一遍环境，这时候你可以创建自己的映像，然后在创建竞价实例的时候使用该映像，这样创建的竞价实例可以完好无损地迁移之前的驱动，环境，以及数据和代码。</p>
+<h2 id="创建映像"><a href="#创建映像" class="headerlink" title="创建映像"></a>创建映像</h2><img src="/aws_p2/ami.png">
+<h2 id="选择映像（AMI）"><a href="#选择映像（AMI）" class="headerlink" title="选择映像（AMI）"></a>选择映像（AMI）</h2><img src="/aws_p2/spot.png">
+<h1 id="实际体验"><a href="#实际体验" class="headerlink" title="实际体验"></a>实际体验</h1><img src="/aws_p2/gpu.png">
 <p>训练时<code>nvidia-smi</code>的输出。</p>
 <img src="/aws_p2/ram.png">
 <p>将二十多万张图片载入内存时<code>htop</code>的输出。</p>
@@ -604,7 +593,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="杨培文">
             
@@ -619,7 +608,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-count">68</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -756,7 +745,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注册账号"><span class="nav-number">2.</span> <span class="nav-text">注册账号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#填写工单"><span class="nav-number">3.</span> <span class="nav-text">填写工单</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开启实例"><span class="nav-number">4.</span> <span class="nav-text">开启实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#选择-ami"><span class="nav-number">4.1.</span> <span class="nav-text">选择 AMI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择一个实例类型"><span class="nav-number">4.2.</span> <span class="nav-text">选择一个实例类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置安全组"><span class="nav-number">4.3.</span> <span class="nav-text">配置安全组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置密钥对"><span class="nav-number">4.4.</span> <span class="nav-text">配置密钥对</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#连接"><span class="nav-number">5.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#停止"><span class="nav-number">6.</span> <span class="nav-text">停止</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#竞价实例"><span class="nav-number">7.</span> <span class="nav-text">竞价实例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建自己的映像ami"><span class="nav-number">8.</span> <span class="nav-text">创建自己的映像（AMI）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建映像"><span class="nav-number">8.1.</span> <span class="nav-text">创建映像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择映像ami"><span class="nav-number">8.2.</span> <span class="nav-text">选择映像（AMI）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实际体验"><span class="nav-number">9.</span> <span class="nav-text">实际体验</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注册账号"><span class="nav-number">2.</span> <span class="nav-text">注册账号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#填写工单"><span class="nav-number">3.</span> <span class="nav-text">填写工单</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开启实例"><span class="nav-number">4.</span> <span class="nav-text">开启实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#选择-AMI"><span class="nav-number">4.1.</span> <span class="nav-text">选择 AMI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择一个实例类型"><span class="nav-number">4.2.</span> <span class="nav-text">选择一个实例类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置安全组"><span class="nav-number">4.3.</span> <span class="nav-text">配置安全组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置密钥对"><span class="nav-number">4.4.</span> <span class="nav-text">配置密钥对</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#连接"><span class="nav-number">5.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#停止"><span class="nav-number">6.</span> <span class="nav-text">停止</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#竞价实例"><span class="nav-number">7.</span> <span class="nav-text">竞价实例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建自己的映像（AMI）"><span class="nav-number">8.</span> <span class="nav-text">创建自己的映像（AMI）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建映像"><span class="nav-number">8.1.</span> <span class="nav-text">创建映像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择映像（AMI）"><span class="nav-number">8.2.</span> <span class="nav-text">选择映像（AMI）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实际体验"><span class="nav-number">9.</span> <span class="nav-text">实际体验</span></a></li></ol></div>
             
 
           </div>
@@ -788,7 +777,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
@@ -847,6 +836,8 @@
 
 
 
+  
+
 
 
 
@@ -869,6 +860,9 @@
 
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
